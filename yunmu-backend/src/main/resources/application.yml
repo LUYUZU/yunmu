@@ -13,98 +13,57 @@ spring:
   profiles:
     active: dev
 
-  # 数据库配置 - 使用 H2 内存数据库（无需安装 MySQL）
+  # SQL Server 数据库配置
   datasource:
-    url: jdbc:h2:mem:yunmu_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
+    url: jdbc:sqlserver://localhost:1433;databaseName=yunmu_db;encrypt=false;trustServerCertificate=true
     username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    password: 1234567890
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:
       maximum-pool-size: 20
       minimum-idle: 5
       connection-timeout: 30000
 
-  # H2 控制台配置
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        web-allow-others: true
-
   # JPA 配置
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.SQLServerDialect
     hibernate:
-      ddl-auto: create-drop
-    show-sql: false
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
 
-  # Redis 配置（可选，无 Redis 时使用内存缓存）
-  # Redis 配置（可选，无 Redis 时使用内存缓存）
-  #redis:
-   # host: localhost
-    #port: 6379
-    #timeout: 5000ms
-   # lettuce:
-      #pool:
-        #max-active: 8
-        #max-idle: 8
-        #min-idle: 0
-        #max-wait: -1ms
-
-  # 文件上传配置
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
 
-  # 消息队列配置（可选）
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-
-  # 解决Springfox与Spring Boot 2.6+不兼容问题
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
 
 # 自定义配置
 yunmu:
-  # Python服务配置
   python-service:
     url: http://localhost:5000
     timeout: 30000
-
-  # WebSocket配置
   websocket:
     enabled: true
     path: /ws
-
-  # 数据保留配置
   data:
     retention-days: 90
     batch-size: 100
-
-  # 算法阈值配置
   algorithm:
     rumination-threshold: 0.7
     feeding-threshold: 0.65
     health-alert-threshold: 0.8
-
-  # 系统监控配置
   monitor:
     enable: true
     port: 8081
-
-  # 文件存储配置
   file:
-    upload-path: /data/yunmu/uploads/
-    max-size: 10485760  # 10MB
+    upload-path: ./uploads/
+    max-size: 10485760
 
 # Actuator监控端点
 management:
@@ -117,23 +76,18 @@ management:
       show-details: always
   health:
     redis:
-      enabled: false  # 禁用Redis健康检查
+      enabled: false
   metrics:
     export:
       prometheus:
         enabled: true
 
-
 # 日志配置
 logging:
-  config: classpath:logback-spring.xml
   level:
     com.yunmu: INFO
     org.springframework.web: INFO
     org.hibernate: WARN
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-
 
 ---
 # 开发环境配置
@@ -142,48 +96,14 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:h2:mem:yunmu_dev;DB_CLOSE_DELAY=-1;MODE=MySQL
-  h2:
-    console:
-      enabled: true
+    url: jdbc:sqlserver://localhost:1433;databaseName=yunmu_db;encrypt=false;trustServerCertificate=true
+    username: sa
+    password: 1234567890
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
 yunmu:
   python-service:
     url: http://localhost:5000
-
----
-# 测试环境配置
-spring:
-  config:
-    activate:
-      on-profile: test
-  datasource:
-    url: jdbc:mysql://test-db:3306/yunmu_test?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
-
-yunmu:
-  python-service:
-    url: http://python-service:5000
-
----
-# 生产环境配置
-spring:
-  config:
-    activate:
-      on-profile: prod
-  datasource:
-    url: jdbc:mysql://prod-db:3306/yunmu_prod?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-
-yunmu:
-  python-service:
-    url: http://python-service:5000
-  file:
-    upload-path: /opt/yunmu/uploads/
-
-logging:
-  level:
-    com.yunmu: WARN
 
 # MQTT配置
 mqtt:
