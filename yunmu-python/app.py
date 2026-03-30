@@ -1,412 +1,266 @@
-# app.py - 云牧智感机器学习服务
+# app.py - 完整版，集成算法处理
+import sys
+import os
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent))
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import numpy as np
-import joblib
-from models.behavior_model import BehaviorClassifier
-from features.feature_extractor import FeatureExtractor
-import traceback
 import logging
+import traceback
 
-# 配置日志
+from models.step_counter import StepCounter, DailyStepTracker
+from models.posture_model import PostureClassifier
+from models.step_alert import StepAlert
+from utils.gps_processor import GPSProcessor
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)
 
-# 初始化模型
-logger.info("正在初始化模型和特征提取器...")
-behavior_classifier = BehaviorClassifier()
-feature_extractor = FeatureExtractor()
-logger.info("模型和特征提取器初始化完成")
+# 初始化模块
+step_counter = StepCounter()
+daily_tracker = DailyStepTracker()
+posture_classifier = PostureClassifier()
+gps_processor = GPSProcessor()
+step_alert = StepAlert()
+
+# 存储设备数据
+device_data = {}
+# 存储设备的历史步数（用于异常检测）
+device_step_history = {}
+
+
+# ========== 数据接收接口（Java调用） ==========
+@app.route('/api/device/data', methods=['POST'])
+def receive_device_data():
+    """
+    接收Java端转发的MQTT数据，并调用算法处理
+    """
+    try:
+        data = request.get_json()
+        if data is None:
+            return jsonify({'success': False, 'error': '请求体为空'}), 400
+
+        logger.info(f"收到设备数据: {data}")
+
+        device_id = data.get('device_id') or data.get('topic')
+
+        if not device_id:
+            return jsonify({'success': False, 'error': '缺少device_id'}), 400
+
+        # 提取原始数据
+        longitude = data.get('longitude')
+        latitude = data.get('latitude')
+        move = data.get('move', 0)  # 0=静止, 1=移动, 2=跑
+        steps_from_device = data.get('steps', 0)  # 设备上报的步数
+        counter = data.get('counter', 0)
+
+        # ========== 1. 更新GPS位置 ==========
+        if longitude and latitude:
+            gps_processor.current_position['longitude'] = longitude
+            gps_processor.current_position['latitude'] = latitude
+            logger.info(f"设备 {device_id} GPS位置更新: ({latitude}, {longitude})")
+
+        # ========== 2. 姿态识别算法 ==========
+        # 根据move字段和设备上报的加速度数据判断姿态
+        # 如果有加速度数据，使用姿态识别算法；否则根据move字段推断
+        accel_x = data.get('accel_x')
+        accel_y = data.get('accel_y')
+        accel_z = data.get('accel_z')
+
+        if accel_x is not None and accel_y is not None and accel_z is not None:
+            # 使用姿态识别算法
+            posture_result = posture_classifier.predict_posture(
+                accel_x, accel_y, accel_z,
+                data.get('gyro_x', 0), data.get('gyro_y', 0), data.get('gyro_z', 0)
+            )
+            posture = posture_result.get('posture_type', 'standing')
+            posture_confidence = posture_result.get('confidence', 0.7)
+            logger.info(f"算法姿态识别: {posture}, 置信度: {posture_confidence}")
+        else:
+            # 根据move字段推断姿态
+            if move == 0:
+                posture = 'standing'
+            elif move == 1:
+                posture = 'walking'
+            elif move == 2:
+                posture = 'running'
+            else:
+                posture = 'standing'
+            posture_confidence = 0.7
+            logger.info(f"根据move推断姿态: {posture}")
+
+        # ========== 3. 步数统计算法 ==========
+        # 如果有加速度数据，使用步数统计算法重新计算步数
+        accel_y_history = data.get('accel_y_history', [])
+        timestamps = data.get('timestamps', [])
+
+        if accel_y_history and timestamps:
+            # 使用步数统计算法
+            step_counter.set_posture(posture)
+            step_result = step_counter.count_steps(accel_y_history, timestamps)
+            calculated_steps = step_result.get('total_steps', 0)
+            step_frequency = step_result.get('step_frequency', 0)
+            activity_level = step_result.get('activity_level', 'low')
+
+            logger.info(f"算法步数统计: 总步数={calculated_steps}, 步频={step_frequency}, 活动水平={activity_level}")
+
+            # 更新每日步数
+            if calculated_steps > 0:
+                daily_tracker.add_steps(calculated_steps)
+        else:
+            # 使用设备上报的步数
+            calculated_steps = steps_from_device
+            step_frequency = 0
+            activity_level = 'low'
+            if calculated_steps > 0:
+                daily_tracker.add_steps(calculated_steps)
+            logger.info(f"使用设备上报步数: {calculated_steps}")
+
+        # ========== 4. 步数异常检测 ==========
+        # 获取设备历史步数
+        if device_id not in device_step_history:
+            device_step_history[device_id] = []
+
+        device_step_history[device_id].append({
+            'steps': calculated_steps,
+            'timestamp': data.get('timestamp'),
+            'posture': posture
+        })
+        # 保留最近100条记录
+        if len(device_step_history[device_id]) > 100:
+            device_step_history[device_id] = device_step_history[device_id][-100:]
+
+        # 提取历史步数值用于基线计算
+        history_steps = [h['steps'] for h in device_step_history[device_id][-30:]]
+        if len(history_steps) >= 10:
+            step_alert.update_baseline(history_steps)
+
+        # 检测异常
+        anomaly = step_alert.check_anomaly(calculated_steps, data.get('timestamp'), device_id)
+
+        if anomaly.get('is_anomaly'):
+            logger.warning(f"设备 {device_id} 步数异常: {calculated_steps}步, "
+                           f"正常范围: {anomaly.get('normal_range')}, "
+                           f"严重程度: {anomaly.get('severity')}")
+
+        # ========== 5. 存储设备状态 ==========
+        device_data[device_id] = {
+            'device_id': device_id,
+            'posture': posture,
+            'posture_confidence': posture_confidence,
+            'move': move,
+            'steps_from_device': steps_from_device,
+            'calculated_steps': calculated_steps,
+            'step_frequency': step_frequency,
+            'activity_level': activity_level,
+            'location': {'lat': latitude, 'lng': longitude},
+            'counter': counter,
+            'anomaly': anomaly,
+            'last_update': data.get('timestamp'),
+            'raw_data': data
+        }
+
+        # ========== 6. 获取每日步数摘要 ==========
+        daily_summary = daily_tracker.get_daily_summary()
+
+        logger.info(f"设备 {device_id} 状态更新完成: "
+                    f"姿态={posture}({posture_confidence:.2f}), "
+                    f"步数={calculated_steps}, "
+                    f"异常={anomaly.get('is_anomaly')}")
+
+        return jsonify({
+            'success': True,
+            'message': '数据接收成功',
+            'device_id': device_id,
+            'posture': posture,
+            'posture_confidence': posture_confidence,
+            'calculated_steps': calculated_steps,
+            'step_frequency': step_frequency,
+            'activity_level': activity_level,
+            'anomaly': anomaly,
+            'daily_summary': daily_summary
+        })
+
+    except Exception as e:
+        logger.error(f"处理设备数据失败: {e}")
+        logger.error(traceback.format_exc())
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+# ========== 查询接口 ==========
+@app.route('/api/device/<device_id>', methods=['GET'])
+def get_device(device_id):
+    """获取指定设备状态"""
+    data = device_data.get(device_id, {})
+    history = device_step_history.get(device_id, [])
+    return jsonify({
+        'success': True,
+        'device_id': device_id,
+        'current': data,
+        'history': history[-20:],  # 最近20条历史
+        'history_count': len(history)
+    })
+
+
+@app.route('/api/devices', methods=['GET'])
+def get_devices():
+    """获取所有设备状态"""
+    return jsonify({
+        'success': True,
+        'devices': device_data,
+        'count': len(device_data)
+    })
+
+
+@app.route('/api/steps/daily', methods=['GET'])
+def get_daily_steps():
+    """获取每日步数"""
+    daily = daily_tracker.get_daily_summary()
+    weekly = daily_tracker.get_weekly_summary()
+    return jsonify({
+        'success': True,
+        'daily': daily,
+        'weekly': weekly,
+        'alert_summary': step_alert.get_alert_summary()
+    })
+
+
+@app.route('/api/steps/history/<device_id>', methods=['GET'])
+def get_step_history(device_id):
+    """获取设备步数历史"""
+    history = device_step_history.get(device_id, [])
+    return jsonify({
+        'success': True,
+        'device_id': device_id,
+        'history': history,
+        'count': len(history)
+    })
+
+
+@app.route('/api/alert/summary', methods=['GET'])
+def get_alert_summary():
+    """获取预警摘要"""
+    return jsonify({
+        'success': True,
+        'alert_summary': step_alert.get_alert_summary(),
+        'frontend_data': step_alert.get_frontend_alert_data()
+    })
 
 
 @app.route('/health', methods=['GET'])
 def health_check():
-    """健康检查接口"""
     return jsonify({
         'status': 'healthy',
         'service': 'yunmu-ml-service',
-        'version': '1.0.0'
+        'version': '2.0.0',
+        'devices_count': len(device_data),
+        'algorithms': ['step_counter', 'posture_classifier', 'step_alert', 'gps_processor']
     })
-
-
-@app.route('/api/predict/behavior', methods=['POST'])
-def predict_behavior():
-    """行为预测接口"""
-    try:
-        data = request.get_json()
-        logger.info(f"收到行为预测请求：{data.get('animal_id', 'unknown')}")
-
-        # 提取特征
-        features = feature_extractor.extract_features(data)
-
-        # 预测行为
-        prediction = behavior_classifier.predict(features)
-
-        # 计算置信度
-        confidence = behavior_classifier.get_confidence(features)
-
-        return jsonify({
-            'success': True,
-            'animal_id': data.get('animal_id'),
-            'behavior': prediction,
-            'confidence': float(confidence),
-            'features': features.tolist() if isinstance(features, np.ndarray) else features,
-            'timestamp': data.get('timestamp')
-        })
-
-    except Exception as e:
-        logger.error(f"行为预测失败：{str(e)}")
-        logger.error(traceback.format_exc())
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'message': '行为预测失败'
-        }), 500
-
-
-@app.route('/api/train', methods=['POST'])
-def train_model():
-    """在线训练模型接口"""
-    try:
-        from train import train_models
-        
-        logger.info("收到模型训练请求")
-        train_models()
-        
-        return jsonify({
-            'success': True,
-            'message': '模型训练完成'
-        })
-    except Exception as e:
-        logger.error(f"模型训练失败：{str(e)}")
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'message': '模型训练失败'
-        }), 500
-
-
-# app.py 中的 predict_rumination 函数修复
-
-@app.route('/api/predict/rumination', methods=['POST'])
-def predict_rumination():
-    """反刍行为预测"""
-    try:
-        data = request.get_json()
-        logger.info(f"反刍预测请求: {data.get('animal_id', 'unknown')}")
-
-        # 提取声学特征
-        acoustic_features = feature_extractor.extract_acoustic_features(
-            data.get('audio_data', [])
-        )
-
-        # 修复：predict_rumination需要两个参数，这里传入空字典
-        # 或者修改 behavior_classifier.predict_rumination 方法
-        prediction = behavior_classifier.predict_rumination(
-            acoustic_features,  # 声学特征
-            {}  # 加速度特征，暂时为空
-        )
-
-        return jsonify({
-            'success': True,
-            'animal_id': data.get('animal_id'),
-            'is_ruminating': prediction[0] if isinstance(prediction, tuple) else prediction.get('is_ruminating', False),
-            'confidence': prediction[1] if isinstance(prediction, tuple) else prediction.get('confidence', 0),
-            'rumination_duration': prediction.get('rumination_duration', 0) if isinstance(prediction, dict) else 0,
-            'timestamp': data.get('timestamp')
-        })
-
-    except Exception as e:
-        logger.error(f"反刍预测失败：{str(e)}")
-        logger.error(traceback.format_exc())
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'message': '反刍预测失败'
-        }), 500
-
-
-# 导入步数统计和姿态识别模块
-from models.step_counter import StepCounter, DailyStepTracker
-from models.posture_model import PostureClassifier
-
-# 初始化步数计数器和姿态分类器
-step_counter = StepCounter()
-daily_tracker = DailyStepTracker()
-posture_classifier = PostureClassifier()
-
-
-@app.route('/api/count/steps', methods=['POST'])
-def count_steps():
-    """步数统计接口"""
-    try:
-        data = request.get_json()
-        animal_id = data.get('animal_id', 'unknown')
-        logger.info(f"收到步数统计请求：{animal_id}")
-
-        # 获取加速度数据
-        accel_x = data.get('accel_x', [])
-        accel_y = data.get('accel_y', [])
-        accel_z = data.get('accel_z', [])
-        timestamps = data.get('timestamps', [])
-
-        if not accel_x or not timestamps:
-            return jsonify({
-                'success': False,
-                'error': '缺少加速度数据'
-            }), 400
-
-        # 统计步数
-        result = step_counter.count_steps_from_accel_xyz(
-            accel_x, accel_y, accel_z, timestamps
-        )
-
-        # 更新每日统计
-        daily_result = daily_tracker.add_steps(result.get('total_steps', 0))
-
-        return jsonify({
-            'success': True,
-            'animal_id': animal_id,
-            'steps': result.get('total_steps', 0),
-            'step_frequency': result.get('step_frequency', 0),
-            'walking_distance': result.get('walking_distance', 0),
-            'activity_level': result.get('activity_level', 'low'),
-            'daily_summary': daily_result,
-            'timestamp': data.get('timestamp')
-        })
-
-    except Exception as e:
-        logger.error(f"步数统计失败：{str(e)}")
-        logger.error(traceback.format_exc())
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'message': '步数统计失败'
-        }), 500
-
-
-@app.route('/api/predict/posture', methods=['POST'])
-def predict_posture():
-    """姿态识别接口"""
-    try:
-        data = request.get_json()
-        animal_id = data.get('animal_id', 'unknown')
-        logger.info(f"收到姿态识别请求：{animal_id}")
-
-        # 预测姿态
-        result = posture_classifier.predict_posture(
-            accel_x=data.get('accel_x', 0),
-            accel_y=data.get('accel_y', 0),
-            accel_z=data.get('accel_z', 9.8),
-            gyro_x=data.get('gyro_x', 0),
-            gyro_y=data.get('gyro_y', 0),
-            gyro_z=data.get('gyro_z', 0)
-        )
-
-        return jsonify({
-            'success': True,
-            'animal_id': animal_id,
-            'posture_type': result.get('posture_type', 'unknown'),
-            'confidence': result.get('confidence', 0),
-            'features': result.get('features', {}),
-            'timestamp': data.get('timestamp')
-        })
-
-    except Exception as e:
-        logger.error(f"姿态识别失败：{str(e)}")
-        logger.error(traceback.format_exc())
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'message': '姿态识别失败'
-        }), 500
-
-
-@app.route('/api/batch/predict', methods=['POST'])
-def batch_predict():
-    """批量预测接口"""
-    try:
-        data = request.get_json()
-        items = data.get('data', [])
-        logger.info(f"收到批量预测请求，共 {len(items)} 条数据")
-
-        results = []
-        for item in items:
-            # 行为预测
-            features = feature_extractor.extract_features(item)
-            behavior = behavior_classifier.predict(features)
-            confidence = behavior_classifier.get_confidence(features)
-
-            # 姿态识别
-            posture_result = posture_classifier.predict_posture(
-                accel_x=item.get('accel_x', 0),
-                accel_y=item.get('accel_y', 0),
-                accel_z=item.get('accel_z', 9.8),
-                gyro_x=item.get('gyro_x', 0),
-                gyro_y=item.get('gyro_y', 0),
-                gyro_z=item.get('gyro_z', 0)
-            )
-
-            results.append({
-                'animal_id': item.get('animal_id'),
-                'behavior': behavior,
-                'confidence': float(confidence),
-                'posture': posture_result.get('posture_type'),
-                'posture_confidence': posture_result.get('confidence')
-            })
-
-        return jsonify({
-            'success': True,
-            'count': len(results),
-            'data': results
-        })
-
-    except Exception as e:
-        logger.error(f"批量预测失败：{str(e)}")
-        logger.error(traceback.format_exc())
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'message': '批量预测失败'
-        }), 500
-
-
-# app.py - 更新部分
-
-from models.step_alert import StepAlert
-from utils.gps_processor import GPSProcessor
-
-# 初始化新模块
-step_alert = StepAlert()
-gps_processor = GPSProcessor()
-
-
-# 姿态联动计步
-@app.route('/api/step/count', methods=['POST'])
-def step_count_with_posture():
-    """带姿态联动的步数统计"""
-    try:
-        data = request.get_json()
-        animal_id = data.get('animal_id', 'unknown')
-
-        # 获取姿态
-        posture = data.get('posture', 'standing')
-        step_counter.set_posture(posture)
-
-        # 统计步数
-        result = step_counter.count_steps_from_accel_xyz(
-            data.get('accel_x', []),
-            data.get('accel_y', []),
-            data.get('accel_z', []),
-            data.get('timestamps', []),
-            data.get('gyro_pitch_rate', [])
-        )
-
-        # 步数异常检测
-        if result.get('success'):
-            anomaly = step_alert.check_anomaly(
-                result['total_steps'],
-                data.get('timestamp', 0),
-                animal_id
-            )
-            result['anomaly_check'] = anomaly
-
-            # 触发预警
-            if anomaly['is_anomaly'] and anomaly['severity'] == 'critical':
-                step_alert.send_alert(anomaly, methods=['email', 'platform'])
-
-        return jsonify({
-            'success': True,
-            'animal_id': animal_id,
-            'steps': result.get('total_steps', 0),
-            'step_frequency': result.get('step_frequency', 0),
-            'walking_distance': result.get('walking_distance', 0),
-            'activity_level': result.get('activity_level', 'low'),
-            'current_posture': posture,
-            'anomaly': result.get('anomaly_check', {}),
-            'timestamp': data.get('timestamp')
-        })
-
-    except Exception as e:
-        logger.error(f"步数统计失败: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-
-# GPS定位接口
-@app.route('/api/gps/parse', methods=['POST'])
-def parse_gps():
-    """解析GPS数据"""
-    try:
-        data = request.get_json()
-        nmea_sentence = data.get('nmea_sentence', '')
-
-        parsed = gps_processor.parse_nmea_sentence(nmea_sentence)
-
-        return jsonify({
-            'success': True,
-            'parsed_data': parsed,
-            'current_position': gps_processor.get_current_position()
-        })
-
-    except Exception as e:
-        logger.error(f"GPS解析失败: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-
-# WSN定位接口
-@app.route('/api/gps/wsn', methods=['POST'])
-def wsn_localization():
-    """WSN辅助定位"""
-    try:
-        data = request.get_json()
-        rssi_readings = data.get('rssi_readings', {})
-
-        # 设置锚节点位置
-        if 'anchors' in data:
-            gps_processor.set_anchor_positions(data['anchors'])
-
-        # 校准路径损耗因子
-        if 'calibration' in data:
-            gps_processor.calibrate_path_loss(
-                data['calibration']['distance'],
-                data['calibration']['rssi']
-            )
-
-        # 定位
-        position = gps_processor.wsn_localization(rssi_readings)
-
-        return jsonify({
-            'success': True,
-            'position': position,
-            'path_loss_exponent': gps_processor.path_loss_exponent
-        })
-
-    except Exception as e:
-        logger.error(f"WSN定位失败: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-
-# 步数预警接口
-@app.route('/api/step/alert', methods=['GET'])
-def get_step_alert():
-    """获取步数预警信息"""
-    try:
-        summary = step_alert.get_alert_summary()
-        frontend_data = step_alert.get_frontend_alert_data()
-
-        return jsonify({
-            'success': True,
-            'summary': summary,
-            'frontend_data': frontend_data,
-            'current_normal_range': [step_alert.lower_bound, step_alert.upper_bound]
-        })
-
-    except Exception as e:
-        logger.error(f"获取预警信息失败: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
 
 
 if __name__ == '__main__':
