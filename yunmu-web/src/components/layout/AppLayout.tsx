@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCow, faTachometerAlt, faPaw, faMapMarkerAlt,
@@ -7,28 +7,28 @@ import {
   faExclamationCircle, faExclamationTriangle, faInfoCircle, faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { useAppStore } from '../../store/appStore';
-import '../../styles/layout.css';
+import '@/styles/layout.css';
 
 const NAV_ITEMS = [
-  { path: '/',         icon: faTachometerAlt, label: '系统概览' },
-  { path: '/animals',  icon: faPaw,           label: '动物监测' },
-  { path: '/location', icon: faMapMarkerAlt,  label: '北斗定位' },
-  { path: '/posture',  icon: faWalking,        label: '姿态识别' },
-  { path: '/steps',    icon: faShoePrints,    label: '步数统计' },
-  { path: '/data',     icon: faDatabase,      label: '数据管理' },
-  { path: '/analysis', icon: faChartBar,      label: '分析报告' },
+  { path: '/', icon: faTachometerAlt, label: '系统概览' },
+  { path: '/animals', icon: faPaw, label: '动物监测' },
+  { path: '/location', icon: faMapMarkerAlt, label: '北斗定位' },
+  { path: '/posture', icon: faWalking, label: '姿态识别' },
+  { path: '/steps', icon: faShoePrints, label: '步数统计' },
+  { path: '/data', icon: faDatabase, label: '数据管理' },
+  { path: '/analysis', icon: faChartBar, label: '分析报告' },
 ];
 
 const NOTIF_ICONS = {
   success: faCheckCircle,
-  error:   faExclamationCircle,
+  error: faExclamationCircle,
   warning: faExclamationTriangle,
-  info:    faInfoCircle,
+  info: faInfoCircle,
 } as const;
 
-export function AppLayout({ children }: { children: React.ReactNode }) {
-  const navigate  = useNavigate();
-  const location  = useLocation();
+export function AppLayout() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     isConnected, connectionStatus, stats, lastUpdate,
     notification, closeNotification,
@@ -84,7 +84,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
         {/* 内容 */}
         <main className="content">
-          {children}
+          <Outlet />
         </main>
       </div>
 
