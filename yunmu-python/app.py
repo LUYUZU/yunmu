@@ -1,4 +1,4 @@
-# app.py - 完整版，集成算法处理
+# app.py - 完整版，集成机器学习算法处理
 import sys
 import os
 from pathlib import Path
@@ -9,11 +9,22 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import logging
 import traceback
+import json
 
 from models.step_counter import StepCounter, DailyStepTracker
 from models.posture_model import PostureClassifier
 from models.step_alert import StepAlert
 from utils.gps_processor import GPSProcessor
+
+# 导入机器学习模块
+try:
+    from ml_models.data_collector import BehaviorDataCollector
+    from ml_models.trainer import PostureTrainer, quick_train
+    from ml_models.posture_predictor import MLPostureClassifier
+    ML_AVAILABLE = True
+except ImportError as e:
+    ML_AVAILABLE = False
+    print(f"机器学习模块加载失败: {e}")
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -24,9 +35,24 @@ CORS(app)
 # 初始化模块
 step_counter = StepCounter()
 daily_tracker = DailyStepTracker()
-posture_classifier = PostureClassifier()
+posture_classifier = PostureClassifier()  # 规则引擎（备用）
 gps_processor = GPSProcessor()
 step_alert = StepAlert()
+
+# 尝试加载 ML 模型
+ml_classifier = None
+if ML_AVAILABLE:
+    try:
+        ml_classifier = MLPostureClassifier()
+        logger.info(f"ML模型加载成功: {ml_classifier.get_model_info()}")
+    except Exception as e:
+        logger.warning(f"ML模型加载失败，使用规则引擎: {e}")
+        ml_classifier = None
+else:
+    logger.warning("机器学习模块不可用，使用规则引擎")
+
+# 数据收集器
+data_collector = BehaviorDataCollector() if ML_AVAILABLE else None
 
 # 存储设备数据
 device_data = {}
@@ -67,20 +93,54 @@ def receive_device_data():
 
         # ========== 2. 姿态识别算法 ==========
         # 根据move字段和设备上报的加速度数据判断姿态
-        # 如果有加速度数据，使用姿态识别算法；否则根据move字段推断
+        # 优先使用机器学习模型，备用规则引擎
         accel_x = data.get('accel_x')
         accel_y = data.get('accel_y')
         accel_z = data.get('accel_z')
+        gyro_x = data.get('gyro_x', 0)
+        gyro_y = data.get('gyro_y', 0)
+        gyro_z = data.get('gyro_z', 0)
 
         if accel_x is not None and accel_y is not None and accel_z is not None:
-            # 使用姿态识别算法
-            posture_result = posture_classifier.predict_posture(
-                accel_x, accel_y, accel_z,
-                data.get('gyro_x', 0), data.get('gyro_y', 0), data.get('gyro_z', 0)
-            )
-            posture = posture_result.get('posture_type', 'standing')
-            posture_confidence = posture_result.get('confidence', 0.7)
-            logger.info(f"算法姿态识别: {posture}, 置信度: {posture_confidence}")
+            # 优先使用 ML 模型
+            if ml_classifier is not None and ml_classifier.is_model_loaded():
+                posture_result = ml_classifier.predict(
+                    accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z
+                )
+                posture = posture_result.get('posture_type', 'standing')
+                posture_confidence = posture_result.get('confidence', 0.7)
+                
+                # 记录模型类型
+                model_type = posture_result.get('model_type', 'unknown')
+                fallback = posture_result.get('fallback_used', False)
+                
+                logger.info(f"ML姿态识别: {posture}, 置信度: {posture_confidence:.3f}, 模型: {model_type}")
+                if fallback:
+                    logger.warning("ML置信度低，使用规则引擎备用")
+                
+                # 收集数据用于后续训练（如果未标注）
+                if data_collector:
+                    data_collector.add_sample(
+                        accel_x, accel_y, accel_z,
+                        gyro_x, gyro_y, gyro_z,
+                        posture=posture, device_id=device_id
+                    )
+            else:
+                # 使用规则引擎
+                posture_result = posture_classifier.predict_posture(
+                    accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z
+                )
+                posture = posture_result.get('posture_type', 'standing')
+                posture_confidence = posture_result.get('confidence', 0.7)
+                logger.info(f"规则引擎姿态识别: {posture}, 置信度: {posture_confidence}")
+                
+                # 收集数据
+                if data_collector:
+                    data_collector.add_sample(
+                        accel_x, accel_y, accel_z,
+                        gyro_x, gyro_y, gyro_z,
+                        posture=posture, device_id=device_id
+                    )
         else:
             # 根据move字段推断姿态
             if move == 0:
@@ -254,13 +314,122 @@ def get_alert_summary():
 
 @app.route('/health', methods=['GET'])
 def health_check():
+    ml_info = {}
+    if ml_classifier:
+        ml_info = ml_classifier.get_model_info()
+    
+    data_stats = {}
+    if data_collector:
+        data_stats = data_collector.get_statistics()
+    
     return jsonify({
         'status': 'healthy',
         'service': 'yunmu-ml-service',
-        'version': '2.0.0',
+        'version': '3.0.0',
         'devices_count': len(device_data),
-        'algorithms': ['step_counter', 'posture_classifier', 'step_alert', 'gps_processor']
+        'algorithms': ['step_counter', 'posture_classifier', 'step_alert', 'gps_processor'],
+        'ml_enabled': ML_AVAILABLE,
+        'ml_model': ml_info,
+        'data_stats': data_stats
     })
+
+
+# ========== 机器学习相关接口 ==========
+@app.route('/api/ml/generate-data', methods=['POST'])
+def generate_training_data():
+    """生成合成训练数据"""
+    if not ML_AVAILABLE:
+        return jsonify({'success': False, 'error': '机器学习模块不可用'}), 500
+    
+    try:
+        num_samples = request.json.get('samples_per_class', 500) if request.json else 500
+        result = data_collector.generate_synthetic_data(num_samples_per_class=num_samples)
+        return jsonify({
+            'success': True,
+            'message': '训练数据生成完成',
+            'result': result,
+            'stats': data_collector.get_statistics()
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/ml/train', methods=['POST'])
+def train_model():
+    """训练机器学习模型"""
+    if not ML_AVAILABLE:
+        return jsonify({'success': False, 'error': '机器学习模块不可用'}), 500
+    
+    try:
+        model_type = request.json.get('model_type', 'random_forest') if request.json else 'random_forest'
+        
+        X, y = data_collector.get_training_data()
+        if X is None or len(X) < 50:
+            return jsonify({
+                'success': False, 
+                'error': '训练数据不足，请先生成或收集数据'
+            }), 400
+        
+        trainer = PostureTrainer()
+        results = trainer.train(X, y, model_type=model_type)
+        
+        # 保存模型
+        model_path = trainer.save_model(f"posture_{model_type}")
+        
+        # 重新加载模型
+        global ml_classifier
+        ml_classifier = MLPostureClassifier()
+        
+        return jsonify({
+            'success': True,
+            'message': f'{model_type} 模型训练完成',
+            'results': results,
+            'model_path': model_path
+        })
+    except Exception as e:
+        logger.error(f"训练失败: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/ml/model/status', methods=['GET'])
+def get_model_status():
+    """获取模型状态"""
+    if not ML_AVAILABLE:
+        return jsonify({'success': False, 'error': '机器学习模块不可用'}), 500
+    
+    ml_info = ml_classifier.get_model_info() if ml_classifier else {}
+    data_stats = data_collector.get_statistics() if data_collector else {}
+    
+    return jsonify({
+        'success': True,
+        'ml_available': ML_AVAILABLE,
+        'model_info': ml_info,
+        'data_stats': data_stats
+    })
+
+
+@app.route('/api/ml/predict', methods=['POST'])
+def ml_predict():
+    """测试ML预测"""
+    if not ML_AVAILABLE:
+        return jsonify({'success': False, 'error': '机器学习模块不可用'}), 500
+    
+    try:
+        data = request.json
+        result = ml_classifier.predict(
+            accel_x=data.get('accel_x', 0),
+            accel_y=data.get('accel_y', 0),
+            accel_z=data.get('accel_z', 9.8),
+            gyro_x=data.get('gyro_x', 0),
+            gyro_y=data.get('gyro_y', 0),
+            gyro_z=data.get('gyro_z', 0)
+        )
+        return jsonify({
+            'success': True,
+            'result': result
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 
 if __name__ == '__main__':

@@ -1,0 +1,26 @@
+{
+  "model_type": "random_forest",
+  "feature_names": [
+    "accel_magnitude",
+    "accel_xy",
+    "accel_x",
+    "accel_y",
+    "accel_z",
+    "accel_angle_y",
+    "accel_angle_z",
+    "gyro_magnitude",
+    "gyro_x",
+    "gyro_y",
+    "gyro_z",
+    "accel_gyro_ratio",
+    "activity_index"
+  ],
+  "posture_labels": [
+    "standing",
+    "lying",
+    "walking",
+    "feeding",
+    "running"
+  ],
+  "trained_at": "2026-03-31T21:43:44.606501"
+}
