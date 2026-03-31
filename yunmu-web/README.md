@@ -12,4 +12,4 @@ pnpm install
 pnpm dev
 ```
 
-打开<http://localhost:5713打开服务>
+打开[http://localhost:5713](http://localhost:5713)
