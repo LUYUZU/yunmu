@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import OverviewPage from "@/pages/OverviewPage";
 import AnimalsPage from "@/pages/AnimalsPage";
 import StepsPage from "@/pages/StepsPage";
 import AnalysisPage from "@/pages/AnalysisPage";
 import PosturePage from "@/pages/PosturePage";
 import DataPage from "@/pages/DataPage";
 import LocationPage from "@/pages/LocationPage";
-import { AppLayout } from "../components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/AppLayout";
+import OverviewPage from "@/pages/OverviewPage";
 
 const router = createBrowserRouter([
   {
