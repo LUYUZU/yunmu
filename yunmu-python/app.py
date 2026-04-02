@@ -11,6 +11,8 @@ import logging
 import traceback
 import json
 
+import numpy as np
+
 from models.step_counter import StepCounter, DailyStepTracker
 from models.posture_model import PostureClassifier
 from models.step_alert import StepAlert
@@ -58,6 +60,23 @@ data_collector = BehaviorDataCollector() if ML_AVAILABLE else None
 device_data = {}
 # 存储设备的历史步数（用于异常检测）
 device_step_history = {}
+
+
+def to_json_serializable(obj):
+    """递归转换 numpy 类型为 Python 原生类型，防止 JSON 序列化失败"""
+    if isinstance(obj, dict):
+        return {k: to_json_serializable(v) for k, v in obj.items()}
+    elif isinstance(obj, (list, tuple)):
+        return [to_json_serializable(i) for i in obj]
+    elif isinstance(obj, (np.integer,)):
+        return int(obj)
+    elif isinstance(obj, (np.floating,)):
+        return float(obj)
+    elif isinstance(obj, (np.bool_,)):
+        return bool(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    return obj
 
 
 # ========== 数据接收接口（Java调用） ==========
@@ -233,7 +252,7 @@ def receive_device_data():
                     f"步数={calculated_steps}, "
                     f"异常={anomaly.get('is_anomaly')}")
 
-        return jsonify({
+        return jsonify(to_json_serializable({
             'success': True,
             'message': '数据接收成功',
             'device_id': device_id,
@@ -244,7 +263,7 @@ def receive_device_data():
             'activity_level': activity_level,
             'anomaly': anomaly,
             'daily_summary': daily_summary
-        })
+        }))
 
     except Exception as e:
         logger.error(f"处理设备数据失败: {e}")
@@ -258,23 +277,23 @@ def get_device(device_id):
     """获取指定设备状态"""
     data = device_data.get(device_id, {})
     history = device_step_history.get(device_id, [])
-    return jsonify({
+    return jsonify(to_json_serializable({
         'success': True,
         'device_id': device_id,
         'current': data,
         'history': history[-20:],  # 最近20条历史
         'history_count': len(history)
-    })
+    }))
 
 
 @app.route('/api/devices', methods=['GET'])
 def get_devices():
     """获取所有设备状态"""
-    return jsonify({
+    return jsonify(to_json_serializable({
         'success': True,
         'devices': device_data,
         'count': len(device_data)
-    })
+    }))
 
 
 @app.route('/api/steps/daily', methods=['GET'])
@@ -282,34 +301,34 @@ def get_daily_steps():
     """获取每日步数"""
     daily = daily_tracker.get_daily_summary()
     weekly = daily_tracker.get_weekly_summary()
-    return jsonify({
+    return jsonify(to_json_serializable({
         'success': True,
         'daily': daily,
         'weekly': weekly,
         'alert_summary': step_alert.get_alert_summary()
-    })
+    }))
 
 
 @app.route('/api/steps/history/<device_id>', methods=['GET'])
 def get_step_history(device_id):
     """获取设备步数历史"""
     history = device_step_history.get(device_id, [])
-    return jsonify({
+    return jsonify(to_json_serializable({
         'success': True,
         'device_id': device_id,
         'history': history,
         'count': len(history)
-    })
+    }))
 
 
 @app.route('/api/alert/summary', methods=['GET'])
 def get_alert_summary():
     """获取预警摘要"""
-    return jsonify({
+    return jsonify(to_json_serializable({
         'success': True,
         'alert_summary': step_alert.get_alert_summary(),
         'frontend_data': step_alert.get_frontend_alert_data()
-    })
+    }))
 
 
 @app.route('/health', methods=['GET'])

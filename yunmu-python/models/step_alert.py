@@ -30,12 +30,12 @@ class StepAlert:
         if self.iqr == 0:
             return {'is_anomaly': False, 'reason': '基线未建立'}
 
-        is_anomaly = current_steps < self.lower_bound or current_steps > self.upper_bound
+        is_anomaly = bool(current_steps < self.lower_bound or current_steps > self.upper_bound)
         severity = self._calculate_severity(current_steps)
 
         result = {
             'is_anomaly': is_anomaly,
-            'current_steps': current_steps,
+            'current_steps': int(current_steps),
             'normal_range': [float(self.lower_bound), float(self.upper_bound)],
             'severity': severity,
             'timestamp': timestamp,
