@@ -26,7 +26,7 @@ public class BehaviorResult {
     private Integer durationSeconds;
 
     @Column(nullable = false)
-    private String behaviorType; // feeding, ruminating, resting, walking
+    private String behaviorType; // feeding, resting, walking, standing
 
     @Column(name = "confidence_score")
     private Double confidenceScore;

@@ -401,7 +401,7 @@ new Vue({
         dataReceived: Math.floor(Math.random() * 1000) + 500
       };
 
-      const behaviors = ['采食', '反刍', '站立', '行走', '躺卧'];
+      const behaviors = ['采食', '站立', '行走', '躺卧'];
       const animalTypes = ['cow', 'sheep'];
       this.animals = [];
 
@@ -492,7 +492,7 @@ new Vue({
     },
 
     generateMockAnimalRecords() {
-      const behaviors = ['采食', '反刍', '站立', '行走', '躺卧'];
+      const behaviors = ['采食', '站立', '行走', '躺卧'];
       const records = [];
       const now = new Date();
 
@@ -543,10 +543,17 @@ new Vue({
 
     initMap() {
       try {
+        // ========== 防止重复初始化 ==========
+        if (this.leafletMap) {
+          this.leafletMap.invalidateSize();
+          this.addLog('MAP', '地图已存在，跳过重复初始化');
+          return;
+        }
+
         const mapContainer = document.getElementById('locationMap');
         if (!mapContainer) {
           console.error('地图容器不存在');
-          setTimeout(() => this.initMap(), 500);
+          // 不再无限重试，由 initMapWithRetry 统一管理重试逻辑
           return;
         }
 
@@ -572,7 +579,7 @@ new Vue({
           }
         }, 100);
 
-        // 使用稳定的瓦片源 - 改用更可靠的源
+        // 使用稳定的瓦片源
         const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
           maxZoom: 19,
@@ -594,6 +601,7 @@ new Vue({
       } catch (error) {
         console.error('Leaflet 地图初始化失败:', error);
         this.mapLoaded = false;
+        this.leafletMap = null; // 初始化失败时清空引用，允许后续重试
         this.addLog('MAP', `地图初始化失败: ${error.message}`);
       }
     },
@@ -772,6 +780,12 @@ new Vue({
     },
 
     initMapWithRetry(retryCount = 0) {
+      // 已初始化则直接返回
+      if (this.leafletMap && this.mapLoaded) {
+        this.leafletMap.invalidateSize();
+        return;
+      }
+
       const maxRetries = 20;
 
       this.$nextTick(() => {
@@ -795,12 +809,19 @@ new Vue({
             mapContainer.style.height = '100%';
             mapContainer.style.minHeight = '500px';
           }
+          // 如果已经初始化成功，只刷新尺寸
+          if (this.leafletMap && this.mapLoaded) {
+            this.leafletMap.invalidateSize();
+            return;
+          }
           // 确保容器是可见的
           if (mapWrapper.offsetParent !== null) {
             this.initMap();
           } else {
             console.warn('地图容器不可见，等待...');
-            setTimeout(ensureHeight, 200);
+            if (retryCount < maxRetries) {
+              setTimeout(() => this.initMapWithRetry(retryCount + 1), 200);
+            }
           }
         };
 
@@ -846,7 +867,7 @@ new Vue({
     },
 
     generateMockPostureRecords() {
-      const postures = ['反刍', '采食', '站立', '行走', '躺卧'];
+      const postures = ['采食', '站立', '行走', '躺卧'];
       const records = [];
       const now = new Date();
 
@@ -1108,7 +1129,7 @@ new Vue({
     },
 
     generateMockHistoryData() {
-      const behaviors = ['采食', '反刍', '站立', '行走', '躺卧'];
+      const behaviors = ['采食', '站立', '行走', '躺卧'];
       const data = [];
       const now = new Date();
 

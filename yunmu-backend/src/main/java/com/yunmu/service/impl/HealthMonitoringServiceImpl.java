@@ -34,8 +34,8 @@ public class HealthMonitoringServiceImpl implements HealthMonitoringService {
         cowRanges.put("temperature", new double[]{38.0, 39.5});    // 体温 (°C)
         cowRanges.put("heart_rate", new double[]{60.0, 80.0});     // 心率 (bpm)
         cowRanges.put("respiratory_rate", new double[]{20.0, 40.0}); // 呼吸率 (rpm)
-        cowRanges.put("rumination_duration", new double[]{4.0, 8.0}); // 反刍时长 (小时)
         cowRanges.put("feeding_duration", new double[]{6.0, 10.0});   // 采食时长 (小时)
+        cowRanges.put("walking_duration", new double[]{2.0, 6.0});     // 行走时长 (小时)
 
         ANIMAL_NORMAL_RANGES.put("cow", cowRanges);
 
@@ -44,8 +44,8 @@ public class HealthMonitoringServiceImpl implements HealthMonitoringService {
         sheepRanges.put("temperature", new double[]{38.5, 40.0});
         sheepRanges.put("heart_rate", new double[]{70.0, 90.0});
         sheepRanges.put("respiratory_rate", new double[]{25.0, 50.0});
-        sheepRanges.put("rumination_duration", new double[]{3.0, 6.0});
         sheepRanges.put("feeding_duration", new double[]{5.0, 8.0});
+        sheepRanges.put("walking_duration", new double[]{2.0, 5.0});
 
         ANIMAL_NORMAL_RANGES.put("sheep", sheepRanges);
     }

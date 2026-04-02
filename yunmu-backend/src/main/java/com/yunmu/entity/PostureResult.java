@@ -23,7 +23,7 @@ public class PostureResult {
     private LocalDateTime timestamp;
 
     /**
-     * 姿态类型: standing(站立), lying(躺卧), walking(行走), feeding(采食), ruminating(反刍)
+     * 姿态类型: standing(站立), lying(躺卧), walking(行走), feeding(采食), running(奔跑)
      */
     @Column(nullable = false)
     private String postureType;

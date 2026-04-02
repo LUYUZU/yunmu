@@ -24,24 +24,6 @@ public class BehaviorController {
     private BehaviorAnalysisService behaviorAnalysisService;
 
     /**
-     * 分析反刍行为
-     */
-    @PostMapping("/rumination")
-    public ResponseEntity<BehaviorResultDTO> analyzeRumination(
-            @RequestParam String animalId,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime) {
-
-        try {
-            BehaviorResultDTO result = behaviorAnalysisService.analyzeRumination(animalId, startTime, endTime);
-            return ResponseEntity.ok(result);
-        } catch (Exception e) {
-            log.error("分析反刍行为失败", e);
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    /**
      * 分析采食行为
      */
     @PostMapping("/feeding")

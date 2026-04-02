@@ -97,7 +97,8 @@ public class PostureRecognitionServiceImpl implements PostureRecognitionService 
     }
 
     /**
-     * 确定姿态（改进版）
+     * 确定姿态（调用 Python ML 服务）
+     * 姿态类型：standing, lying, walking, feeding, running
      */
     private String determinePosture(double magnitude, double tiltAngle, Double gyroX, Double gyroY, Double gyroZ) {
         // 计算陀螺仪模值（如果存在）
@@ -106,8 +107,10 @@ public class PostureRecognitionServiceImpl implements PostureRecognitionService 
             gyroMagnitude = Math.sqrt(gyroX * gyroX + gyroY * gyroY + gyroZ * gyroZ);
         }
 
-        // 动态阈值判断
+        // 基于阈值的姿态判断（备用方案，当 Python 服务不可用时使用）
         if (gyroMagnitude > 2.0) {
+            return "running";
+        } else if (gyroMagnitude > 1.0) {
             return "walking";
         } else if (magnitude < 8.0 || magnitude > 11.0) {
             // 加速度异常，可能是设备脱落或剧烈运动
@@ -116,10 +119,9 @@ public class PostureRecognitionServiceImpl implements PostureRecognitionService 
             return "standing";
         } else if (tiltAngle < 30 || tiltAngle > 150) {
             return "lying";
-        } else if (tiltAngle > 30 && tiltAngle < 60) {
-            return "feeding";
         } else {
-            return "ruminating";
+            // 默认返回站立
+            return "standing";
         }
     }
 
@@ -186,20 +188,32 @@ public class PostureRecognitionServiceImpl implements PostureRecognitionService 
     @Override
     public Map<String, Object> callPostureRecognitionApi(String animalId, Map<String, Object> sensorData) {
         try {
-            String url = pythonServiceUrl + "/api/predict/posture";
+            // 调用 Python ML 服务的姿态识别接口
+            String url = pythonServiceUrl + "/api/device/data";
             Map<String, Object> request = new HashMap<>();
-            request.put("animal_id", animalId);
+            request.put("device_id", animalId);
             request.put("accel_x", sensorData.get("accelX"));
             request.put("accel_y", sensorData.get("accelY"));
             request.put("accel_z", sensorData.get("accelZ"));
             request.put("gyro_x", sensorData.get("gyroX"));
             request.put("gyro_y", sensorData.get("gyroY"));
             request.put("gyro_z", sensorData.get("gyroZ"));
-            request.put("timestamp", LocalDateTime.now().toString());
+            request.put("timestamp", System.currentTimeMillis() / 1000);
             
             @SuppressWarnings("unchecked")
             Map<String, Object> response = restTemplate.postForObject(url, request, Map.class);
-            return response;
+            
+            if (response != null && Boolean.TRUE.equals(response.get("success"))) {
+                // 返回 Python ML 服务的姿态识别结果
+                Map<String, Object> result = new HashMap<>();
+                result.put("success", true);
+                result.put("posture", response.get("posture"));
+                result.put("confidence", response.get("posture_confidence"));
+                result.put("model_type", "ml_" + (response.containsKey("ml_confidence") ? "model" : "rule"));
+                return result;
+            }
+            
+            return Map.of("success", false, "error", "Python服务返回失败");
         } catch (Exception e) {
             log.error("调用Python姿态识别服务失败: {}", e.getMessage());
             return Map.of("success", false, "error", e.getMessage());

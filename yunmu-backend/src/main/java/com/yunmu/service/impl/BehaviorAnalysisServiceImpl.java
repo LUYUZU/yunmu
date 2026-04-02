@@ -41,40 +41,6 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
     private int pythonServiceTimeout;
 
     @Override
-    public BehaviorResultDTO analyzeRumination(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
-        try {
-            log.info("分析反刍行为，动物 ID: {}, 时间范围：{} - {}", animalId, startTime, endTime);
-
-            List<SensorData> sensorDataList = sensorDataRepository.findByAnimalIdAndTimeRange(animalId, startTime, endTime);
-            
-            if (sensorDataList.isEmpty()) {
-                log.warn("未找到传感器数据，动物 ID: {}", animalId);
-                return createDefaultBehaviorResult(animalId, "ruminating", 0.5);
-            }
-
-            BehaviorRequestDTO request = new BehaviorRequestDTO();
-            request.setAnimalId(animalId);
-            request.setStartTime(startTime);
-            request.setEndTime(endTime);
-            request.setDataType("COMBINED");
-            request.setAccelData(extractAccelData(sensorDataList));
-            request.setSoundData(extractSoundData(sensorDataList));
-
-            BehaviorResultDTO result = callPythonMLService(request);
-
-            if (result != null) {
-                saveBehaviorResult(result);
-            }
-
-            return result;
-
-        } catch (Exception e) {
-            log.error("分析反刍行为失败", e);
-            return createDefaultBehaviorResult(animalId, "ruminating", 0.5);
-        }
-    }
-
-    @Override
     public BehaviorResultDTO analyzeFeeding(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
         try {
             log.info("分析采食行为，动物 ID: {}, 时间范围：{} - {}", animalId, startTime, endTime);

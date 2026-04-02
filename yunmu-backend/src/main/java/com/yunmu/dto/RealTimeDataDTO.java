@@ -22,7 +22,6 @@ public class RealTimeDataDTO {
 
     // 统计信息
     private Integer feedingDurationToday;
-    private Integer ruminatingDurationToday;
     private Integer restingDurationToday;
 
     // 预警信息

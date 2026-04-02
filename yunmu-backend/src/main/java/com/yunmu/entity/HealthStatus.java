@@ -47,9 +47,6 @@ public class HealthStatus {
     @Column(name = "feeding_duration")
     private Integer feedingDuration;
 
-    @Column(name = "ruminating_duration")
-    private Integer ruminatingDuration;
-
     @Column(name = "resting_duration")
     private Integer restingDuration;
 

@@ -23,7 +23,7 @@ public class AlertRecord {
     private String alertType; // HEALTH, BEHAVIOR, LOCATION
 
     @Column(name = "alert_subtype")
-    private String alertSubtype; // FEVER, HEART_RATE, RUMINATION_ABNORMAL, OUT_OF_BOUNDS
+    private String alertSubtype; // FEVER, HEART_RATE, BEHAVIOR_ABNORMAL, OUT_OF_BOUNDS
 
     @Column(name = "alert_level", nullable = false)
     private String alertLevel; // INFO, WARNING, CRITICAL
