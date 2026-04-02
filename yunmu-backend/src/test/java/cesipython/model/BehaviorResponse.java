@@ -1,21 +1,20 @@
-package model;
+package cesipython.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import java.util.Map;
+import java.util.List;
 
 @Data
-public class PostureResponse {
+public class BehaviorResponse {
     private boolean success;
 
     @JsonProperty("animal_id")
     private String animalId;
 
-    @JsonProperty("posture_type")
-    private String postureType;
-
+    private String behavior;
     private double confidence;
-    private Map<String, Object> features;
+    private List<Double> features;
     private Long timestamp;
     private String error;
 }
+

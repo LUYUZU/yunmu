@@ -3,7 +3,10 @@ package com.yunmu.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @Entity
 @Table(name = "sensor_data")
@@ -16,11 +19,23 @@ public class SensorData {
     @Column(nullable = false)
     private String animalId;
 
-    @Column(name = "device_id")
+    @Column(name = "device_id", nullable = true)
     private String deviceId;
 
-    @Column(name = "timestamp", nullable = false)
-    private LocalDateTime timestamp;
+    @Column(name = "timestamp")
+    private Long timestampEpoch;  // Unix 秒
+
+    @Transient
+    public LocalDateTime getTimestamp() {
+        return timestampEpoch != null ? 
+            LocalDateTime.ofEpochSecond(timestampEpoch, 0, ZoneOffset.ofHours(8)) : null;
+    }
+
+    @Transient
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestampEpoch = timestamp != null ? 
+            timestamp.toEpochSecond(ZoneOffset.ofHours(8)) : null;
+    }
 
     // 加速度数据
     private Double accelX;

@@ -17,35 +17,35 @@ public interface SensorDataRepository extends JpaRepository<SensorData, Long> {
     /**
      * 根据动物ID查询最新数据
      */
-    @Query("SELECT s FROM SensorData s WHERE s.animalId = :animalId ORDER BY s.timestamp DESC")
+    @Query("SELECT s FROM SensorData s WHERE s.animalId = :animalId ORDER BY s.timestampEpoch DESC")
     List<SensorData> findLatestByAnimalId(@Param("animalId") String animalId, Pageable pageable);
 
     /**
      * 查询指定时间范围内的传感器数据
+     * 注意：timestamp 在数据库中是 bigint（Unix 秒）
      */
-    @Query("SELECT s FROM SensorData s WHERE s.animalId = :animalId AND s.timestamp BETWEEN :startTime AND :endTime ORDER BY s.timestamp")
+    @Query("SELECT s FROM SensorData s WHERE s.animalId = :animalId AND s.timestampEpoch BETWEEN :startEpoch AND :endEpoch ORDER BY s.timestampEpoch")
     List<SensorData> findByAnimalIdAndTimeRange(
             @Param("animalId") String animalId,
-            @Param("startTime") LocalDateTime startTime,
-            @Param("endTime") LocalDateTime endTime);
+            @Param("startEpoch") Long startEpoch,
+            @Param("endEpoch") Long endEpoch);
 
     /**
      * 批量查询多个动物的最新数据
      */
-    @Query("SELECT s FROM SensorData s WHERE s.animalId IN :animalIds AND s.timestamp = (SELECT MAX(s2.timestamp) FROM SensorData s2 WHERE s2.animalId = s.animalId)")
+    @Query("SELECT s FROM SensorData s WHERE s.animalId IN :animalIds AND s.timestampEpoch = (SELECT MAX(s2.timestampEpoch) FROM SensorData s2 WHERE s2.animalId = s.animalId)")
     List<SensorData> findLatestByAnimalIds(@Param("animalIds") List<String> animalIds);
 
     /**
      * 统计指定时间段内的数据量
      */
-    @Query("SELECT COUNT(s) FROM SensorData s WHERE s.timestamp BETWEEN :startTime AND :endTime")
-    Long countByTimeRange(@Param("startTime") LocalDateTime startTime,
-                          @Param("endTime") LocalDateTime endTime);
+    @Query("SELECT COUNT(s) FROM SensorData s WHERE s.timestampEpoch BETWEEN :startEpoch AND :endEpoch")
+    Long countByTimeRange(@Param("startEpoch") Long startEpoch, @Param("endEpoch") Long endEpoch);
 
     /**
      * 分页查询无效数据
      */
-    @Query("SELECT s FROM SensorData s WHERE s.isValid = false ORDER BY s.timestamp DESC")
+    @Query("SELECT s FROM SensorData s WHERE s.isValid = false ORDER BY s.timestampEpoch DESC")
     Page<SensorData> findInvalidData(Pageable pageable);
 
     /**
@@ -56,12 +56,12 @@ public interface SensorDataRepository extends JpaRepository<SensorData, Long> {
     /**
      * 删除过期数据
      */
-    @Query("DELETE FROM SensorData s WHERE s.timestamp < :expireTime")
-    void deleteExpiredData(@Param("expireTime") LocalDateTime expireTime);
+    @Query("DELETE FROM SensorData s WHERE s.timestampEpoch < :expireEpoch")
+    void deleteExpiredData(@Param("expireEpoch") Long expireEpoch);
 
     /**
-     * 获取温度异常数据
+     * 获取体温异常数据
      */
-    @Query("SELECT s FROM SensorData s WHERE s.temperature < 38.0 OR s.temperature > 39.5 ORDER BY s.timestamp DESC")
+    @Query("SELECT s FROM SensorData s WHERE s.temperature < 38.0 OR s.temperature > 39.5 ORDER BY s.timestampEpoch DESC")
     List<SensorData> findTemperatureAbnormalData();
 }

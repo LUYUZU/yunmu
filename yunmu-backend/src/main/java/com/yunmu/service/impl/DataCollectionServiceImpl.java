@@ -130,8 +130,8 @@ public class DataCollectionServiceImpl implements DataCollectionService {
             return savedData;
 
         } catch (Exception e) {
-            log.error("处理传感器数据失败", e);
-            throw new RuntimeException("数据处理失败: " + e.getMessage());
+            log.error("处理传感器数据失败: {}", e.getMessage());
+            return null;  // 不再重新抛出，避免 @Transactional 事务回滚
         }
     }
 
@@ -466,6 +466,7 @@ public class DataCollectionServiceImpl implements DataCollectionService {
         SensorData entity = new SensorData();
         entity.setAnimalId(dto.getAnimalId());
         entity.setDeviceId(dto.getDeviceId());
+        // 数据库 timestamp 列是 bigint（Unix 秒），需转换 LocalDateTime
         entity.setTimestamp(dto.getTimestamp() != null ? dto.getTimestamp() : LocalDateTime.now());
 
         entity.setAccelX(dto.getAccelX());

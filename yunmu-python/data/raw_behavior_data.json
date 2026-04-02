@@ -82498,5 +82498,5120 @@
     "device_id": null,
     "timestamp": 1774964623.514146,
     "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81045360826909,
+      "accel_xy": 0.09433981132056604,
+      "accel_x": 0.05,
+      "accel_y": 0.08,
+      "accel_z": 9.81,
+      "accel_angle_y": 0.008154657251041442,
+      "accel_angle_z": 1.5611799248303624,
+      "gyro_magnitude": 0.017320508075688773,
+      "gyro_x": 0.01,
+      "gyro_y": 0.01,
+      "gyro_z": 0.01,
+      "accel_gyro_ratio": 566.3741035365355,
+      "activity_index": 0.16992204094819482
+    },
+    "raw_sensors": {
+      "accel": [
+        0.05,
+        0.08,
+        9.81
+      ],
+      "gyro": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "posture": "standing",
+    "device_id": "test_device_001",
+    "timestamp": 1775117435.291929,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 8.500076470244252,
+      "accel_xy": 0.03605551275463989,
+      "accel_x": 0.02,
+      "accel_y": 0.03,
+      "accel_z": 8.5,
+      "accel_angle_y": 0.003529387339982769,
+      "accel_angle_z": 1.5665545272058294,
+      "gyro_magnitude": 0.034641016151377546,
+      "gyro_x": 0.02,
+      "gyro_y": 0.02,
+      "gyro_z": 0.02,
+      "accel_gyro_ratio": 245.36898871881178,
+      "activity_index": 0.2944512862936754
+    },
+    "raw_sensors": {
+      "accel": [
+        0.02,
+        0.03,
+        8.5
+      ],
+      "gyro": [
+        0.02,
+        0.02,
+        0.02
+      ]
+    },
+    "posture": "standing",
+    "device_id": "test_device_001",
+    "timestamp": 1775117435.653094,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.754358000401666,
+      "accel_xy": 0.291547594742265,
+      "accel_x": 0.15,
+      "accel_y": 0.25,
+      "accel_z": 9.75,
+      "accel_angle_y": 0.025632376612454988,
+      "accel_angle_z": 1.540902916978709,
+      "gyro_magnitude": 0.5647123161398201,
+      "gyro_x": 0.1,
+      "gyro_y": 0.55,
+      "gyro_z": 0.08,
+      "accel_gyro_ratio": 17.273114909134776,
+      "activity_index": 5.508406098863809
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15,
+        0.25,
+        9.75
+      ],
+      "gyro": [
+        0.1,
+        0.55,
+        0.08
+      ]
+    },
+    "posture": "feeding",
+    "device_id": "test_device_001",
+    "timestamp": 1775117435.935399,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775117436.269329,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775117436.612931,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775117436.941776,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.823415732608614,
+      "accel_xy": 0.3893367387517611,
+      "accel_x": 0.24946989809567074,
+      "accel_y": 0.2989111340950563,
+      "accel_z": 9.815697303784411,
+      "accel_angle_y": 0.03043312915855017,
+      "accel_angle_z": 1.5311524034424915,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9823415.732608614,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.24946989809567074,
+        0.2989111340950563,
+        9.815697303784411
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_001",
+    "timestamp": 1775117437.330143,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.909954641375165,
+      "accel_xy": 0.47604160721705774,
+      "accel_x": 0.35894691967904846,
+      "accel_y": 0.31268629751673194,
+      "accel_z": 9.898514301768289,
+      "accel_angle_y": 0.031557985471690905,
+      "accel_angle_z": 1.5227411242733886,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9909954.641375165,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.35894691967904846,
+        0.31268629751673194,
+        9.898514301768289
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_002",
+    "timestamp": 1775117437.694121,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.873834871340698,
+      "accel_xy": 0.7911730593255144,
+      "accel_x": 0.2968654654809927,
+      "accel_y": 0.7333660103981146,
+      "accel_z": 9.842086174013165,
+      "accel_angle_y": 0.07434213534346774,
+      "accel_angle_z": 1.4905820887662489,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9873834.871340698,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2968654654809927,
+        0.7333660103981146,
+        9.842086174013165
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_003",
+    "timestamp": 1775117437.987975,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.859214581468201,
+      "accel_xy": 0.6529810004952266,
+      "accel_x": 0.30935790011062336,
+      "accel_y": 0.5750494558269685,
+      "accel_z": 9.837567177733906,
+      "accel_angle_y": 0.05835921288053695,
+      "accel_angle_z": 1.5045172817905201,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9859214.581468202,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.30935790011062336,
+        0.5750494558269685,
+        9.837567177733906
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_004",
+    "timestamp": 1775117438.280088,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.791603992034569,
+      "accel_xy": 0.5579399783602127,
+      "accel_x": 0.3186050127382191,
+      "accel_y": 0.45802605309160505,
+      "accel_z": 9.775694948052271,
+      "accel_angle_y": 0.04679450422445018,
+      "accel_angle_z": 1.5137839773473054,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9791603.99203457,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3186050127382191,
+        0.45802605309160505,
+        9.775694948052271
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_005",
+    "timestamp": 1775117438.608263,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.811507900405392,
+      "accel_xy": 0.3421745505993322,
+      "accel_x": 0.26339458142461364,
+      "accel_y": 0.21841867492045536,
+      "accel_z": 9.805539447508208,
+      "accel_angle_y": 0.022263317889329125,
+      "accel_angle_z": 1.5359144356663523,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9811507.900405392,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.26339458142461364,
+        0.21841867492045536,
+        9.805539447508208
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_4",
+    "timestamp": 1775117439.058731,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.914401203372039,
+      "accel_xy": 0.7581304810599208,
+      "accel_x": 0.35281455804638884,
+      "accel_y": 0.6710318278164443,
+      "accel_z": 9.88537249652803,
+      "accel_angle_y": 0.06773431875009885,
+      "accel_angle_z": 1.4942540070234078,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9914401.203372039,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.35281455804638884,
+        0.6710318278164443,
+        9.88537249652803
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_0",
+    "timestamp": 1775117439.06776,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.809543816429462,
+      "accel_xy": 0.32377063676221307,
+      "accel_x": 0.24621927062752313,
+      "accel_y": 0.21024627464252352,
+      "accel_z": 9.80419922590418,
+      "accel_angle_y": 0.021434470203315226,
+      "accel_angle_z": 1.5377846540555988,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9809543.816429462,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.24621927062752313,
+        0.21024627464252352,
+        9.80419922590418
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_1",
+    "timestamp": 1775117439.06776,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.880627824639816,
+      "accel_xy": 0.628608447835963,
+      "accel_x": 0.390676532789622,
+      "accel_y": 0.4924636305537882,
+      "accel_z": 9.860611422642908,
+      "accel_angle_y": 0.049861988578633186,
+      "accel_angle_z": 1.5071330367290177,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9880627.824639818,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.390676532789622,
+        0.4924636305537882,
+        9.860611422642908
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_2",
+    "timestamp": 1775117439.069763,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.824550651672057,
+      "accel_xy": 0.7265876795647064,
+      "accel_x": 0.10829401448432399,
+      "accel_y": 0.7184720332219574,
+      "accel_z": 9.797645934160645,
+      "accel_angle_y": 0.07319561039070756,
+      "accel_angle_z": 1.496772415598483,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9824550.651672058,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.10829401448432399,
+        0.7184720332219574,
+        9.797645934160645
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_3",
+    "timestamp": 1775117439.101479,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.774924811951331,
+      "accel_xy": 0.28162476280417303,
+      "accel_x": 0.1434598441565076,
+      "accel_y": 0.24234640525309487,
+      "accel_z": 9.770867032780522,
+      "accel_angle_y": 0.02479520243979036,
+      "accel_angle_z": 1.5419814004224839,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9774924.811951332,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.1434598441565076,
+        0.24234640525309487,
+        9.770867032780522
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_5",
+    "timestamp": 1775117440.57097,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.756662748360359,
+      "accel_xy": 0.3281805853933852,
+      "accel_x": 0.2521901768049372,
+      "accel_y": 0.2100062174132935,
+      "accel_z": 9.751141753077615,
+      "accel_angle_y": 0.021526052726243004,
+      "accel_angle_z": 1.537153419347301,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9756662.74836036,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2521901768049372,
+        0.2100062174132935,
+        9.751141753077615
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_7",
+    "timestamp": 1775117440.571966,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.762282103954277,
+      "accel_xy": 0.6743209446590893,
+      "accel_x": 0.2514979370841878,
+      "accel_y": 0.625665664751011,
+      "accel_z": 9.738965198663562,
+      "accel_angle_y": 0.06413405967269943,
+      "accel_angle_z": 1.5016671707495444,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9762282.103954278,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2514979370841878,
+        0.625665664751011,
+        9.738965198663562
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_6",
+    "timestamp": 1775117440.577967,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.725407840078438,
+      "accel_xy": 0.4347051485061166,
+      "accel_x": 0.2304546406701488,
+      "accel_y": 0.36859086360260945,
+      "accel_z": 9.715687782639035,
+      "accel_angle_y": 0.03790886377363708,
+      "accel_angle_z": 1.5260835460480768,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9725407.840078438,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2304546406701488,
+        0.36859086360260945,
+        9.715687782639035
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_9",
+    "timestamp": 1775117440.586482,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81012446938279,
+      "accel_xy": 0.7348696411507364,
+      "accel_x": 0.28610749088919596,
+      "accel_y": 0.6768869131118584,
+      "accel_z": 9.782561459827276,
+      "accel_angle_y": 0.0690536761675391,
+      "accel_angle_z": 1.4958167829713156,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9810124.46938279,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.28610749088919596,
+        0.6768869131118584,
+        9.782561459827276
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_8",
+    "timestamp": 1775117440.807549,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.826605126446786,
+      "accel_xy": 0.45999188796627505,
+      "accel_x": 0.2303297293812211,
+      "accel_y": 0.3981717628837479,
+      "accel_z": 9.815832912907364,
+      "accel_angle_y": 0.0405308644064462,
+      "accel_angle_z": 1.5239683489399705,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9826605.126446787,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2303297293812211,
+        0.3981717628837479,
+        9.815832912907364
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_10",
+    "timestamp": 1775117442.315737,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.72207476897623,
+      "accel_xy": 0.5943548685007249,
+      "accel_x": 0.16163726907035011,
+      "accel_y": 0.571953759457872,
+      "accel_z": 9.70388994701886,
+      "accel_angle_y": 0.058864410295174655,
+      "accel_angle_z": 1.509623610695104,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9722074.76897623,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.16163726907035011,
+        0.571953759457872,
+        9.70388994701886
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_11",
+    "timestamp": 1775117442.366172,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.901792497973883,
+      "accel_xy": 0.6163713203239245,
+      "accel_x": 0.3044917067381826,
+      "accel_y": 0.5359089521975973,
+      "accel_z": 9.882589795616026,
+      "accel_angle_y": 0.05414887574765063,
+      "accel_angle_z": 1.5085075971532695,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9901792.497973884,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3044917067381826,
+        0.5359089521975973,
+        9.882589795616026
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_12",
+    "timestamp": 1775117442.369707,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.811421915179427,
+      "accel_xy": 0.756543388909843,
+      "accel_x": 0.10899873086093553,
+      "accel_y": 0.7486502360741598,
+      "accel_z": 9.782210491415524,
+      "accel_angle_y": 0.07637818752034826,
+      "accel_angle_z": 1.4936112758939881,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9811421.915179428,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.10899873086093553,
+        0.7486502360741598,
+        9.782210491415524
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_14",
+    "timestamp": 1775117442.370711,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.735500196169149,
+      "accel_xy": 0.3328411070864087,
+      "accel_x": 0.2565198968834693,
+      "accel_y": 0.21208664519342194,
+      "accel_z": 9.729808881321514,
+      "accel_angle_y": 0.021786597491225773,
+      "accel_angle_z": 1.5366012700933107,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9735500.19616915,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2565198968834693,
+        0.21208664519342194,
+        9.729808881321514
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_13",
+    "timestamp": 1775117442.37171,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.773202277549055,
+      "accel_xy": 0.8800753937223877,
+      "accel_x": 0.3897237144065612,
+      "accel_y": 0.7890805567651309,
+      "accel_z": 9.733496291634083,
+      "accel_angle_y": 0.08082718143214959,
+      "accel_angle_z": 1.4806243290935621,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9773202.277549056,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3897237144065612,
+        0.7890805567651309,
+        9.733496291634083
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_19",
+    "timestamp": 1775117443.84738,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.902874862213283,
+      "accel_xy": 0.3331152988719112,
+      "accel_x": 0.19909486716102975,
+      "accel_y": 0.26707121936415135,
+      "accel_z": 9.89727056992549,
+      "accel_angle_y": 0.026972329601941483,
+      "accel_angle_z": 1.5371517380013269,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9902874.862213284,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.19909486716102975,
+        0.26707121936415135,
+        9.89727056992549
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_17",
+    "timestamp": 1775117443.852387,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.88060107096759,
+      "accel_xy": 0.7178542328129648,
+      "accel_x": 0.32669181642098055,
+      "accel_y": 0.6392082263637183,
+      "accel_z": 9.854489475565863,
+      "accel_angle_y": 0.06473846423445177,
+      "accel_angle_z": 1.4980793677926152,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9880601.07096759,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.32669181642098055,
+        0.6392082263637183,
+        9.854489475565863
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_16",
+    "timestamp": 1775117443.869912,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.818042642139064,
+      "accel_xy": 0.4775359808536164,
+      "accel_x": 0.14010416243228882,
+      "accel_y": 0.4565210144987549,
+      "accel_z": 9.806422421548604,
+      "accel_angle_y": 0.046514941645213775,
+      "accel_angle_z": 1.522138515391716,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9818042.642139064,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.14010416243228882,
+        0.4565210144987549,
+        9.806422421548604
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_15",
+    "timestamp": 1775117443.870897,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.731649492496365,
+      "accel_xy": 0.6830101896771867,
+      "accel_x": 0.2992053206617318,
+      "accel_y": 0.6139862337956584,
+      "accel_z": 9.707651565935084,
+      "accel_angle_y": 0.06313362402219366,
+      "accel_angle_z": 1.500554157526639,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9731649.492496366,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2992053206617318,
+        0.6139862337956584,
+        9.707651565935084
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_18",
+    "timestamp": 1775117443.899347,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81045360826909,
+      "accel_xy": 0.09433981132056604,
+      "accel_x": 0.05,
+      "accel_y": 0.08,
+      "accel_z": 9.81,
+      "accel_angle_y": 0.008154657251041442,
+      "accel_angle_z": 1.5611799248303624,
+      "gyro_magnitude": 0.017320508075688773,
+      "gyro_x": 0.01,
+      "gyro_y": 0.01,
+      "gyro_z": 0.01,
+      "accel_gyro_ratio": 566.3741035365355,
+      "activity_index": 0.16992204094819482
+    },
+    "raw_sensors": {
+      "accel": [
+        0.05,
+        0.08,
+        9.81
+      ],
+      "gyro": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "posture": "standing",
+    "device_id": "test_device_001",
+    "timestamp": 1775118445.452651,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 8.500076470244252,
+      "accel_xy": 0.03605551275463989,
+      "accel_x": 0.02,
+      "accel_y": 0.03,
+      "accel_z": 8.5,
+      "accel_angle_y": 0.003529387339982769,
+      "accel_angle_z": 1.5665545272058294,
+      "gyro_magnitude": 0.034641016151377546,
+      "gyro_x": 0.02,
+      "gyro_y": 0.02,
+      "gyro_z": 0.02,
+      "accel_gyro_ratio": 245.36898871881178,
+      "activity_index": 0.2944512862936754
+    },
+    "raw_sensors": {
+      "accel": [
+        0.02,
+        0.03,
+        8.5
+      ],
+      "gyro": [
+        0.02,
+        0.02,
+        0.02
+      ]
+    },
+    "posture": "standing",
+    "device_id": "test_device_001",
+    "timestamp": 1775118445.819182,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.754358000401666,
+      "accel_xy": 0.291547594742265,
+      "accel_x": 0.15,
+      "accel_y": 0.25,
+      "accel_z": 9.75,
+      "accel_angle_y": 0.025632376612454988,
+      "accel_angle_z": 1.540902916978709,
+      "gyro_magnitude": 0.5647123161398201,
+      "gyro_x": 0.1,
+      "gyro_y": 0.55,
+      "gyro_z": 0.08,
+      "accel_gyro_ratio": 17.273114909134776,
+      "activity_index": 5.508406098863809
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15,
+        0.25,
+        9.75
+      ],
+      "gyro": [
+        0.1,
+        0.55,
+        0.08
+      ]
+    },
+    "posture": "feeding",
+    "device_id": "test_device_001",
+    "timestamp": 1775118446.121046,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118446.450114,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118446.747829,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118447.09419,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.812444854034798,
+      "accel_xy": 0.3988113077178964,
+      "accel_x": 0.13887225047261928,
+      "accel_y": 0.37385151760067625,
+      "accel_z": 9.804336976782793,
+      "accel_angle_y": 0.03810895539175905,
+      "accel_angle_z": 1.5301417097325132,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9812444.854034798,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.13887225047261928,
+        0.37385151760067625,
+        9.804336976782793
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_001",
+    "timestamp": 1775118447.418611,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.873460532255644,
+      "accel_xy": 0.2837012495271016,
+      "accel_x": 0.13983062558795434,
+      "accel_y": 0.24684771647904724,
+      "accel_z": 9.869383794494297,
+      "accel_angle_y": 0.025003739929517176,
+      "accel_angle_z": 1.5420586515224959,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9873460.532255644,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.13983062558795434,
+        0.24684771647904724,
+        9.869383794494297
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_002",
+    "timestamp": 1775118447.872642,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.857109118227037,
+      "accel_xy": 0.35958755680870114,
+      "accel_x": 0.2617767828310404,
+      "accel_y": 0.24652814643014134,
+      "accel_z": 9.850548053668026,
+      "accel_angle_y": 0.025012795502057383,
+      "accel_angle_z": 1.5343082087944,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9857109.118227037,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2617767828310404,
+        0.24652814643014134,
+        9.850548053668026
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_003",
+    "timestamp": 1775118448.248067,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.745177205925883,
+      "accel_xy": 0.480556299699339,
+      "accel_x": 0.37340289989728925,
+      "accel_y": 0.3024973248295196,
+      "accel_z": 9.73332134565158,
+      "accel_angle_y": 0.031045707724765625,
+      "accel_angle_z": 1.5214641018375876,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9745177.205925884,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.37340289989728925,
+        0.3024973248295196,
+        9.73332134565158
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_004",
+    "timestamp": 1775118448.543091,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.800126481316976,
+      "accel_xy": 0.4117014331195612,
+      "accel_x": 0.3331741440971301,
+      "accel_y": 0.24185338479716448,
+      "accel_z": 9.791474913401839,
+      "accel_angle_y": 0.02468110400883724,
+      "accel_angle_z": 1.5287741521895433,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9800126.481316976,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3331741440971301,
+        0.24185338479716448,
+        9.791474913401839
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_005",
+    "timestamp": 1775118448.95308,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.757562175312955,
+      "accel_xy": 0.8508872345778737,
+      "accel_x": 0.3055618157926322,
+      "accel_y": 0.7941291221817086,
+      "accel_z": 9.720391479726036,
+      "accel_angle_y": 0.08147613184707703,
+      "accel_angle_z": 1.483482576508074,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9757562.175312955,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3055618157926322,
+        0.7941291221817086,
+        9.720391479726036
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_4",
+    "timestamp": 1775118449.40199,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.778846149575394,
+      "accel_xy": 0.41897444781211035,
+      "accel_x": 0.3652773874983145,
+      "accel_y": 0.20521212951935608,
+      "accel_z": 9.76986655124552,
+      "accel_angle_y": 0.02098685175781884,
+      "accel_angle_z": 1.5279382296238089,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9778846.149575394,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3652773874983145,
+        0.20521212951935608,
+        9.76986655124552
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_2",
+    "timestamp": 1775118449.402989,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.810176671053345,
+      "accel_xy": 0.5479583243406754,
+      "accel_x": 0.11309578858836357,
+      "accel_y": 0.5361601139751231,
+      "accel_z": 9.794861305402188,
+      "accel_angle_y": 0.05468070655951684,
+      "accel_angle_z": 1.514911129904959,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9810176.671053344,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11309578858836357,
+        0.5361601139751231,
+        9.794861305402188
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_1",
+    "timestamp": 1775118449.427708,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.821034483032538,
+      "accel_xy": 0.7593671075855359,
+      "accel_x": 0.11132237967293629,
+      "accel_y": 0.7511629196564336,
+      "accel_z": 9.791633158612068,
+      "accel_angle_y": 0.07655988135045164,
+      "accel_angle_z": 1.4933985951879192,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9821034.483032538,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11132237967293629,
+        0.7511629196564336,
+        9.791633158612068
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_3",
+    "timestamp": 1775118449.561381,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.797569043528998,
+      "accel_xy": 0.5562478120535908,
+      "accel_x": 0.3077067499521429,
+      "accel_y": 0.46338772582827026,
+      "accel_z": 9.78176607440105,
+      "accel_angle_y": 0.04731384477991062,
+      "accel_angle_z": 1.5139917185368648,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9797569.043528998,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3077067499521429,
+        0.46338772582827026,
+        9.78176607440105
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_0",
+    "timestamp": 1775118449.576389,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.718301621296225,
+      "accel_xy": 0.4817320998215844,
+      "accel_x": 0.3402371497227852,
+      "accel_y": 0.3410344527273278,
+      "accel_z": 9.706354649737992,
+      "accel_angle_y": 0.03509918699279974,
+      "accel_angle_z": 1.5212064274657844,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9718301.621296225,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3402371497227852,
+        0.3410344527273278,
+        9.706354649737992
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_6",
+    "timestamp": 1775118450.946849,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81507746603658,
+      "accel_xy": 0.27877944668361815,
+      "accel_x": 0.18390709443569775,
+      "accel_y": 0.20951410575291496,
+      "accel_z": 9.811117555324971,
+      "accel_angle_y": 0.02134777039445109,
+      "accel_angle_z": 1.5423893228709078,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9815077.46603658,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.18390709443569775,
+        0.20951410575291496,
+        9.811117555324971
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_7",
+    "timestamp": 1775118450.973252,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.833844272707328,
+      "accel_xy": 0.4977795666805182,
+      "accel_x": 0.3813097027994701,
+      "accel_y": 0.3199803237007305,
+      "accel_z": 9.821237634985422,
+      "accel_angle_y": 0.032544425738339745,
+      "accel_angle_z": 1.5201556644159493,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9833844.272707328,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3813097027994701,
+        0.3199803237007305,
+        9.821237634985422
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_8",
+    "timestamp": 1775118451.025699,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.753598691076405,
+      "accel_xy": 0.5734423936223176,
+      "accel_x": 0.30480013794151267,
+      "accel_y": 0.485729404827552,
+      "accel_z": 9.73672692683553,
+      "accel_angle_y": 0.04982062684387119,
+      "accel_angle_z": 1.5119694991368242,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9753598.691076405,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.30480013794151267,
+        0.485729404827552,
+        9.73672692683553
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_5",
+    "timestamp": 1775118451.065824,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.774675742824257,
+      "accel_xy": 0.49878812582677884,
+      "accel_x": 0.2867767841556756,
+      "accel_y": 0.408103749719504,
+      "accel_z": 9.761941214886061,
+      "accel_angle_y": 0.04176326850781704,
+      "accel_angle_z": 1.5197455441067984,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9774675.742824258,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2867767841556756,
+        0.408103749719504,
+        9.761941214886061
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_9",
+    "timestamp": 1775118451.074975,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.833692389732585,
+      "accel_xy": 0.6666523911526938,
+      "accel_x": 0.16039890790012845,
+      "accel_y": 0.6470684669909749,
+      "accel_z": 9.81106928959606,
+      "accel_angle_y": 0.0658487472464581,
+      "accel_angle_z": 1.502951608604964,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9833692.389732586,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.16039890790012845,
+        0.6470684669909749,
+        9.81106928959606
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_10",
+    "timestamp": 1775118452.509013,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.888529927332353,
+      "accel_xy": 0.5576201917012752,
+      "accel_x": 0.35595132139522045,
+      "accel_y": 0.4292306314674703,
+      "accel_z": 9.872795138437475,
+      "accel_angle_y": 0.04342056291005984,
+      "accel_angle_z": 1.5143757922019352,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9888529.927332353,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.35595132139522045,
+        0.4292306314674703,
+        9.872795138437475
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_12",
+    "timestamp": 1775118452.525464,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.88921118819394,
+      "accel_xy": 0.5350491946199395,
+      "accel_x": 0.2547960730592579,
+      "accel_y": 0.4704854958625475,
+      "accel_z": 9.874726339703635,
+      "accel_angle_y": 0.04759360013186583,
+      "accel_angle_z": 1.5166655605879835,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9889211.18819394,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2547960730592579,
+        0.4704854958625475,
+        9.874726339703635
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_13",
+    "timestamp": 1775118452.526564,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.902809378485033,
+      "accel_xy": 0.7307519583281832,
+      "accel_x": 0.10013660197853022,
+      "accel_y": 0.7238584706589184,
+      "accel_z": 9.875810607844333,
+      "accel_angle_y": 0.07316152433474958,
+      "accel_angle_z": 1.496936803025935,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9902809.378485033,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.10013660197853022,
+        0.7238584706589184,
+        9.875810607844333
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_14",
+    "timestamp": 1775118452.536174,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.86193936504927,
+      "accel_xy": 0.8738998828909027,
+      "accel_x": 0.36623414313802327,
+      "accel_y": 0.7934567144568703,
+      "accel_z": 9.823143439581429,
+      "accel_angle_y": 0.08054351459975616,
+      "accel_angle_z": 1.4820665543915625,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9861939.36504927,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.36623414313802327,
+        0.7934567144568703,
+        9.823143439581429
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_11",
+    "timestamp": 1775118452.563283,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.764091021176817,
+      "accel_xy": 0.6781304863845086,
+      "accel_x": 0.13036722518094226,
+      "accel_y": 0.6654812868614051,
+      "accel_z": 9.740513975826001,
+      "accel_angle_y": 0.06820886709558761,
+      "accel_angle_z": 1.501288900777385,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9764091.021176817,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.13036722518094226,
+        0.6654812868614051,
+        9.740513975826001
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_15",
+    "timestamp": 1775118453.809398,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.884316377481639,
+      "accel_xy": 0.40521082367396566,
+      "accel_x": 0.3521777226869749,
+      "accel_y": 0.2004162250556324,
+      "accel_z": 9.87600700883354,
+      "accel_angle_y": 0.020277574349578584,
+      "accel_angle_z": 1.529789503982807,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9884316.37748164,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3521777226869749,
+        0.2004162250556324,
+        9.87600700883354
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_17",
+    "timestamp": 1775118453.831581,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.735925950071923,
+      "accel_xy": 0.5259370432670565,
+      "accel_x": 0.2903463619406629,
+      "accel_y": 0.43853023109965317,
+      "accel_z": 9.721709948964914,
+      "accel_angle_y": 0.04505772254177178,
+      "accel_angle_z": 1.51674978006743,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9735925.950071923,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2903463619406629,
+        0.43853023109965317,
+        9.721709948964914
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_16",
+    "timestamp": 1775118453.836292,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.909678302827682,
+      "accel_xy": 0.7304797202462199,
+      "accel_x": 0.310510056551963,
+      "accel_y": 0.6611990067075815,
+      "accel_z": 9.882718423786176,
+      "accel_angle_y": 0.06677215651613792,
+      "accel_angle_z": 1.4970156390965415,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9909678.302827682,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.310510056551963,
+        0.6611990067075815,
+        9.882718423786176
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_18",
+    "timestamp": 1775118453.85123,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.764061622308914,
+      "accel_xy": 0.46883064401487423,
+      "accel_x": 0.18617808492470278,
+      "accel_y": 0.4302788554660476,
+      "accel_z": 9.75279945407873,
+      "accel_angle_y": 0.044081884936340104,
+      "accel_angle_z": 1.5227619124382452,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9764061.622308914,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.18617808492470278,
+        0.4302788554660476,
+        9.75279945407873
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_19",
+    "timestamp": 1775118454.151709,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81045360826909,
+      "accel_xy": 0.09433981132056604,
+      "accel_x": 0.05,
+      "accel_y": 0.08,
+      "accel_z": 9.81,
+      "accel_angle_y": 0.008154657251041442,
+      "accel_angle_z": 1.5611799248303624,
+      "gyro_magnitude": 0.017320508075688773,
+      "gyro_x": 0.01,
+      "gyro_y": 0.01,
+      "gyro_z": 0.01,
+      "accel_gyro_ratio": 566.3741035365355,
+      "activity_index": 0.16992204094819482
+    },
+    "raw_sensors": {
+      "accel": [
+        0.05,
+        0.08,
+        9.81
+      ],
+      "gyro": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "posture": "standing",
+    "device_id": "test_device_001",
+    "timestamp": 1775118912.911567,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.502105029939418,
+      "accel_xy": 9.5,
+      "accel_x": 0.0,
+      "accel_y": 9.5,
+      "accel_z": 0.2,
+      "accel_angle_y": 1.5497468046578502,
+      "accel_angle_z": 0.021049522137046434,
+      "gyro_magnitude": 0.034641016151377546,
+      "gyro_x": 0.02,
+      "gyro_y": 0.02,
+      "gyro_z": 0.02,
+      "accel_gyro_ratio": 274.2942266529012,
+      "activity_index": 0.3291625738142172
+    },
+    "raw_sensors": {
+      "accel": [
+        0.0,
+        9.5,
+        0.2
+      ],
+      "gyro": [
+        0.02,
+        0.02,
+        0.02
+      ]
+    },
+    "posture": "lying",
+    "device_id": "test_device_001",
+    "timestamp": 1775118913.255508,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.754358000401666,
+      "accel_xy": 0.291547594742265,
+      "accel_x": 0.15,
+      "accel_y": 0.25,
+      "accel_z": 9.75,
+      "accel_angle_y": 0.025632376612454988,
+      "accel_angle_z": 1.540902916978709,
+      "gyro_magnitude": 0.5647123161398201,
+      "gyro_x": 0.1,
+      "gyro_y": 0.55,
+      "gyro_z": 0.08,
+      "accel_gyro_ratio": 17.273114909134776,
+      "activity_index": 5.508406098863809
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15,
+        0.25,
+        9.75
+      ],
+      "gyro": [
+        0.1,
+        0.55,
+        0.08
+      ]
+    },
+    "posture": "feeding",
+    "device_id": "test_device_001",
+    "timestamp": 1775118913.600954,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118913.909618,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118914.310226,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118914.618848,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.848115420110716,
+      "accel_xy": 0.47117487290322296,
+      "accel_x": 0.34425445179099146,
+      "accel_y": 0.3217058179104821,
+      "accel_z": 9.836837477917744,
+      "accel_angle_y": 0.03267255184436003,
+      "accel_angle_z": 1.5229338885035308,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9848115.420110716,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.34425445179099146,
+        0.3217058179104821,
+        9.836837477917744
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_001",
+    "timestamp": 1775118914.991595,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.839429989154901,
+      "accel_xy": 0.37504282945727635,
+      "accel_x": 0.28771829892385814,
+      "accel_y": 0.2405728671144797,
+      "accel_z": 9.832279765525058,
+      "accel_angle_y": 0.024452315100403427,
+      "accel_angle_z": 1.5326707745001615,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9839429.989154901,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.28771829892385814,
+        0.2405728671144797,
+        9.832279765525058
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_002",
+    "timestamp": 1775118915.298755,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.738547052073416,
+      "accel_xy": 0.5807744372618467,
+      "accel_x": 0.33943902855638003,
+      "accel_y": 0.47125374573526285,
+      "accel_z": 9.721213902516034,
+      "accel_angle_y": 0.04840946555499293,
+      "accel_angle_z": 1.5111242583254794,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9738547.052073417,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.33943902855638003,
+        0.47125374573526285,
+        9.721213902516034
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_003",
+    "timestamp": 1775118915.593305,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.744989010085495,
+      "accel_xy": 0.682625838962884,
+      "accel_x": 0.3873484737930276,
+      "accel_y": 0.5620846874537622,
+      "accel_z": 9.721051011627667,
+      "accel_angle_y": 0.05771138600005001,
+      "accel_angle_z": 1.5006900053213272,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9744989.010085495,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3873484737930276,
+        0.5620846874537622,
+        9.721051011627667
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_004",
+    "timestamp": 1775118915.898869,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.854847261995378,
+      "accel_xy": 0.6072962223001948,
+      "accel_x": 0.11928420264506547,
+      "accel_y": 0.5954661876373994,
+      "accel_z": 9.836117417743534,
+      "accel_angle_y": 0.060460513668081764,
+      "accel_angle_z": 1.5091331436372855,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9854847.261995379,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11928420264506547,
+        0.5954661876373994,
+        9.836117417743534
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_005",
+    "timestamp": 1775118916.199499,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.799914654234703,
+      "accel_xy": 0.3561915113970151,
+      "accel_x": 0.266176040753594,
+      "accel_y": 0.23669116612165947,
+      "accel_z": 9.793439377332806,
+      "accel_angle_y": 0.024154718923725615,
+      "accel_angle_z": 1.534441930283753,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9799914.654234704,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.266176040753594,
+        0.23669116612165947,
+        9.793439377332806
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_0",
+    "timestamp": 1775118916.598822,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.76311597384255,
+      "accel_xy": 0.4580680210454692,
+      "accel_x": 0.11240333205019659,
+      "accel_y": 0.44406283659919754,
+      "accel_z": 9.752364185508817,
+      "accel_angle_y": 0.04549941750777986,
+      "accel_angle_z": 1.5238608762717862,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9763115.973842552,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11240333205019659,
+        0.44406283659919754,
+        9.752364185508817
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_2",
+    "timestamp": 1775118916.600337,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.792477148392228,
+      "accel_xy": 0.6809405260271207,
+      "accel_x": 0.3913563646680909,
+      "accel_y": 0.5572433901087281,
+      "accel_z": 9.76877314209916,
+      "accel_angle_y": 0.056936009728124494,
+      "accel_angle_z": 1.501203057977512,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9792477.148392228,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3913563646680909,
+        0.5572433901087281,
+        9.76877314209916
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_1",
+    "timestamp": 1775118916.614912,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.86161162788767,
+      "accel_xy": 0.7234061210546023,
+      "accel_x": 0.2111487609767665,
+      "accel_y": 0.6919050633701435,
+      "accel_z": 9.835042830781676,
+      "accel_angle_y": 0.07021915039452876,
+      "accel_angle_z": 1.4973746075571914,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9861611.627887672,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2111487609767665,
+        0.6919050633701435,
+        9.835042830781676
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_3",
+    "timestamp": 1775118916.617757,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.878432028106989,
+      "accel_xy": 0.42885303564156046,
+      "accel_x": 0.11177514607600583,
+      "accel_y": 0.41403048547017535,
+      "accel_z": 9.869118724980005,
+      "accel_angle_y": 0.0419248519330538,
+      "accel_angle_z": 1.527369611068604,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9878432.02810699,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11177514607600583,
+        0.41403048547017535,
+        9.869118724980005
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_4",
+    "timestamp": 1775118916.733284,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.745647133037075,
+      "accel_xy": 0.7176655180151427,
+      "accel_x": 0.19118601157785264,
+      "accel_y": 0.691730948219679,
+      "accel_z": 9.719186912799126,
+      "accel_angle_y": 0.07103818515728694,
+      "accel_angle_z": 1.4970900124722435,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9745647.133037075,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.19118601157785264,
+        0.691730948219679,
+        9.719186912799126
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_5",
+    "timestamp": 1775118917.98636,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.751594119610537,
+      "accel_xy": 0.5560542282204898,
+      "accel_x": 0.31637832744781164,
+      "accel_y": 0.45727569216306463,
+      "accel_z": 9.735727582923678,
+      "accel_angle_y": 0.04690960640163069,
+      "accel_angle_z": 1.5137435005875801,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9751594.119610539,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.31637832744781164,
+        0.45727569216306463,
+        9.735727582923678
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_7",
+    "timestamp": 1775118917.987361,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.863252107021093,
+      "accel_xy": 0.2702155157984013,
+      "accel_x": 0.15383159563334536,
+      "accel_y": 0.22215369716278635,
+      "accel_z": 9.85954997460218,
+      "accel_angle_y": 0.02252527687837887,
+      "accel_angle_z": 1.5433967099090182,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9863252.107021093,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15383159563334536,
+        0.22215369716278635,
+        9.85954997460218
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_8",
+    "timestamp": 1775118917.997368,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.840686849621738,
+      "accel_xy": 0.2774667975237783,
+      "accel_x": 0.13353187209598308,
+      "accel_y": 0.24322224993335495,
+      "accel_z": 9.836774361984222,
+      "accel_angle_y": 0.024718500214570716,
+      "accel_angle_z": 1.5425967123147,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9840686.84962174,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.13353187209598308,
+        0.24322224993335495,
+        9.836774361984222
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_6",
+    "timestamp": 1775118918.005366,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.740653624786873,
+      "accel_xy": 0.4204299666763276,
+      "accel_x": 0.14677894087090212,
+      "accel_y": 0.3939762675546259,
+      "accel_z": 9.731576012198342,
+      "accel_angle_y": 0.040457630595788406,
+      "accel_angle_z": 1.5276205158664624,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9740653.624786874,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.14677894087090212,
+        0.3939762675546259,
+        9.731576012198342
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_9",
+    "timestamp": 1775118918.113572,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.815763295566457,
+      "accel_xy": 0.641563323389471,
+      "accel_x": 0.15774025084122903,
+      "accel_y": 0.6218693682624101,
+      "accel_z": 9.794774401519982,
+      "accel_angle_y": 0.0633966108662533,
+      "accel_angle_z": 1.5053891875677199,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9815763.295566458,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15774025084122903,
+        0.6218693682624101,
+        9.794774401519982
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_10",
+    "timestamp": 1775118919.476306,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.745809696972602,
+      "accel_xy": 0.5878221008770748,
+      "accel_x": 0.3374707605791949,
+      "accel_y": 0.4812985643378105,
+      "accel_z": 9.728066191557584,
+      "accel_angle_y": 0.04940527609905359,
+      "accel_angle_z": 1.510444327882972,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9745809.696972603,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3374707605791949,
+        0.4812985643378105,
+        9.728066191557584
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_14",
+    "timestamp": 1775118919.522096,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.785935649297228,
+      "accel_xy": 0.7953425120810533,
+      "accel_x": 0.3865780784202899,
+      "accel_y": 0.6950734499376858,
+      "accel_z": 9.753561750492121,
+      "accel_angle_y": 0.07108765483039026,
+      "accel_angle_z": 1.4894325456141615,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9785935.649297228,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3865780784202899,
+        0.6950734499376858,
+        9.753561750492121
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_11",
+    "timestamp": 1775118919.526378,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.766885202172041,
+      "accel_xy": 0.4600732713480093,
+      "accel_x": 0.21449028492229041,
+      "accel_y": 0.4070151504340025,
+      "accel_z": 9.756043211128082,
+      "accel_angle_y": 0.04168504496670909,
+      "accel_angle_z": 1.5236734645608208,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9766885.202172041,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.21449028492229041,
+        0.4070151504340025,
+        9.756043211128082
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_13",
+    "timestamp": 1775118919.542749,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.807735142054621,
+      "accel_xy": 0.6687734500406548,
+      "accel_x": 0.36994034609201243,
+      "accel_y": 0.5571373868379346,
+      "accel_z": 9.784907290782774,
+      "accel_angle_y": 0.05683651257037374,
+      "accel_angle_z": 1.502555006190492,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9807735.142054621,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.36994034609201243,
+        0.5571373868379346,
+        9.784907290782774
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_12",
+    "timestamp": 1775118919.590467,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.747768869568825,
+      "accel_xy": 0.761747222844587,
+      "accel_x": 0.1461860433400684,
+      "accel_y": 0.7475884377409916,
+      "accel_z": 9.717959616247828,
+      "accel_angle_y": 0.07676867012499655,
+      "accel_angle_z": 1.4925707683663814,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9747768.869568825,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.1461860433400684,
+        0.7475884377409916,
+        9.717959616247828
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_15",
+    "timestamp": 1775118920.907392,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.750415301610403,
+      "accel_xy": 0.4034726501053053,
+      "accel_x": 0.23307477142995528,
+      "accel_y": 0.32934226923653787,
+      "accel_z": 9.7420638662706,
+      "accel_angle_y": 0.033783681598932136,
+      "accel_angle_z": 1.5294044607700867,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9750415.301610403,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.23307477142995528,
+        0.32934226923653787,
+        9.7420638662706
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_16",
+    "timestamp": 1775118920.921922,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.804237764861925,
+      "accel_xy": 0.5495184967745859,
+      "accel_x": 0.12664708391239687,
+      "accel_y": 0.5347252513523996,
+      "accel_z": 9.788825648240312,
+      "accel_angle_y": 0.05456729240658022,
+      "accel_angle_z": 1.5147178598991011,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9804237.764861926,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.12664708391239687,
+        0.5347252513523996,
+        9.788825648240312
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_18",
+    "timestamp": 1775118920.931196,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.905612919954219,
+      "accel_xy": 0.7502168075834427,
+      "accel_x": 0.32574361740079166,
+      "accel_y": 0.6758079269314166,
+      "accel_z": 9.877162652380655,
+      "accel_angle_y": 0.06827778398354885,
+      "accel_angle_z": 1.494987199041449,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9905612.91995422,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.32574361740079166,
+        0.6758079269314166,
+        9.877162652380655
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_19",
+    "timestamp": 1775118920.931196,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.704926055077328,
+      "accel_xy": 0.2895416651469036,
+      "accel_x": 0.20678394058085764,
+      "accel_y": 0.20266913374733211,
+      "accel_z": 9.700605927397667,
+      "accel_angle_y": 0.020884637998831557,
+      "accel_angle_z": 1.5409573940599277,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9704926.05507733,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.20678394058085764,
+        0.20266913374733211,
+        9.700605927397667
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_17",
+    "timestamp": 1775118920.949708,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81045360826909,
+      "accel_xy": 0.09433981132056604,
+      "accel_x": 0.05,
+      "accel_y": 0.08,
+      "accel_z": 9.81,
+      "accel_angle_y": 0.008154657251041442,
+      "accel_angle_z": 1.5611799248303624,
+      "gyro_magnitude": 0.017320508075688773,
+      "gyro_x": 0.01,
+      "gyro_y": 0.01,
+      "gyro_z": 0.01,
+      "accel_gyro_ratio": 566.3741035365355,
+      "activity_index": 0.16992204094819482
+    },
+    "raw_sensors": {
+      "accel": [
+        0.05,
+        0.08,
+        9.81
+      ],
+      "gyro": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "posture": "standing",
+    "device_id": "test_device_001",
+    "timestamp": 1775118958.418305,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.502105029939418,
+      "accel_xy": 9.5,
+      "accel_x": 0.0,
+      "accel_y": 9.5,
+      "accel_z": 0.2,
+      "accel_angle_y": 1.5497468046578502,
+      "accel_angle_z": 0.021049522137046434,
+      "gyro_magnitude": 0.034641016151377546,
+      "gyro_x": 0.02,
+      "gyro_y": 0.02,
+      "gyro_z": 0.02,
+      "accel_gyro_ratio": 274.2942266529012,
+      "activity_index": 0.3291625738142172
+    },
+    "raw_sensors": {
+      "accel": [
+        0.0,
+        9.5,
+        0.2
+      ],
+      "gyro": [
+        0.02,
+        0.02,
+        0.02
+      ]
+    },
+    "posture": "lying",
+    "device_id": "test_device_001",
+    "timestamp": 1775118958.777237,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.754358000401666,
+      "accel_xy": 0.291547594742265,
+      "accel_x": 0.15,
+      "accel_y": 0.25,
+      "accel_z": 9.75,
+      "accel_angle_y": 0.025632376612454988,
+      "accel_angle_z": 1.540902916978709,
+      "gyro_magnitude": 0.5647123161398201,
+      "gyro_x": 0.1,
+      "gyro_y": 0.55,
+      "gyro_z": 0.08,
+      "accel_gyro_ratio": 17.273114909134776,
+      "activity_index": 5.508406098863809
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15,
+        0.25,
+        9.75
+      ],
+      "gyro": [
+        0.1,
+        0.55,
+        0.08
+      ]
+    },
+    "posture": "feeding",
+    "device_id": "test_device_001",
+    "timestamp": 1775118959.090658,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118959.390953,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118959.765551,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775118960.07806,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.768870913490268,
+      "accel_xy": 0.5158844432768344,
+      "accel_x": 0.341279079470729,
+      "accel_y": 0.3868660604533062,
+      "accel_z": 9.755239728762238,
+      "accel_angle_y": 0.039612280317657955,
+      "accel_angle_z": 1.5179627361307788,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9768870.91349027,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.341279079470729,
+        0.3868660604533062,
+        9.755239728762238
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_001",
+    "timestamp": 1775118960.423494,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.897144423898064,
+      "accel_xy": 0.5006501315549552,
+      "accel_x": 0.1022096616399224,
+      "accel_y": 0.49010584499008636,
+      "accel_z": 9.884473541533234,
+      "accel_angle_y": 0.04954018588442378,
+      "accel_angle_z": 1.5201894170555883,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9897144.423898065,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.1022096616399224,
+        0.49010584499008636,
+        9.884473541533234
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_002",
+    "timestamp": 1775118960.74509,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.772492373049538,
+      "accel_xy": 0.3552245905155307,
+      "accel_x": 0.2686604347843408,
+      "accel_y": 0.23239208353215346,
+      "accel_z": 9.766034132215822,
+      "accel_angle_y": 0.02378246850013459,
+      "accel_angle_z": 1.5344388809375127,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9772492.373049539,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2686604347843408,
+        0.23239208353215346,
+        9.766034132215822
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_003",
+    "timestamp": 1775118961.037387,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.783473310680625,
+      "accel_xy": 0.493159228759256,
+      "accel_x": 0.25304462198540734,
+      "accel_y": 0.42329002373631075,
+      "accel_z": 9.771035973523468,
+      "accel_angle_y": 0.043279332738906155,
+      "accel_angle_z": 1.520367578510501,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9783473.310680626,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.25304462198540734,
+        0.42329002373631075,
+        9.771035973523468
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_004",
+    "timestamp": 1775118961.317286,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.718976895580262,
+      "accel_xy": 0.2740586174622143,
+      "accel_x": 0.11785468576233166,
+      "accel_y": 0.24742352121243927,
+      "accel_z": 9.71511213373359,
+      "accel_angle_y": 0.025460525059523686,
+      "accel_angle_z": 1.5425942894038895,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9718976.895580262,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11785468576233166,
+        0.24742352121243927,
+        9.71511213373359
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_005",
+    "timestamp": 1775118961.610395,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.924037240265077,
+      "accel_xy": 0.7241077898925649,
+      "accel_x": 0.25826226581280687,
+      "accel_y": 0.6764855456255736,
+      "accel_z": 9.8975847081389,
+      "accel_angle_y": 0.06821926668680689,
+      "accel_angle_z": 1.4977663865470434,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9924037.240265077,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.25826226581280687,
+        0.6764855456255736,
+        9.8975847081389
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_2",
+    "timestamp": 1775118962.001074,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.855067079451807,
+      "accel_xy": 0.3868673245330494,
+      "accel_x": 0.19578174588376968,
+      "accel_y": 0.333670248553962,
+      "accel_z": 9.847470782576783,
+      "accel_angle_y": 0.03386420701581454,
+      "accel_angle_z": 1.531530561140774,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9855067.079451807,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.19578174588376968,
+        0.333670248553962,
+        9.847470782576783
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_1",
+    "timestamp": 1775118962.009949,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.89856907123975,
+      "accel_xy": 0.7117350549060126,
+      "accel_x": 0.3286380469023732,
+      "accel_y": 0.6313191130563516,
+      "accel_z": 9.872948033374941,
+      "accel_angle_y": 0.0638221444663426,
+      "accel_angle_z": 1.4988314032546475,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9898569.07123975,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3286380469023732,
+        0.6313191130563516,
+        9.872948033374941
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_3",
+    "timestamp": 1775118962.031949,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.77505966377534,
+      "accel_xy": 0.2483339233558687,
+      "accel_x": 0.13403718103436726,
+      "accel_y": 0.20905447038912783,
+      "accel_z": 9.771904711614738,
+      "accel_angle_y": 0.021388146690710583,
+      "accel_angle_z": 1.5453887433757767,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9775059.66377534,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.13403718103436726,
+        0.20905447038912783,
+        9.771904711614738
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_4",
+    "timestamp": 1775118962.033949,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.815038104350354,
+      "accel_xy": 0.7580501133156115,
+      "accel_x": 0.12160456572316697,
+      "accel_y": 0.7482327872347558,
+      "accel_z": 9.785720873576539,
+      "accel_angle_y": 0.07630733666433791,
+      "accel_angle_z": 1.4934857992152915,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9815038.104350355,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.12160456572316697,
+        0.7482327872347558,
+        9.785720873576539
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_0",
+    "timestamp": 1775118962.160993,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.829171800413798,
+      "accel_xy": 0.737521546699877,
+      "accel_x": 0.3322005816389275,
+      "accel_y": 0.6584685303075137,
+      "accel_z": 9.801463168843886,
+      "accel_angle_y": 0.06704146153663285,
+      "accel_angle_z": 1.4956917937352825,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9829171.800413799,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3322005816389275,
+        0.6584685303075137,
+        9.801463168843886
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_5",
+    "timestamp": 1775118963.329913,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.74361350388734,
+      "accel_xy": 0.44288034815022115,
+      "accel_x": 0.387477280631769,
+      "accel_y": 0.21448626942503907,
+      "accel_z": 9.73354309130843,
+      "accel_angle_y": 0.022014789018568518,
+      "accel_angle_z": 1.5253272624443266,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9743613.50388734,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.387477280631769,
+        0.21448626942503907,
+        9.73354309130843
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_6",
+    "timestamp": 1775118963.335632,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.726316636127097,
+      "accel_xy": 0.6553802669553682,
+      "accel_x": 0.1623282318198337,
+      "accel_y": 0.6349589273872256,
+      "accel_z": 9.704211045308538,
+      "accel_angle_y": 0.06532902753359694,
+      "accel_angle_z": 1.5033630680569545,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9726316.636127098,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.1623282318198337,
+        0.6349589273872256,
+        9.704211045308538
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_7",
+    "timestamp": 1775118963.338632,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.929703523792034,
+      "accel_xy": 0.7969055678062309,
+      "accel_x": 0.24958291713539713,
+      "accel_y": 0.7568136173951661,
+      "accel_z": 9.897674150344987,
+      "accel_angle_y": 0.07629112651676327,
+      "accel_angle_z": 1.4904552059268392,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9929703.523792034,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.24958291713539713,
+        0.7568136173951661,
+        9.897674150344987
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_9",
+    "timestamp": 1775118963.342633,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.737971967483304,
+      "accel_xy": 0.5941772923259514,
+      "accel_x": 0.13414694034940608,
+      "accel_y": 0.578836119390188,
+      "accel_z": 9.71982774460406,
+      "accel_angle_y": 0.059476195497138264,
+      "accel_angle_z": 1.5097418688340791,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9737971.967483304,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.13414694034940608,
+        0.578836119390188,
+        9.71982774460406
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_8",
+    "timestamp": 1775118963.34922,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.849046908418975,
+      "accel_xy": 0.586677775143084,
+      "accel_x": 0.2923803095385176,
+      "accel_y": 0.5086300880217366,
+      "accel_z": 9.831558075523459,
+      "accel_angle_y": 0.05166555167923018,
+      "accel_angle_z": 1.511194085112797,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9849046.908418976,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2923803095385176,
+        0.5086300880217366,
+        9.831558075523459
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_14",
+    "timestamp": 1775118964.667125,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.829462359198647,
+      "accel_xy": 0.3995998575575318,
+      "accel_x": 0.25031153703874437,
+      "accel_y": 0.3114870472191436,
+      "accel_z": 9.821336478542166,
+      "accel_angle_y": 0.031694429663017006,
+      "accel_angle_z": 1.5301318434350377,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9829462.359198648,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.25031153703874437,
+        0.3114870472191436,
+        9.821336478542166
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_10",
+    "timestamp": 1775118964.672231,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.868842293788676,
+      "accel_xy": 0.703221280885287,
+      "accel_x": 0.2925286844347976,
+      "accel_y": 0.6394897486846762,
+      "accel_z": 9.843755789828505,
+      "accel_angle_y": 0.06484429501834732,
+      "accel_angle_z": 1.4994791725550978,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9868842.293788677,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2925286844347976,
+        0.6394897486846762,
+        9.843755789828505
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_12",
+    "timestamp": 1775118964.674241,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.89079389580966,
+      "accel_xy": 0.6237618729539889,
+      "accel_x": 0.10575075131437099,
+      "accel_y": 0.6147321796908913,
+      "accel_z": 9.871105561953765,
+      "accel_angle_y": 0.062192039083442334,
+      "accel_angle_z": 1.5076895539460144,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9890793.89580966,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.10575075131437099,
+        0.6147321796908913,
+        9.871105561953765
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_13",
+    "timestamp": 1775118964.734288,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.85680475273887,
+      "accel_xy": 0.43789097120503506,
+      "accel_x": 0.10183695290933562,
+      "accel_y": 0.42588465302829426,
+      "accel_z": 9.847073241880183,
+      "accel_angle_y": 0.04322062639025993,
+      "accel_angle_z": 1.5263564553171693,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9856804.75273887,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.10183695290933562,
+        0.42588465302829426,
+        9.847073241880183
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_11",
+    "timestamp": 1775118964.787901,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.838846666444086,
+      "accel_xy": 0.40188800745017556,
+      "accel_x": 0.20038200668054545,
+      "accel_y": 0.34836908865591126,
+      "accel_z": 9.830635267126212,
+      "accel_angle_y": 0.03541491526594599,
+      "accel_angle_z": 1.529937894676823,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9838846.666444086,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.20038200668054545,
+        0.34836908865591126,
+        9.830635267126212
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_15",
+    "timestamp": 1775118966.077561,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.917468682942319,
+      "accel_xy": 0.592614464978162,
+      "accel_x": 0.3782150499914104,
+      "accel_y": 0.4562294160412589,
+      "accel_z": 9.89974712672199,
+      "accel_angle_y": 0.046018848076303714,
+      "accel_angle_z": 1.5110061002783102,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9917468.68294232,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3782150499914104,
+        0.4562294160412589,
+        9.89974712672199
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_16",
+    "timestamp": 1775118966.122137,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.820449832201719,
+      "accel_xy": 0.5806275963774307,
+      "accel_x": 0.3069581639745004,
+      "accel_y": 0.4928540263043778,
+      "accel_z": 9.80327019423191,
+      "accel_angle_y": 0.05020759336347413,
+      "accel_angle_z": 1.511637487674155,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9820449.83220172,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3069581639745004,
+        0.4928540263043778,
+        9.80327019423191
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_17",
+    "timestamp": 1775118966.144199,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.806703415500309,
+      "accel_xy": 0.7184959119331548,
+      "accel_x": 0.10584393292787433,
+      "accel_y": 0.710657046209362,
+      "accel_z": 9.780347412240568,
+      "accel_angle_y": 0.07253003172980194,
+      "accel_angle_z": 1.4974648270323845,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9806703.41550031,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.10584393292787433,
+        0.710657046209362,
+        9.780347412240568
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_18",
+    "timestamp": 1775118966.245192,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.765878208026422,
+      "accel_xy": 0.4480919333900895,
+      "accel_x": 0.25005075832806695,
+      "accel_y": 0.37183463936113736,
+      "accel_z": 9.755592795583263,
+      "accel_angle_y": 0.0380840853557739,
+      "accel_angle_z": 1.524896787590718,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9765878.208026422,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.25005075832806695,
+        0.37183463936113736,
+        9.755592795583263
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_19",
+    "timestamp": 1775118966.252376,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81045360826909,
+      "accel_xy": 0.09433981132056604,
+      "accel_x": 0.05,
+      "accel_y": 0.08,
+      "accel_z": 9.81,
+      "accel_angle_y": 0.008154657251041442,
+      "accel_angle_z": 1.5611799248303624,
+      "gyro_magnitude": 0.017320508075688773,
+      "gyro_x": 0.01,
+      "gyro_y": 0.01,
+      "gyro_z": 0.01,
+      "accel_gyro_ratio": 566.3741035365355,
+      "activity_index": 0.16992204094819482
+    },
+    "raw_sensors": {
+      "accel": [
+        0.05,
+        0.08,
+        9.81
+      ],
+      "gyro": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "posture": "standing",
+    "device_id": "test_device_001",
+    "timestamp": 1775120205.107554,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.502105029939418,
+      "accel_xy": 9.5,
+      "accel_x": 0.0,
+      "accel_y": 9.5,
+      "accel_z": 0.2,
+      "accel_angle_y": 1.5497468046578502,
+      "accel_angle_z": 0.021049522137046434,
+      "gyro_magnitude": 0.034641016151377546,
+      "gyro_x": 0.02,
+      "gyro_y": 0.02,
+      "gyro_z": 0.02,
+      "accel_gyro_ratio": 274.2942266529012,
+      "activity_index": 0.3291625738142172
+    },
+    "raw_sensors": {
+      "accel": [
+        0.0,
+        9.5,
+        0.2
+      ],
+      "gyro": [
+        0.02,
+        0.02,
+        0.02
+      ]
+    },
+    "posture": "lying",
+    "device_id": "test_device_001",
+    "timestamp": 1775120205.491846,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.754358000401666,
+      "accel_xy": 0.291547594742265,
+      "accel_x": 0.15,
+      "accel_y": 0.25,
+      "accel_z": 9.75,
+      "accel_angle_y": 0.025632376612454988,
+      "accel_angle_z": 1.540902916978709,
+      "gyro_magnitude": 0.5647123161398201,
+      "gyro_x": 0.1,
+      "gyro_y": 0.55,
+      "gyro_z": 0.08,
+      "accel_gyro_ratio": 17.273114909134776,
+      "activity_index": 5.508406098863809
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15,
+        0.25,
+        9.75
+      ],
+      "gyro": [
+        0.1,
+        0.55,
+        0.08
+      ]
+    },
+    "posture": "feeding",
+    "device_id": "test_device_001",
+    "timestamp": 1775120205.800208,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775120206.128141,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775120206.506034,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.683749273912456,
+      "accel_xy": 0.8077747210701756,
+      "accel_x": 0.3,
+      "accel_y": 0.75,
+      "accel_z": 9.65,
+      "accel_angle_y": 0.07752697947810673,
+      "accel_angle_z": 1.4872837933276715,
+      "gyro_magnitude": 0.51478150704935,
+      "gyro_x": 0.45,
+      "gyro_y": 0.2,
+      "gyro_z": 0.15,
+      "accel_gyro_ratio": 18.81134098634808,
+      "activity_index": 4.985015045112703
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3,
+        0.75,
+        9.65
+      ],
+      "gyro": [
+        0.45,
+        0.2,
+        0.15
+      ]
+    },
+    "posture": "walking",
+    "device_id": "test_device_001",
+    "timestamp": 1775120206.870864,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.814964932440969,
+      "accel_xy": 0.6733424456710427,
+      "accel_x": 0.22112390341506,
+      "accel_y": 0.6359986387412699,
+      "accel_z": 9.791840816511657,
+      "accel_angle_y": 0.06484430336530111,
+      "accel_angle_z": 1.5021387463795393,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9814964.932440968,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.22112390341506,
+        0.6359986387412699,
+        9.791840816511657
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_001",
+    "timestamp": 1775120207.253629,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.870916003315058,
+      "accel_xy": 0.7472770143307261,
+      "accel_x": 0.11315613096150394,
+      "accel_y": 0.7386600206948168,
+      "accel_z": 9.842589080539442,
+      "accel_angle_y": 0.07490198049167689,
+      "accel_angle_z": 1.4950188949048255,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9870916.003315058,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11315613096150394,
+        0.7386600206948168,
+        9.842589080539442
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_002",
+    "timestamp": 1775120207.640964,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.90804305097348,
+      "accel_xy": 0.7013245625684171,
+      "accel_x": 0.32909124053148125,
+      "accel_y": 0.619318252167036,
+      "accel_z": 9.883190828769932,
+      "accel_angle_y": 0.06254739175567019,
+      "accel_angle_z": 1.4999537272530012,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9908043.05097348,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.32909124053148125,
+        0.619318252167036,
+        9.883190828769932
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_003",
+    "timestamp": 1775120207.91378,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.880220598135754,
+      "accel_xy": 0.43707919819461455,
+      "accel_x": 0.30446943660556125,
+      "accel_y": 0.31358665097152855,
+      "accel_z": 9.87054815308307,
+      "accel_angle_y": 0.03174416203558538,
+      "accel_angle_z": 1.5265440877938388,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9880220.598135754,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.30446943660556125,
+        0.31358665097152855,
+        9.87054815308307
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_004",
+    "timestamp": 1775120208.188399,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.81965563214333,
+      "accel_xy": 0.551319047120969,
+      "accel_x": 0.16673882594183354,
+      "accel_y": 0.5255005762526928,
+      "accel_z": 9.80416666740044,
+      "accel_angle_y": 0.05354075006725725,
+      "accel_angle_z": 1.514622350448466,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9819655.632143332,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.16673882594183354,
+        0.5255005762526928,
+        9.80416666740044
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "cow_005",
+    "timestamp": 1775120208.460335,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.845113185896976,
+      "accel_xy": 0.48663506823186065,
+      "accel_x": 0.39344838046734076,
+      "accel_y": 0.28637748085464815,
+      "accel_z": 9.833078864398956,
+      "accel_angle_y": 0.029092390934192334,
+      "accel_angle_z": 1.52134707842909,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9845113.185896976,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.39344838046734076,
+        0.28637748085464815,
+        9.833078864398956
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_2",
+    "timestamp": 1775120208.830395,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.910059967936252,
+      "accel_xy": 0.6829768578972363,
+      "accel_x": 0.1509005384409574,
+      "accel_y": 0.6660979026550158,
+      "accel_z": 9.886497417167998,
+      "accel_angle_y": 0.06726502894566405,
+      "accel_angle_z": 1.5018241241677577,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9910059.967936253,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.1509005384409574,
+        0.6660979026550158,
+        9.886497417167998
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_4",
+    "timestamp": 1775120208.844043,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.8601114676936,
+      "accel_xy": 0.24497535784310623,
+      "accel_x": 0.11706645358713291,
+      "accel_y": 0.21519379961999277,
+      "accel_z": 9.857067780501078,
+      "accel_angle_y": 0.021826415187081064,
+      "accel_angle_z": 1.545948679924691,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9860111.467693599,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11706645358713291,
+        0.21519379961999277,
+        9.857067780501078
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_0",
+    "timestamp": 1775120209.066277,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.902210182550414,
+      "accel_xy": 0.3656251495549144,
+      "accel_x": 0.1891741262866276,
+      "accel_y": 0.3128816068910804,
+      "accel_z": 9.895457783721683,
+      "accel_angle_y": 0.03160240865142174,
+      "accel_angle_z": 1.5338643416026612,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9902210.182550415,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.1891741262866276,
+        0.3128816068910804,
+        9.895457783721683
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_3",
+    "timestamp": 1775120209.067314,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.869204705823195,
+      "accel_xy": 0.4462326900683162,
+      "accel_x": 0.22915985452405868,
+      "accel_y": 0.382896036490479,
+      "accel_z": 9.859111415931817,
+      "accel_angle_y": 0.038806790373931824,
+      "accel_angle_z": 1.525566251305233,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9869204.705823196,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.22915985452405868,
+        0.382896036490479,
+        9.859111415931817
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_1",
+    "timestamp": 1775120209.184845,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.8339612469641,
+      "accel_xy": 0.5610596131762112,
+      "accel_x": 0.25942854139861465,
+      "accel_y": 0.4974783627910133,
+      "accel_z": 9.817943059381342,
+      "accel_angle_y": 0.0506093912574576,
+      "accel_angle_z": 1.5137120626135343,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9833961.246964099,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.25942854139861465,
+        0.4974783627910133,
+        9.817943059381342
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_6",
+    "timestamp": 1775120210.178179,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.7330271542125,
+      "accel_xy": 0.3920633342232735,
+      "accel_x": 0.3003533599349303,
+      "accel_y": 0.25199507379722424,
+      "accel_z": 9.725127450403702,
+      "accel_angle_y": 0.025893612704660455,
+      "accel_angle_z": 1.5305036785008481,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9733027.1542125,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3003533599349303,
+        0.25199507379722424,
+        9.725127450403702
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_7",
+    "timestamp": 1775120210.205324,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.85890922089276,
+      "accel_xy": 0.44620357608840033,
+      "accel_x": 0.29911288444167594,
+      "accel_y": 0.3311028747610891,
+      "accel_z": 9.848806699011318,
+      "accel_angle_y": 0.03359044499012608,
+      "accel_angle_z": 1.5255219421417898,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9858909.22089276,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.29911288444167594,
+        0.3311028747610891,
+        9.848806699011318
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_5",
+    "timestamp": 1775120210.206341,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.810268860562102,
+      "accel_xy": 0.7217294026872381,
+      "accel_x": 0.18571587834484451,
+      "accel_y": 0.6974259410388176,
+      "accel_z": 9.783684468839496,
+      "accel_angle_y": 0.0711514388657501,
+      "accel_angle_z": 1.4971610322461453,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9810268.860562103,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.18571587834484451,
+        0.6974259410388176,
+        9.783684468839496
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_9",
+    "timestamp": 1775120210.478043,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.886345101505267,
+      "accel_xy": 0.6594386811507533,
+      "accel_x": 0.25328671597256935,
+      "accel_y": 0.608855659175207,
+      "accel_z": 9.864327655337657,
+      "accel_angle_y": 0.06162451207051489,
+      "accel_angle_z": 1.504044797635309,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9886345.101505267,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.25328671597256935,
+        0.608855659175207,
+        9.864327655337657
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_8",
+    "timestamp": 1775120210.512146,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.745762212849538,
+      "accel_xy": 0.37766967420423975,
+      "accel_x": 0.11105038621341463,
+      "accel_y": 0.3609739527104249,
+      "accel_z": 9.738441699090897,
+      "accel_angle_y": 0.037047542518331734,
+      "accel_angle_z": 1.5320344263538308,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9745762.212849539,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.11105038621341463,
+        0.3609739527104249,
+        9.738441699090897
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_10",
+    "timestamp": 1775120211.548864,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.776518621725767,
+      "accel_xy": 0.8618899436064253,
+      "accel_x": 0.32375584685908776,
+      "accel_y": 0.7987718238110568,
+      "accel_z": 9.738452756267845,
+      "accel_angle_y": 0.08179426862274947,
+      "accel_angle_z": 1.4825225413412755,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9776518.621725768,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.32375584685908776,
+        0.7987718238110568,
+        9.738452756267845
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_12",
+    "timestamp": 1775120211.549862,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.785281712648894,
+      "accel_xy": 0.7443761907655183,
+      "accel_x": 0.34496312279136254,
+      "accel_y": 0.6596183421438603,
+      "accel_z": 9.756927912131065,
+      "accel_angle_y": 0.0674603897229306,
+      "accel_angle_z": 1.4946517645495427,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9785281.712648895,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.34496312279136254,
+        0.6596183421438603,
+        9.756927912131065
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_11",
+    "timestamp": 1775120211.590541,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.928143978705371,
+      "accel_xy": 0.8324538407734854,
+      "accel_x": 0.28834762753013365,
+      "accel_y": 0.7809193573707023,
+      "accel_z": 9.89318267621119,
+      "accel_angle_y": 0.07873846915266962,
+      "accel_angle_z": 1.4868498847672975,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9928143.978705373,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.28834762753013365,
+        0.7809193573707023,
+        9.89318267621119
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_13",
+    "timestamp": 1775120211.726131,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.8652788784841,
+      "accel_xy": 0.8065982983070084,
+      "accel_x": 0.22079439777170992,
+      "accel_y": 0.7757903381354976,
+      "accel_z": 9.832249312107212,
+      "accel_angle_y": 0.07871973648216629,
+      "accel_angle_z": 1.488943629478497,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9865278.8784841,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.22079439777170992,
+        0.7757903381354976,
+        9.832249312107212
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_14",
+    "timestamp": 1775120211.726131,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.89588075305839,
+      "accel_xy": 0.6562469321923265,
+      "accel_x": 0.2542079019009734,
+      "accel_y": 0.6050110566121458,
+      "accel_z": 9.874097216593508,
+      "accel_angle_y": 0.0611758175193599,
+      "accel_angle_z": 1.504432462959364,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9895880.75305839,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.2542079019009734,
+        0.6050110566121458,
+        9.874097216593508
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_18",
+    "timestamp": 1775120212.86049,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.911286845328299,
+      "accel_xy": 0.8075326866421241,
+      "accel_x": 0.317162194252762,
+      "accel_y": 0.7426420285253321,
+      "accel_z": 9.878334773147866,
+      "accel_angle_y": 0.07499921145842364,
+      "accel_angle_z": 1.4892298434299318,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9911286.8453283,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.317162194252762,
+        0.7426420285253321,
+        9.878334773147866
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_17",
+    "timestamp": 1775120212.865561,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.800860486835093,
+      "accel_xy": 0.5519672892524675,
+      "accel_x": 0.15670548976965065,
+      "accel_y": 0.529255399481924,
+      "accel_z": 9.785305227431625,
+      "accel_angle_y": 0.054027191299385956,
+      "accel_angle_z": 1.51444826526587,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9800860.486835094,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.15670548976965065,
+        0.529255399481924,
+        9.785305227431625
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_15",
+    "timestamp": 1775120212.892634,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.875919831716551,
+      "accel_xy": 0.5855039325389426,
+      "accel_x": 0.3730887648408132,
+      "accel_y": 0.4512423169075824,
+      "accel_z": 9.858548456414551,
+      "accel_angle_y": 0.04570708154400136,
+      "accel_angle_z": 1.5114755265609767,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9875919.831716552,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.3730887648408132,
+        0.4512423169075824,
+        9.858548456414551
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_16",
+    "timestamp": 1775120212.894281,
+    "labeled": true
+  },
+  {
+    "features": {
+      "accel_magnitude": 9.780028969951829,
+      "accel_xy": 0.3542534606692833,
+      "accel_x": 0.22145503595095642,
+      "accel_y": 0.2765016843495245,
+      "accel_z": 9.773610956995416,
+      "accel_angle_y": 0.028275839831463583,
+      "accel_angle_z": 1.534566273339342,
+      "gyro_magnitude": 0.0,
+      "gyro_x": 0.0,
+      "gyro_y": 0.0,
+      "gyro_z": 0.0,
+      "accel_gyro_ratio": 9780028.969951829,
+      "activity_index": 0.0
+    },
+    "raw_sensors": {
+      "accel": [
+        0.22145503595095642,
+        0.2765016843495245,
+        9.773610956995416
+      ],
+      "gyro": [
+        0,
+        0,
+        0
+      ]
+    },
+    "posture": "standing",
+    "device_id": "concurrent_device_19",
+    "timestamp": 1775120212.952508,
+    "labeled": true
   }
 ]

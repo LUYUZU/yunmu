@@ -1,4 +1,4 @@
-package model;
+package cesipython.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

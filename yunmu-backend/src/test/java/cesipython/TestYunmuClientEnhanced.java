@@ -1,4 +1,5 @@
 // TestYunmuClientEnhanced.java - 修改版，匹配Python服务实际API
+package cesipython;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -155,7 +156,7 @@ public class TestYunmuClientEnhanced {
             if (result != null && (boolean) result.get("success")) {
                 System.out.println("  ✓ 设备ID: " + result.get("device_id"));
                 System.out.println("  ✓ 识别姿态: " + result.get("posture"));
-                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", (double) result.get("posture_confidence")));
+                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", ((Number) result.get("posture_confidence")).doubleValue()));
                 System.out.println("  ✓ 计算步数: " + result.get("calculated_steps"));
                 return "standing".equals(result.get("posture"));
             }
@@ -175,9 +176,10 @@ public class TestYunmuClientEnhanced {
             data.put("counter", 2);
             data.put("timestamp", System.currentTimeMillis() / 1000.0);
             // 躺卧时的加速度数据（模长小于9.0）
-            data.put("accel_x", 0.02);
-            data.put("accel_y", 0.03);
-            data.put("accel_z", 8.5);
+            // 修改为（正确 - 侧躺时Y轴朝上）
+            data.put("accel_x", 0.0);
+            data.put("accel_y", 9.5);   // Y轴朝上 ≈ 9.5
+            data.put("accel_z", 0.2);  // accel_magnitude ≈ 9.5
             data.put("gyro_x", 0.02);
             data.put("gyro_y", 0.02);
             data.put("gyro_z", 0.02);
@@ -187,7 +189,7 @@ public class TestYunmuClientEnhanced {
             if (result != null && (boolean) result.get("success")) {
                 System.out.println("  ✓ 设备ID: " + result.get("device_id"));
                 System.out.println("  ✓ 识别姿态: " + result.get("posture"));
-                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", (double) result.get("posture_confidence")));
+                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", ((Number) result.get("posture_confidence")).doubleValue()));
                 return "lying".equals(result.get("posture"));
             }
             return false;
@@ -218,7 +220,7 @@ public class TestYunmuClientEnhanced {
             if (result != null && (boolean) result.get("success")) {
                 System.out.println("  ✓ 设备ID: " + result.get("device_id"));
                 System.out.println("  ✓ 识别姿态: " + result.get("posture"));
-                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", (double) result.get("posture_confidence")));
+                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", ((Number) result.get("posture_confidence")).doubleValue()));
                 return "feeding".equals(result.get("posture"));
             }
             return false;
@@ -249,7 +251,7 @@ public class TestYunmuClientEnhanced {
             if (result != null && (boolean) result.get("success")) {
                 System.out.println("  ✓ 设备ID: " + result.get("device_id"));
                 System.out.println("  ✓ 识别姿态: " + result.get("posture"));
-                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", (double) result.get("posture_confidence")));
+                System.out.println("  ✓ 姿态置信度: " + String.format("%.2f", ((Number) result.get("posture_confidence")).doubleValue()));
                 System.out.println("  ✓ 计算步数: " + result.get("calculated_steps"));
                 return "walking".equals(result.get("posture"));
             }
@@ -295,7 +297,7 @@ public class TestYunmuClientEnhanced {
 
             if (result != null && (boolean) result.get("success")) {
                 int calculatedSteps = (int) result.get("calculated_steps");
-                double stepFrequency_result = (double) result.get("step_frequency");
+                double stepFrequency_result = ((Number) result.get("step_frequency")).doubleValue();
                 String activityLevel = (String) result.get("activity_level");
 
                 System.out.println("  ✓ 算法统计步数: " + calculatedSteps);
@@ -446,9 +448,9 @@ public class TestYunmuClientEnhanced {
                 System.out.println("  ✓ 今日日期: " + daily.get("date"));
                 System.out.println("  ✓ 今日步数: " + daily.get("steps"));
                 System.out.println("  ✓ 今日目标: " + daily.get("goal"));
-                System.out.println("  ✓ 完成度: " + String.format("%.1f", (double) daily.get("completion")) + "%");
+                System.out.println("  ✓ 完成度: " + String.format("%.1f", ((Number) daily.get("completion")).doubleValue()) + "%");
                 System.out.println("  ✓ 本周总步数: " + weekly.get("total_steps"));
-                System.out.println("  ✓ 本周日均: " + String.format("%.0f", (double) weekly.get("average_daily")));
+                System.out.println("  ✓ 本周日均: " + String.format("%.0f", ((Number) weekly.get("average_daily")).doubleValue()));
                 System.out.println("  ✓ 预警总数: " + alertSummary.get("total_alerts"));
 
                 return true;

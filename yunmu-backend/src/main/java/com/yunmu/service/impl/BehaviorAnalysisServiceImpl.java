@@ -45,7 +45,10 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
         try {
             log.info("分析采食行为，动物 ID: {}, 时间范围：{} - {}", animalId, startTime, endTime);
 
-            List<SensorData> sensorDataList = sensorDataRepository.findByAnimalIdAndTimeRange(animalId, startTime, endTime);
+            // 数据库 timestamp 是 bigint（Unix 秒），需转换
+            long startEpoch = startTime.toEpochSecond(java.time.ZoneOffset.ofHours(8));
+            long endEpoch = endTime.toEpochSecond(java.time.ZoneOffset.ofHours(8));
+            List<SensorData> sensorDataList = sensorDataRepository.findByAnimalIdAndTimeRange(animalId, startEpoch, endEpoch);
             
             if (sensorDataList.isEmpty()) {
                 log.warn("未找到传感器数据，动物 ID: {}", animalId);
