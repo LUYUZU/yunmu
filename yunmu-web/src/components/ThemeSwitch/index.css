@@ -1,0 +1,45 @@
+/* 开关轨道基础样式 */
+.theme-switch {
+  width: 64px;
+  height: 32px;
+  border-radius: 9999px;
+  /* 浅色模式下的轨道颜色，你可以替换成你的变量比如 var(--bg) */
+  background-color: #e5e7eb;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* 深色模式下轨道的颜色（依靠 html.dark 触发） */
+html.dark .theme-switch {
+  background-color: #374151;
+}
+
+/* 开关里的圆球（默认是浅色模式的“太阳”） */
+.switch-handle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #fbbf24;
+  /* 太阳的黄色 */
+  transform: translateX(4px);
+  /* 这里的 transition 控制位移和阴影的丝滑过渡 */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 核心魔法：深色模式下的“月亮” */
+html.dark .switch-handle {
+  transform: translateX(32px);
+  /* 移动到右边 */
+  background-color: transparent;
+  /* 把原本的背景变透明 */
+  /* 利用内阴影（inset box-shadow）切出一个月牙的形状 */
+  box-shadow: inset -8px -6px 0px 0px #fde047;
+}

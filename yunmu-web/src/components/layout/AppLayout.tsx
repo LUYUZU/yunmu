@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useAppStore } from '../../store/appStore';
 import '@/styles/layout.css';
+import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 
 const NAV_ITEMS = [
   { path: '/', icon: faTachometerAlt, label: '系统概览' },
@@ -49,6 +50,7 @@ export function AppLayout() {
             </div>
           </div>
           <div className="header-right">
+            <ThemeSwitch />
             <div className="status-chip status-chip--conn">
               <span className={`status-dot${isConnected ? ' connected' : ''}`} />
               <span>{connectionStatus}</span>
