@@ -5,7 +5,7 @@
 
 :root {
   /* === 品牌色 === */
-  --color-brand-50:  #eff6ff;
+  --color-brand-50: #eff6ff;
   --color-brand-100: #dbeafe;
   --color-brand-200: #bfdbfe;
   --color-brand-300: #93c5fd;
@@ -17,118 +17,118 @@
   --color-brand-900: #1e3a8a;
 
   /* === 语义色 === */
-  --color-primary:        var(--color-brand-500);
-  --color-primary-hover:  var(--color-brand-600);
-  --color-primary-light:  var(--color-brand-100);
-  --color-primary-text:   var(--color-brand-700);
+  --color-primary: var(--color-brand-500);
+  --color-primary-hover: var(--color-brand-600);
+  --color-primary-light: var(--color-brand-100);
+  --color-primary-text: var(--color-brand-700);
 
-  --color-success:        #10b981;
-  --color-success-light:  #d1fae5;
-  --color-success-text:   #065f46;
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-success-text: #065f46;
 
-  --color-warning:        #f59e0b;
-  --color-warning-light:  #fef3c7;
-  --color-warning-text:   #92400e;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-warning-text: #92400e;
 
-  --color-danger:         #ef4444;
-  --color-danger-light:   #fee2e2;
-  --color-danger-text:    #991b1b;
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+  --color-danger-text: #991b1b;
 
-  --color-info:           #8b5cf6;
-  --color-info-light:     #ede9fe;
-  --color-info-text:      #5b21b6;
+  --color-info: #8b5cf6;
+  --color-info-light: #ede9fe;
+  --color-info-text: #5b21b6;
 
   /* === 中性色（浅色主题）=== */
-  --color-white:   #ffffff;
+  --color-white: #ffffff;
   --color-gray-50: #f8fafc;
-  --color-gray-100:#f1f5f9;
-  --color-gray-200:#e2e8f0;
-  --color-gray-300:#cbd5e1;
-  --color-gray-400:#94a3b8;
-  --color-gray-500:#64748b;
-  --color-gray-600:#475569;
-  --color-gray-700:#334155;
-  --color-gray-800:#1e293b;
-  --color-gray-900:#0f172a;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
 
   /* === 背景层 === */
-  --bg-body:      var(--color-gray-50);
-  --bg-surface:   var(--color-white);
-  --bg-elevated:  var(--color-white);
-  --bg-overlay:   rgba(15, 23, 42, 0.5);
-  --bg-sidebar:   var(--color-white);
-  --bg-header:    var(--color-white);
-  --bg-card:      var(--color-white);
-  --bg-input:     var(--color-gray-50);
-  --bg-code:      var(--color-gray-900);
+  --bg-body: var(--color-gray-50);
+  --bg-surface: var(--color-white);
+  --bg-elevated: var(--color-white);
+  --bg-overlay: rgba(15, 23, 42, 0.5);
+  --bg-sidebar: var(--color-white);
+  --bg-header: var(--color-white);
+  --bg-card: var(--color-white);
+  --bg-input: var(--color-gray-50);
+  --bg-code: var(--color-gray-900);
 
   /* === 文字色 === */
-  --text-primary:   var(--color-gray-900);
+  --text-primary: var(--color-gray-900);
   --text-secondary: var(--color-gray-600);
-  --text-muted:     var(--color-gray-400);
-  --text-on-dark:   var(--color-white);
-  --text-link:      var(--color-primary);
+  --text-muted: var(--color-gray-400);
+  --text-on-dark: var(--color-white);
+  --text-link: var(--color-primary);
 
   /* === 边框 === */
-  --border-color:       var(--color-gray-200);
+  --border-color: var(--color-gray-200);
   --border-color-focus: var(--color-brand-400);
-  --border-radius-sm:   4px;
-  --border-radius:      8px;
-  --border-radius-md:   10px;
-  --border-radius-lg:   14px;
-  --border-radius-xl:   20px;
+  --border-radius-sm: 4px;
+  --border-radius: 8px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 14px;
+  --border-radius-xl: 20px;
   --border-radius-full: 9999px;
 
   /* === 阴影 === */
-  --shadow-xs:  0 1px 2px rgba(15,23,42,0.05);
-  --shadow-sm:  0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.06);
-  --shadow-md:  0 4px 6px -1px rgba(15,23,42,0.08), 0 2px 4px -1px rgba(15,23,42,0.06);
-  --shadow-lg:  0 10px 15px -3px rgba(15,23,42,0.08), 0 4px 6px -2px rgba(15,23,42,0.05);
-  --shadow-xl:  0 20px 25px -5px rgba(15,23,42,0.1), 0 10px 10px -5px rgba(15,23,42,0.04);
-  --shadow-card:  var(--shadow-sm);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -1px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  --shadow-card: var(--shadow-sm);
   --shadow-card-hover: var(--shadow-lg);
 
   /* === 布局 === */
-  --sidebar-width:     220px;
-  --header-height:     64px;
+  --sidebar-width: 220px;
+  --header-height: 64px;
   --content-max-width: 1400px;
-  --content-padding:   24px;
-  --gap-sm:  8px;
-  --gap-md:  16px;
-  --gap-lg:  24px;
-  --gap-xl:  32px;
+  --content-padding: 24px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 32px;
 
   /* === 排版 === */
-  --font-sans:  "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
-  --font-mono:  "JetBrains Mono", "Fira Code", "Consolas", monospace;
-  --font-size-xs:   11px;
-  --font-size-sm:   12px;
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
   --font-size-base: 14px;
-  --font-size-md:   15px;
-  --font-size-lg:   16px;
-  --font-size-xl:   18px;
-  --font-size-2xl:  20px;
-  --font-size-3xl:  24px;
-  --font-weight-normal:   400;
-  --font-weight-medium:   500;
+  --font-size-md: 15px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  --font-weight-bold:     700;
-  --line-height-tight:  1.3;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.3;
   --line-height-normal: 1.6;
 
   /* === 过渡动画 === */
-  --transition-fast:   all 0.15s ease;
-  --transition:        all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow:   all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* === 渐变（用于图标/装饰）=== */
-  --gradient-blue:    linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  --gradient-green:   linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --gradient-red:     linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  --gradient-purple:  linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-  --gradient-orange:  linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --gradient-cyan:    linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-  --gradient-pink:    linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+  --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  --gradient-green: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --gradient-red: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  --gradient-orange: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --gradient-cyan: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  --gradient-pink: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
 
   /* === 图表颜色序列 === */
   --chart-color-1: #3b82f6;
@@ -137,4 +137,178 @@
   --chart-color-4: #ef4444;
   --chart-color-5: #8b5cf6;
   --chart-color-6: #06b6d4;
+}
+
+/* =============================================
+   暗色主题 / Elegant Dark Theme
+   使用方式：给 <html> 加 class="dark"
+   色彩理念：暖灰黑调，不冷不蓝，高级内敛
+   ============================================= */
+
+:root.dark {
+  /* === 品牌色（饱和度略降，更柔和）=== */
+  --color-brand-50: #0f1a2e;
+  --color-brand-100: #162035;
+  --color-brand-200: #1e3050;
+  --color-brand-300: #2a4a7a;
+  --color-brand-400: #3b6bb5;
+  --color-brand-500: #5b8fd4;
+  --color-brand-600: #7aaae0;
+  --color-brand-700: #9dc2eb;
+  --color-brand-800: #c2d9f3;
+  --color-brand-900: #e8f1fc;
+
+  /* === 语义色 === */
+  --color-primary: #6b9fd8;
+  --color-primary-hover: #82b3e8;
+  --color-primary-light: rgba(107, 159, 216, 0.12);
+  --color-primary-text: #93c5fd;
+
+  --color-success: #34d399;
+  --color-success-light: rgba(52, 211, 153, 0.1);
+  --color-success-text: #6ee7b7;
+
+  --color-warning: #fbbf24;
+  --color-warning-light: rgba(251, 191, 36, 0.1);
+  --color-warning-text: #fcd34d;
+
+  --color-danger: #f87171;
+  --color-danger-light: rgba(248, 113, 113, 0.1);
+  --color-danger-text: #fca5a5;
+
+  --color-info: #a78bfa;
+  --color-info-light: rgba(167, 139, 250, 0.1);
+  --color-info-text: #c4b5fd;
+
+  /* === 中性色 - 暖灰黑（不用纯黑，带极轻暖调）=== */
+  --color-white: #f5f0eb;
+  --color-gray-50: #1c1917;
+  --color-gray-100: #231f1c;
+  --color-gray-200: #2d2925;
+  --color-gray-300: #3d3830;
+  --color-gray-400: #5a5248;
+  --color-gray-500: #7a7068;
+  --color-gray-600: #a09488;
+  --color-gray-700: #c4b8ae;
+  --color-gray-800: #ddd4ca;
+  --color-gray-900: #f0e8e0;
+
+  /* === 背景层 === */
+  --bg-body: #161412;
+  --bg-surface: #1e1b18;
+  --bg-elevated: #252118;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+  --bg-sidebar: #1a1714;
+  --bg-header: rgba(22, 20, 18, 0.92);
+  --bg-card: #23201d;
+  --bg-input: #1e1b18;
+  --bg-code: #0f0e0d;
+
+  /* === 文字色 === */
+  --text-primary: #ede8e3;
+  --text-secondary: #a09488;
+  --text-muted: #6b6158;
+  --text-on-dark: #f0e8e0;
+  --text-link: #7aaae0;
+
+  /* === 边框 === */
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-color-focus: rgba(107, 159, 216, 0.5);
+
+  /* === 阴影 === */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 20px rgba(0, 0, 0, 0.5);
+
+  /* === 渐变（更内敛）=== */
+  --gradient-blue: linear-gradient(135deg, #3b6bb5 0%, #2a5298 100%);
+  --gradient-green: linear-gradient(135deg, #0d9f6e 0%, #087554 100%);
+  --gradient-red: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+  --gradient-purple: linear-gradient(135deg, #7c5cbf 0%, #6a4fb0 100%);
+  --gradient-orange: linear-gradient(135deg, #d4880a 0%, #b87208 100%);
+  --gradient-cyan: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+  --gradient-pink: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
+
+  /* === 图表色（稍亮，保证可读性）=== */
+  --chart-color-1: #6b9fd8;
+  --chart-color-2: #34d399;
+  --chart-color-3: #fbbf24;
+  --chart-color-4: #f87171;
+  --chart-color-5: #a78bfa;
+  --chart-color-6: #22d3ee;
+}
+
+/* === 暗色下的组件微调 === */
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+.dark .header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .card,
+.dark .stat-card,
+.dark .filter-panel {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .data-table th {
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .data-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dark .data-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dark .filter-item select,
+.dark .filter-item input[type="date"],
+.dark .filter-item input[type="text"] {
+  color-scheme: dark;
+}
+
+.dark .nav-item.active {
+  background: rgba(107, 159, 216, 0.12);
+}
+
+.dark .nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .notification {
+  background: var(--bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .animal-card {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .data-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .report-suggestions {
+  background: rgba(107, 159, 216, 0.06);
+  border-color: rgba(107, 159, 216, 0.15);
 }
