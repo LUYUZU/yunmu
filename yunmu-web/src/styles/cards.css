@@ -1,0 +1,149 @@
+/* =============================================
+   云牧智感 - 动物卡片 & 报告 补充样式
+   （追加到 components.css 末尾）
+   ============================================= */
+
+/* === 动物卡片网格 === */
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--gap-md);
+}
+
+.animal-card {
+  background: var(--color-gray-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 16px;
+  transition: var(--transition);
+  position: relative;
+  border-left: 3px solid var(--color-success);
+}
+.animal-card.alert {
+  border-left-color: var(--color-danger);
+  background: #fff8f8;
+}
+.animal-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.animal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.animal-id {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.animal-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 7px 8px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-100);
+  border-radius: var(--border-radius-sm);
+}
+.dl {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.data-item span:last-child {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+/* === 健康报告 === */
+.report-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-lg);
+}
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  transition: var(--transition);
+}
+.metric-item:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-brand-200);
+}
+.metric-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.metric-value {
+  font-size: 22px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+.metric-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.report-suggestions {
+  padding: 16px;
+  background: var(--color-brand-50);
+  border: 1px solid var(--color-brand-100);
+  border-radius: var(--border-radius-md);
+}
+.report-suggestions h4 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.report-suggestions ul { list-style: none; }
+.report-suggestions li {
+  padding: 6px 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.report-suggestions li::before {
+  content: '›';
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .report-metrics { grid-template-columns: 1fr; }
+  .animal-grid    { grid-template-columns: 1fr; }
+}

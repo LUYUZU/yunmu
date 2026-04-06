@@ -1,0 +1,161 @@
+/* =============================================
+   云牧智感 - 页面级组件样式
+   ============================================= */
+
+/* === 动物卡片网格 === */
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--gap-md);
+}
+
+.animal-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.animal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--color-success);
+  border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+}
+.animal-card.alert::before {
+  background: var(--color-danger);
+}
+.animal-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  border-color: var(--color-brand-200);
+}
+
+.animal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.animal-id {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.animal-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  background: var(--color-gray-50);
+  border-radius: var(--border-radius);
+}
+.data-item .dl {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.data-item span:last-child {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+/* === 健康报告 === */
+.report-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-lg);
+}
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  transition: var(--transition);
+}
+.metric-item:hover {
+  background: var(--color-brand-50);
+  border-color: var(--color-brand-200);
+  transform: translateY(-2px);
+}
+.metric-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--border-radius);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 18px; flex-shrink: 0;
+}
+.metric-value {
+  font-size: 22px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.metric-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.report-suggestions {
+  background: var(--color-gray-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 16px 20px;
+}
+.report-suggestions h4 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.report-suggestions h4 svg { color: var(--color-warning); }
+.report-suggestions ul { list-style: none; }
+.report-suggestions li {
+  padding: 7px 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+.report-suggestions li:last-child { border-bottom: none; }
+.report-suggestions li::before {
+  content: '•';
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+/* === 响应式 === */
+@media (max-width: 900px) {
+  .report-metrics { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .report-metrics  { grid-template-columns: 1fr; }
+  .animal-grid     { grid-template-columns: 1fr; }
+}
