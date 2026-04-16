@@ -8,60 +8,23 @@
   <meta name="description" content="基于机器学习的多模态高原牛羊行为监测系统">
   <meta name="keywords" content="牛羊监测,行为识别,机器学习,北斗定位,姿态识别">
 
-  <!-- 外部 CSS -->
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- CSS 模块（必须按顺序加载） -->
+  <link rel="stylesheet" href="css/variables.css">     <!-- ① 变量与动画 -->
+  <link rel="stylesheet" href="css/base.css">        <!-- ② 布局与导航 -->
+  <link rel="stylesheet" href="css/components.css">   <!-- ③ 通用组件 -->
+  <link rel="stylesheet" href="css/dashboard.css">   <!-- ④ 数据看板 -->
+  <link rel="stylesheet" href="css/map.css">         <!-- ⑤ 地图样式 -->
+  <link rel="stylesheet" href="css/responsive.css"> <!-- ⑥ 响应式 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.13/lib/theme-chalk/index.css">
 
-  <!-- Leaflet 开源地图 CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- 高德地图 JS API（安全密钥模式） -->
+  <script src="https://webapi.amap.com/maps?v=2.0&key=d5bbabe2a533ae650ec30ca7c9e8b88b&plugin=AMap.InfoWindow"></script>
 
   <!-- 外部 JavaScript 库 -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.13/lib/index.js"></script>
-
-  <!-- Leaflet 开源地图 JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <style>
-    /* 自定义地图标记样式 */
-    .custom-marker {
-      background: transparent;
-      border: none;
-    }
-
-    .leaflet-popup-content {
-      min-width: 220px;
-      font-size: 13px;
-    }
-
-    .leaflet-popup-content h4 {
-      margin: 0 0 8px 0;
-      color: #333;
-    }
-
-    .leaflet-popup-content p {
-      margin: 5px 0;
-    }
-
-    .leaflet-container {
-      background: #0f172a;
-    }
-
-    /* 确保地图容器正确显示 */
-    .map-container {
-      height: 500px;
-      position: relative;
-    }
-
-    #locationMap {
-      width: 100%;
-      height: 100%;
-      min-height: 500px;
-      border-radius: 10px;
-    }
-  </style>
 
   <!-- Favicon -->
   <link rel="icon"
@@ -256,12 +219,12 @@
                   <div class="data-item">
                     <span class="data-label"><i class="fas fa-thermometer-half"></i> 体温</span>
                     <span class="data-value" :class="{'text-danger': parseFloat(animal.temperature) > 39}">{{
-                      animal.temperature }}°C</span>
+                      animal.temperature || '暂无' }}{{ animal.temperature ? '°C' : '' }}</span>
                   </div>
                   <div class="data-item">
                     <span class="data-label"><i class="fas fa-heart"></i> 心率</span>
-                    <span class="data-value" :class="{'text-danger': animal.heartRate > 90 || animal.heartRate < 40}">{{
-                      animal.heartRate }} bpm</span>
+                    <span class="data-value" :class="{'text-danger': parseFloat(animal.heartRate) > 90 || parseFloat(animal.heartRate) < 40}">{{
+                      animal.heartRate || '暂无' }}{{ animal.heartRate ? ' bpm' : '' }}</span>
                   </div>
                   <div class="data-item">
                     <span class="data-label"><i class="fas fa-running"></i> 步数</span>
@@ -330,9 +293,12 @@
                   <td>{{ record.time }}</td>
                   <td>{{ record.animalId }}</td>
                   <td>{{ record.behavior }}</td>
-                  <td :class="{'text-danger': parseFloat(record.temperature) > 39}">{{ record.temperature }}°C</td>
-                  <td :class="{'text-danger': record.heartRate > 90 || record.heartRate < 40}">{{ record.heartRate }}
-                    bpm</td>
+                  <td :class="{'text-danger': parseFloat(record.temperature) > 39}">
+                    {{ record.temperature || '暂无' }}{{ record.temperature ? '°C' : '' }}
+                  </td>
+                  <td :class="{'text-danger': parseFloat(record.heartRate) > 90 || parseFloat(record.heartRate) < 40}">
+                    {{ record.heartRate || '暂无' }}{{ record.heartRate ? ' bpm' : '' }}
+                  </td>
                   <td>
                     <span class="table-status" :class="record.status === '正常' ? 'normal' : 'alert'">
                       {{ record.status }}
@@ -757,8 +723,16 @@
     </div>
   </div>
 
-  <!-- JavaScript -->
-  <script src="js/app.js"></script>
+  <!-- JavaScript 模块（必须按顺序加载） -->
+  <script src="js/config.js"></script>     <!-- ① API 配置 -->
+  <script src="js/utils.js"></script>     <!-- ② 工具函数 -->
+  <script src="js/api.js"></script>      <!-- ③ 后端 API 调用 -->
+  <script src="js/mock.js"></script>     <!-- ④ 模拟数据生成 -->
+  <script src="js/location.js"></script> <!-- ⑤ 北斗定位与地图 -->
+  <script src="js/posture.js"></script> <!-- ⑥ 姿态识别图表 -->
+  <script src="js/steps.js"></script>    <!-- ⑦ 步数统计图表 -->
+  <script src="js/charts.js"></script>   <!-- ⑧ 分析报告图表 -->
+  <script src="js/app.js"></script>      <!-- ⑨ Vue 应用入口 -->
 </body>
 
 </html>

@@ -10,6 +10,9 @@ from flask_cors import CORS
 import logging
 import traceback
 import json
+import threading
+import urllib.request
+import urllib.error
 
 import numpy as np
 
@@ -251,6 +254,52 @@ def receive_device_data():
                     f"姿态={posture}({posture_confidence:.2f}), "
                     f"步数={calculated_steps}, "
                     f"异常={anomaly.get('is_anomaly')}")
+
+        # ========== 7. 回调通知 Java ==========
+        callback_url = data.get('callback_url')
+        ml_result = to_json_serializable({
+            'device_id': device_id,
+            'animal_id': data.get('animal_id', device_id),
+            'posture': posture,
+            'posture_confidence': posture_confidence,
+            'calculated_steps': calculated_steps,
+            'step_frequency': step_frequency,
+            'activity_level': activity_level,
+            'anomaly': anomaly,
+            'daily_summary': daily_summary,
+            'timestamp': data.get('timestamp'),
+            'accel_x': accel_x,
+            'accel_y': accel_y,
+            'accel_z': accel_z,
+            'gyro_x': gyro_x,
+            'gyro_y': gyro_y,
+            'gyro_z': gyro_z,
+            'longitude': longitude,
+            'latitude': latitude,
+        })
+
+        if callback_url:
+            def _do_callback():
+                try:
+                    body = json.dumps(ml_result).encode('utf-8')
+                    req = urllib.request.Request(
+                        callback_url,
+                        data=body,
+                        headers={'Content-Type': 'application/json'}
+                    )
+                    with urllib.request.urlopen(req, timeout=10) as resp:
+                        logger.info(f"Java 回调成功 [{resp.status}]: {callback_url}")
+                except urllib.error.HTTPError as e:
+                    logger.warning(f"Java 回调 HTTP 错误 {e.code}: {callback_url}")
+                except urllib.error.URLError as e:
+                    logger.warning(f"Java 回调连接失败: {callback_url} — {e.reason}")
+                except Exception as e:
+                    logger.error(f"Java 回调异常: {e}")
+
+            threading.Thread(target=_do_callback, daemon=True).start()
+            logger.info(f"已异步回调 Java: {callback_url}")
+        else:
+            logger.debug("无 callback_url，跳过 Java 回调")
 
         return jsonify(to_json_serializable({
             'success': True,

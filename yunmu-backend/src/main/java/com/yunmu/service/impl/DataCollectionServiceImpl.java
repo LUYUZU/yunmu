@@ -1,5 +1,6 @@
 package com.yunmu.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yunmu.dto.SensorDataDTO;
 import com.yunmu.entity.SensorData;
 import com.yunmu.entity.LocationTrack;
@@ -132,6 +133,69 @@ public class DataCollectionServiceImpl implements DataCollectionService {
         } catch (Exception e) {
             log.error("处理传感器数据失败: {}", e.getMessage());
             return null;  // 不再重新抛出，避免 @Transactional 事务回滚
+        }
+    }
+
+    /**
+     * 处理传感器数据（携带 Python ML 结果）
+     * 如果 Python ML 已处理，则跳过 Java 本地姿态识别，避免重复
+     */
+    @Override
+    public SensorData processSensorDataWithMlResult(SensorDataDTO sensorDataDTO, JSONObject mlResult) {
+        try {
+            log.info("处理传感器数据（ML结果已就绪，跳过 Java 本地识别）: animalId={}",
+                    sensorDataDTO.getAnimalId());
+
+            if (!filterAbnormalData(sensorDataDTO)) {
+                log.warn("数据异常被过滤: {}", sensorDataDTO.getAnimalId());
+                return null;
+            }
+
+            SensorData sensorData = convertToEntity(sensorDataDTO);
+
+            // 如果 Python 提供了步数，使用 Python 的结果
+            if (mlResult != null && mlResult.containsKey("calculated_steps")) {
+                Integer pySteps = mlResult.getInteger("calculated_steps");
+                if (pySteps != null && pySteps > 0) {
+                    sensorData.setStepCount(pySteps);
+                    log.debug("使用 Python 步数: {}", pySteps);
+                }
+            } else if (sensorDataDTO.getAccelX() != null) {
+                // 兜底：使用 Java 本地步数算法
+                Integer stepCount = calculateStepCount(
+                        sensorDataDTO.getAccelX(),
+                        sensorDataDTO.getAccelY(),
+                        sensorDataDTO.getAccelZ()
+                );
+                sensorData.setStepCount(stepCount);
+            }
+
+            // 处理 GPS 坐标
+            if (sensorDataDTO.getLatitude() != null && sensorDataDTO.getLongitude() != null) {
+                double[] gcj = com.yunmu.utils.GpsUtils.wgs84ToGcj02(
+                        sensorDataDTO.getLongitude(),
+                        sensorDataDTO.getLatitude()
+                );
+                sensorData.setLongitude(gcj[0]);
+                sensorData.setLatitude(gcj[1]);
+                updateLocationTrack(sensorDataDTO, gcj[0], gcj[1]);
+            }
+
+            SensorData savedData = sensorDataRepository.save(sensorData);
+            cacheLatestData(sensorDataDTO.getAnimalId(), savedData);
+
+            // ★ 关键：跳过 Java 本地姿态/行为识别（Python 已处理，结果通过回调入库）
+            // 只推送 WebSocket 实时通知（不含姿态，避免与回调推送重复）
+            pushRealTimeData(sensorDataDTO, savedData);
+
+            // Python 回调会推送异常告警，这里不重复推送
+
+            log.info("传感器数据处理完成（ML），ID: {}", savedData.getId());
+            return savedData;
+
+        } catch (Exception e) {
+            log.error("处理传感器数据（ML）失败: {}", e.getMessage());
+            return null;
         }
     }
 

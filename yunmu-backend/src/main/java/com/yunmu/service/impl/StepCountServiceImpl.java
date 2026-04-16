@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,15 +122,19 @@ public class StepCountServiceImpl implements StepCountService {
 
     @Override
     public List<StepCount> getStepHistory(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
-        return stepCountRepository.findByAnimalIdAndTimestampBetweenOrderByTimestampDesc(
-                animalId, startTime, endTime);
+        Long startMs = startTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Long endMs = endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        return stepCountRepository.findByAnimalIdAndTimestampEpochBetweenOrderByTimestampEpochDesc(
+                animalId, startMs, endMs);
     }
 
     @Override
     public Map<String, Object> getStepStatistics(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
-        Integer totalSteps = stepCountRepository.sumSteps(animalId, startTime, endTime);
-        Double totalDistance = stepCountRepository.sumWalkingDistance(animalId, startTime, endTime);
-        Integer totalActiveDuration = stepCountRepository.sumActiveDuration(animalId, startTime, endTime);
+        Long startMs = startTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Long endMs = endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Integer totalSteps = stepCountRepository.sumSteps(animalId, startMs, endMs);
+        Double totalDistance = stepCountRepository.sumWalkingDistance(animalId, startMs, endMs);
+        Integer totalActiveDuration = stepCountRepository.sumActiveDuration(animalId, startMs, endMs);
         
         Map<String, Object> stats = new HashMap<>();
         stats.put("totalSteps", totalSteps != null ? totalSteps : 0);
@@ -153,7 +158,10 @@ public class StepCountServiceImpl implements StepCountService {
 
     @Override
     public Integer getTodaySteps(String animalId) {
-        LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
+        Long startOfDay = LocalDate.now()
+                .atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant().toEpochMilli();
         return stepCountRepository.getTodaySteps(animalId, startOfDay);
     }
 
@@ -177,7 +185,10 @@ public class StepCountServiceImpl implements StepCountService {
 
     @Override
     public Map<String, Integer> getAllAnimalTodaySteps() {
-        LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
+        Long startOfDay = LocalDate.now()
+                .atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant().toEpochMilli();
         List<Object[]> results = stepCountRepository.getAllAnimalTodaySteps(startOfDay);
         
         Map<String, Integer> stepsMap = new HashMap<>();

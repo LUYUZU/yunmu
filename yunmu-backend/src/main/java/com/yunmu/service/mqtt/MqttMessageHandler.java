@@ -30,6 +30,9 @@ public class MqttMessageHandler {
     // Python服务地址
     private static final String PYTHON_API_URL = "http://127.0.0.1:5000/api/device/data";
 
+    // Java 回调地址（Python 处理完毕后回调此地址通知结果）
+    private static final String JAVA_CALLBACK_URL = "http://127.0.0.1:8080/api/ml/callback";
+
     // 设备ID到动物ID的映射（可从数据库加载）
     private static final Map<String, String> DEVICE_ANIMAL_MAP = new HashMap<>();
 
@@ -66,21 +69,21 @@ public class MqttMessageHandler {
                 return;
             }
 
-            // 3. 调用Python API处理数据
-            callPythonApi(topic, jsonData);
+            // 3. 调用Python API处理数据（同步，等 Python ML 结果）
+            JSONObject mlResult = callPythonApi(topic, jsonData);
 
             // 4. 继续原有的业务逻辑处理
-            if (topic.contains("gps") || topic.contains("location")) {
-                handleGpsData(jsonData);
-            } else if (topic.contains("sensor") || topic.contains("data")) {
-                handleSensorData(jsonData);
-            } else if (topic.contains("heartbeat")) {
+            if (topic.contains("heartbeat")) {
                 handleHeartbeatData(jsonData);
-            } else if (topic.equals("7249") || topic.startsWith("7249/")) {
-                handleMixedData(jsonData);
             } else {
-                log.warn("未知的Topic类型: {}, 使用默认处理", topic);
-                handleMixedData(jsonData);
+                // 有 ML 结果：用 processSensorDataWithMlResult（跳过本地姿态识别，避免重复）
+                // 无 ML 结果：降级到原有逻辑
+                if (mlResult != null) {
+                    handleSensorDataWithMlResult(jsonData, mlResult);
+                } else {
+                    log.warn("Python ML 返回空，降级到原有逻辑处理");
+                    handleMixedData(jsonData);
+                }
             }
 
         } catch (Exception e) {
@@ -89,12 +92,21 @@ public class MqttMessageHandler {
     }
 
     /**
-     * 调用Python API处理数据
+     * 调用Python API处理数据（同步等待结果 + 回调通知）
+     * @return Python 返回的 ML 结果（JSONObject），失败返回 null
      */
-    private void callPythonApi(String topic, JSONObject data) {
+    private JSONObject callPythonApi(String topic, JSONObject data) {
         try {
             Map<String, Object> pythonData = new HashMap<>();
             pythonData.put("topic", topic);
+            pythonData.put("device_id", topic);
+
+            // 设备ID → 动物ID（优先从payload取animal_id，否则从topic映射）
+            String animalId = data.getString("animal_id");
+            if (animalId == null || animalId.isEmpty()) {
+                animalId = getAnimalId(topic);
+            }
+            pythonData.put("animal_id", animalId);
             pythonData.put("device_id", topic);
 
             // 提取经纬度（WGS84）
@@ -119,28 +131,49 @@ public class MqttMessageHandler {
                 pythonData.put("counter", Integer.parseInt(counter.toString()));
             }
 
-            // 时间戳
-            pythonData.put("timestamp", System.currentTimeMillis() / 1000);
+            // 提取加速度原始数据（Python 需要这些做姿态识别）
+            pythonData.put("accel_x", data.get("ax"));
+            pythonData.put("accel_y", data.get("ay"));
+            pythonData.put("accel_z", data.get("az"));
+            pythonData.put("gyro_x", data.get("gx"));
+            pythonData.put("gyro_y", data.get("gy"));
+            pythonData.put("gyro_z", data.get("gz"));
+
+            // 提取心率、体温、电量、信号强度
+            pythonData.put("heart_rate", data.get("heart_rate"));
+            pythonData.put("temperature", data.get("temp"));
+            pythonData.put("battery", data.get("bat"));
+            pythonData.put("signal_strength", data.get("signal"));
+
+            // 时间戳（优先用传感器上报的ts，毫秒；否则用Java系统时间）
+            Object tsObj = data.get("ts");
+            if (tsObj != null) {
+                pythonData.put("timestamp", Long.parseLong(tsObj.toString()) / 1000);
+            } else {
+                pythonData.put("timestamp", System.currentTimeMillis() / 1000);
+            }
+
+            // ★ 关键：告诉 Python 处理完后回调哪个 URL
+            pythonData.put("callback_url", JAVA_CALLBACK_URL);
 
             log.info("调用Python API: {}", pythonData);
 
-            // 异步调用Python API，避免阻塞MQTT处理
-            new Thread(() -> {
-                try {
-                    String response = restTemplate.postForObject(
-                            PYTHON_API_URL,
-                            pythonData,
-                            String.class
-                    );
-                    log.info("Python API响应: {}", response);
-                } catch (Exception e) {
-                    log.error("调用Python API失败: {}", e.getMessage());
-                }
-            }).start();
+            // 同步调用（等待 Python 返回结果，不阻塞则无法使用 Python 的 ML 分析结果）
+            String response = restTemplate.postForObject(
+                    PYTHON_API_URL,
+                    pythonData,
+                    String.class
+            );
+            log.info("Python API响应: {}", response);
+
+            if (response != null && !response.isEmpty()) {
+                return JSON.parseObject(response);
+            }
 
         } catch (Exception e) {
-            log.error("准备Python API数据失败: {}", e.getMessage());
+            log.error("调用Python API失败: {}", e.getMessage());
         }
+        return null;
     }
 
     // ========== 以下是原有的方法，保持不变 ==========
@@ -354,5 +387,54 @@ public class MqttMessageHandler {
             }
         }
         return null;
+    }
+
+    /**
+     * 使用 Python ML 结果处理传感器数据
+     * 跳过人脸姿态识别（Python 已处理），避免重复
+     */
+    private void handleSensorDataWithMlResult(JSONObject data, JSONObject mlResult) {
+        try {
+            String deviceId = data.getString("deviceId");
+            if (deviceId == null) deviceId = data.getString("device_id");
+            String animalId = getAnimalId(deviceId);
+            if (animalId == null) animalId = deviceId;
+
+            SensorDataDTO dto = new SensorDataDTO();
+            dto.setAnimalId(animalId);
+            dto.setDeviceId(deviceId);
+            dto.setTimestamp(parseTimestamp(data.getString("timestamp")));
+
+            // GPS 坐标
+            String latStr = data.getString("lat");
+            String lngStr = data.getString("lng");
+            if (latStr != null && lngStr != null) {
+                Double wgs84Lat = GpsUtils.degreeMinuteToDecimal(latStr);
+                Double wgs84Lng = GpsUtils.degreeMinuteToDecimal(lngStr);
+                if (wgs84Lat != null && wgs84Lng != null) {
+                    double[] gcj = GpsUtils.wgs84ToGcj02(wgs84Lng, wgs84Lat);
+                    dto.setLatitude(gcj[1]);
+                    dto.setLongitude(gcj[0]);
+                }
+            }
+
+            // 原始加速度数据
+            dto.setAccelX(getDoubleValue(data, "accelX", "accel_x", "x", "accX"));
+            dto.setAccelY(getDoubleValue(data, "accelY", "accel_y", "y", "accY"));
+            dto.setAccelZ(getDoubleValue(data, "accelZ", "accel_z", "z", "accZ"));
+            dto.setHeartRate(getIntegerValue(data, "heartRate", "heart_rate", "hr", "bpm"));
+            dto.setTemperature(getDoubleValue(data, "temperature", "temp", "tmp"));
+            dto.setStepCount(getIntegerValue(data, "stepCount", "step_count", "steps"));
+            dto.setBatteryLevel(getIntegerValue(data, "battery", "battery_level", "bat"));
+            dto.setSignalStrength(getIntegerValue(data, "signal", "signal_strength", "rssi"));
+
+            // ★ 关键：传入 Python ML 结果，跳过 Java 本地姿态识别
+            dataCollectionService.processSensorDataWithMlResult(dto, mlResult);
+
+            log.info("MQTT数据处理完成（含Python ML） - 动物ID: {}", animalId);
+
+        } catch (Exception e) {
+            log.error("处理MQTT数据（含ML）失败", e);
+        }
     }
 }
