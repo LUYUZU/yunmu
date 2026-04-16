@@ -1,0 +1,6 @@
+.map-container{height:500px;width:100%;position:relative;background-color:#EEF4FA;border-radius:var(--border-radius);overflow:hidden;border:1px solid var(--border-color);box-shadow:var(--card-shadow-light)}
+#locationMap{width:100%!important;height:100%!important;min-height:500px!important}
+.amap-info-content,.amap-info-contentContainer .amap-info-body{background:#FFFFFF!important;border-radius:10px!important;padding:14px!important}
+.amap-info-title{background:linear-gradient(135deg,#5BA8D8,#7EC8E3)!important;color:#fff!important;border-radius:10px 10px 0 0!important}
+.amap-info-sharp{border-top-color:#FFFFFF!important}
+.amap-info-close{color:rgba(255,255,255,0.85)!important}

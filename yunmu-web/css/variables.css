@@ -1,0 +1,117 @@
+/* ========================================
+   云牧智感 - CSS 变量与基础样式（自然浅蓝主题）
+   ======================================== */
+
+/* ==================== CSS 变量 ==================== */
+:root {
+  /* 主色调 - 自然天空蓝 */
+  --primary-color: #5BA8D8;
+  --primary-dark: #3B8EC4;
+  --primary-light: #A8D4ED;
+
+  /* 功能色 */
+  --success-color: #52B788;
+  --success-dark: #40916C;
+  --warning-color: #F4A261;
+  --warning-dark: #E76F51;
+  --danger-color: #E07070;
+  --danger-dark: #C45C5C;
+  --info-color: #7B9FE0;
+
+  /* 文本颜色 */
+  --text-primary: #2D3748;
+  --text-secondary: #5A6B7D;
+  --text-muted: #9AAAB8;
+
+  /* 背景 - 浅蓝自然系 */
+  --bg-light: #F0F6FB;
+  --bg-card: #FFFFFF;
+  --bg-card-dark: #EEF4FA;
+  --bg-gradient: linear-gradient(160deg, #E8F4FD 0%, #D0E8F7 40%, #C2E0F0 100%);
+  --bg-sidebar: #E8F2FA;
+  --bg-header: linear-gradient(135deg, #5BA8D8 0%, #7EC8E3 60%, #A8D4ED 100%);
+
+  /* 阴影 */
+  --card-shadow: 0 2px 12px rgba(91, 168, 216, 0.15);
+  --card-shadow-hover: 0 8px 30px rgba(91, 168, 216, 0.25);
+  --card-shadow-light: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+  /* 圆角 */
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-lg: 18px;
+
+  /* 边框 */
+  --border-color: rgba(91, 168, 216, 0.2);
+  --border-color-strong: rgba(91, 168, 216, 0.4);
+
+  /* 过渡 */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+}
+
+/* ==================== 基础样式 ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(91, 168, 216, 0.08);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(91, 168, 216, 0.25);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(91, 168, 216, 0.45);
+}
+
+/* ==================== 通用动画 ==================== */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes blink-border {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
