@@ -52,6 +52,12 @@ public interface BehaviorResultRepository extends JpaRepository<BehaviorResult, 
     List<BehaviorResult> findRecentByAnimalId(@Param("animalId") String animalId, Pageable pageable);
 
     /**
+     * 批量查询多只动物各自最新的一条行为记录（用于实时监测页一次性取全，避免 N+1 查询）
+     */
+    @Query("SELECT b FROM BehaviorResult b WHERE b.animalId IN :animalIds AND b.startTime = (SELECT MAX(b2.startTime) FROM BehaviorResult b2 WHERE b2.animalId = b.animalId)")
+    List<BehaviorResult> findLatestByAnimalIds(@Param("animalIds") List<String> animalIds);
+
+    /**
      * 统计行为频率
      */
     @Query("SELECT b.behaviorType, COUNT(b) FROM BehaviorResult b WHERE b.animalId = :animalId AND b.startTime >= :startTime GROUP BY b.behaviorType")

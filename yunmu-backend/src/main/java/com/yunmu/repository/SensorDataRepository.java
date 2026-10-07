@@ -21,6 +21,27 @@ public interface SensorDataRepository extends JpaRepository<SensorData, Long> {
     List<SensorData> findLatestByAnimalId(@Param("animalId") String animalId, Pageable pageable);
 
     /**
+     * 查询所有动物各自的最新一条记录（用于摘要页）
+     */
+    @Query(value = "SELECT s.* FROM sensor_data s \n" +
+            "INNER JOIN (\n" +
+            "  SELECT animal_id, MAX(timestamp) as max_ts \n" +
+            "  FROM sensor_data \n" +
+            "  GROUP BY animal_id\n" +
+            ") latest ON s.animal_id = latest.animal_id AND s.timestamp = latest.max_ts",
+            nativeQuery = true)
+    List<SensorData> findAllLatestPerAnimal();
+
+    /**
+     * 按时间倒序查询指定动物的历史数据（用于数据管理页）
+     */
+    @Query("SELECT s FROM SensorData s WHERE s.animalId = :animalId AND s.timestampEpoch BETWEEN :startEpoch AND :endEpoch ORDER BY s.timestampEpoch DESC")
+    List<SensorData> findByAnimalIdAndTimeRangeOrderByTimestampDesc(
+            @Param("animalId") String animalId,
+            @Param("startEpoch") Long startEpoch,
+            @Param("endEpoch") Long endEpoch);
+
+    /**
      * 查询指定时间范围内的传感器数据
      * 注意：timestamp 在数据库中是 bigint（Unix 秒）
      */

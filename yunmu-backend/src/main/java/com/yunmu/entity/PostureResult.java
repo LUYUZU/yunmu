@@ -4,6 +4,7 @@ package com.yunmu.entity;
 import lombok.Data;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 /**
  * 姿态识别结果实体
@@ -19,8 +20,28 @@ public class PostureResult {
     @Column(nullable = false)
     private String animalId;
 
-    @Column(nullable = false)
-    private LocalDateTime timestamp;
+    @Column(name = "device_id")
+    private String deviceId;
+
+    /**
+     * 数据库存 bigint（Unix 秒），用 timestampEpoch 对应。
+     * Java 代码用 getTimestamp() / setTimestamp() 操作 LocalDateTime，
+     * 内部自动与 timestampEpoch 互转。
+     */
+    @Column(name = "timestamp", nullable = false)
+    private Long timestampEpoch;  // Unix 秒
+
+    @Transient
+    public LocalDateTime getTimestamp() {
+        return timestampEpoch != null ?
+            LocalDateTime.ofEpochSecond(timestampEpoch, 0, ZoneOffset.ofHours(8)) : null;
+    }
+
+    @Transient
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestampEpoch = timestamp != null ?
+            timestamp.toEpochSecond(ZoneOffset.ofHours(8)) : null;
+    }
 
     /**
      * 姿态类型: standing(站立), lying(躺卧), walking(行走), feeding(采食), running(奔跑)

@@ -11,4 +11,58 @@
   --card-shadow-light: 0 2px 12px rgba(91,168,216,0.08);
   --card-shadow-hover: 0 8px 25px rgba(91,168,216,0.18);
   --transition: all 0.3s ease;
+
+  /* ==== 扩展令牌（组件级改造使用） ==== */
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --shadow-xs: 0 1px 2px rgba(45,55,72,0.06);
+  --shadow-sm: 0 2px 8px rgba(45,55,72,0.07);
+  --shadow-md: 0 6px 20px rgba(91,168,216,0.14);
+  --shadow-lg: 0 16px 40px rgba(45,55,72,0.14);
+  --ring-primary: 0 0 0 3px rgba(91,168,216,0.18);
+
+  /* 语义状态色（统一在线/离线/告警表达） */
+  --state-online: #52B788;
+  --state-online-soft: rgba(82,183,136,0.12);
+  --state-warn: #F4A261;
+  --state-warn-soft: rgba(244,162,97,0.14);
+  --state-offline: #9AAAB8;
+  --state-offline-soft: rgba(154,170,184,0.16);
+  --state-danger: #E07070;
+  --state-danger-soft: rgba(224,112,112,0.12);
+
+  --surface-soft: #F6FAFD;
+  --surface-line: rgba(91,168,216,0.14);
+  --surface-line-strong: rgba(91,168,216,0.26);
+  --font-mono: 'Consolas','Monaco','Menlo',monospace;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ==== 数据可视化色阶（图表 / 计量条统一取值） ==== */
+  --viz-blue: #5BA8D8;
+  --viz-blue-deep: #3498DB;
+  --viz-green: #52B788;
+  --viz-amber: #F4A261;
+  --viz-red: #E07070;
+  --viz-violet: #9B8FD4;
+  --viz-teal: #4FC3C0;
+
+  /* 体温 / 心率等指标的"越低越安全"色阶 */
+  --scale-ok: #52B788;
+  --scale-watch: #F4A261;
+  --scale-alert: #E07070;
+  --scale-ok-soft: rgba(82,183,136,0.14);
+  --scale-watch-soft: rgba(244,162,97,0.16);
+  --scale-alert-soft: rgba(224,112,112,0.14);
+
+  /* 趋势图数据源配色（与行为语义固定绑定） */
+  --trend-walking: #43E97B;
+  --trend-running: #F5576C;
+  --trend-standing: #4FACFE;
+  --trend-lying: #A18CD1;
+  --trend-feeding: #F093FB;
+  --trend-resting: #38F9D7;
+
+  --ring-danger: 0 0 0 3px rgba(224,112,112,0.18);
+  --shadow-card: 0 2px 12px rgba(91,168,216,0.08), 0 1px 2px rgba(45,55,72,0.04);
 }

@@ -18,6 +18,17 @@ public interface AnimalRepository extends JpaRepository<Animal, String> {
     List<Animal> findByAnimalType(String animalType);
 
     /**
+     * 根据项圈设备编号查询绑定动物（一个项圈同时只绑定一只动物，唯一约束保证至多一条）
+     */
+    Optional<Animal> findByDeviceCode(String deviceCode);
+
+    /**
+     * 查询已绑定项圈的动物（device_code 非空）
+     */
+    @Query("SELECT a FROM Animal a WHERE a.deviceCode IS NOT NULL AND a.deviceCode <> ''")
+    List<Animal> findBoundAnimals();
+
+    /**
      * 根据牧场ID查询
      */
     List<Animal> findByPastureId(String pastureId);

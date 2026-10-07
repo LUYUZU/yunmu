@@ -1,6 +1,6 @@
 package com.yunmu.service.impl;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.yunmu.dto.BehaviorRequestDTO;
 import com.yunmu.dto.BehaviorResultDTO;
 import com.yunmu.dto.SensorDataDTO;
@@ -52,7 +52,9 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
             
             if (sensorDataList.isEmpty()) {
                 log.warn("未找到传感器数据，动物 ID: {}", animalId);
-                return createDefaultBehaviorResult(animalId, "feeding", 0.5);
+                // 缺陷 C 修复：不再静默返回 feeding/0.5 假数据，改为显式空态结果（empty=true），
+                // 由调用方/前端识别为"该时间段无数据"，避免污染统计口径
+                return createEmptyBehaviorResult(animalId);
             }
 
             BehaviorRequestDTO request = new BehaviorRequestDTO();
@@ -73,7 +75,8 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
 
         } catch (Exception e) {
             log.error("分析采食行为失败", e);
-            return createDefaultBehaviorResult(animalId, "feeding", 0.5);
+            // 返回 null 而非假数据，由调用方判断并给出明确的"分析服务不可用"提示
+            return null;
         }
     }
 
@@ -89,8 +92,13 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
 
             double activityLevel = Math.abs(accelX);
 
+            // 统一为 ML 5 类姿态标签：standing / lying / walking / feeding / running
+            // running 对应 gyro_magnitude > 2.0 的高速运动状态
+            // resting 并入 lying（牛羊静卧即为 lying）；
+            //   保留 resting 作为 behaviorType 存入数据库（历史数据兼容），
+            //   但实时识别结果输出用 ML 5 类标准标签
             if (activityLevel < 0.05) {
-                return "resting";
+                return "lying";   // 静卧
             } else if (activityLevel < 0.2) {
                 return "standing";
             } else if (soundLevel != null && soundLevel > 0.5) {
@@ -276,6 +284,12 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
 
         dto.setDuration(60);
 
+        // 缺陷 B 修复：透传 Python 返回的模型来源与数据模态（ML / rule_based，accel / sound / combined）
+        Object modelTypeObj = response.get("model_type");
+        dto.setModelType(modelTypeObj != null ? modelTypeObj.toString() : null);
+        Object dataModalityObj = response.get("data_modality");
+        dto.setDataModality(dataModalityObj != null ? dataModalityObj.toString() : null);
+
         Object featuresObj = response.get("features");
         if (featuresObj instanceof Map) {
             Map<String, Object> features = (Map<String, Object>) featuresObj;
@@ -304,6 +318,12 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
     }
 
     private void saveBehaviorResult(BehaviorResultDTO dto) {
+        if (dto == null) return;
+        // 空态结果不落库（缺陷 C 配套：空数据显式空态，不入库污染统计）
+        if (Boolean.TRUE.equals(dto.getEmpty())) {
+            log.info("空态分析结果不入库，动物 ID: {}", dto.getAnimalId());
+            return;
+        }
         try {
             BehaviorResult result = new BehaviorResult();
             result.setAnimalId(dto.getAnimalId());
@@ -316,27 +336,55 @@ public class BehaviorAnalysisServiceImpl implements BehaviorAnalysisService {
             result.setChewingCount(dto.getChewingCount());
             result.setSoundIntensity(dto.getSoundIntensity());
             result.setActivityLevel(dto.getActivityLevel());
-            result.setModelType("ensemble");
-            result.setDataModality("combined");
+            // 缺陷 B 修复：modelType / dataModality 按实际调用来源动态写入。
+            // 优先取 Python 返回的真实来源（ML 模型名 / rule_based），
+            // 缺失时按本次结果特征形态推断，不再固定写死 rule_based/accel
+            String modelType = dto.getModelType();
+            if (modelType == null || modelType.isBlank()) {
+                modelType = "rule_based";
+            }
+            String dataModality = dto.getDataModality();
+            if (dataModality == null || dataModality.isBlank()) {
+                dataModality = inferDataModality(dto);
+            }
+            result.setModelType(modelType);
+            result.setDataModality(dataModality);
             result.setCreateTime(LocalDateTime.now());
 
             behaviorResultRepository.save(result);
 
-            log.info("行为分析结果已保存，动物 ID: {}, 行为：{}", dto.getAnimalId(), dto.getBehaviorType());
+            log.info("行为分析结果已保存，动物 ID: {}, 行为：{}, modelType: {}, dataModality: {}",
+                    dto.getAnimalId(), dto.getBehaviorType(), modelType, dataModality);
 
         } catch (Exception e) {
             log.error("保存行为分析结果失败", e);
         }
     }
 
-    private BehaviorResultDTO createDefaultBehaviorResult(String animalId, String behavior, double confidence) {
+    /**
+     * 缺陷 B 配套：Python 未返回 data_modality 时，按结果特征推断数据模态。
+     * 仅有活动量 → accel；仅有声音类特征 → sound；两者都有 → combined
+     */
+    private String inferDataModality(BehaviorResultDTO dto) {
+        boolean hasAccel = dto.getActivityLevel() != null && dto.getActivityLevel() > 0;
+        boolean hasSound = (dto.getSoundIntensity() != null && dto.getSoundIntensity() > 0)
+                || (dto.getChewingCount() != null && dto.getChewingCount() > 0);
+        if (hasAccel && hasSound) {
+            return "combined";
+        }
+        if (hasSound) {
+            return "sound";
+        }
+        return "accel";
+    }
+
+    /**
+     * 缺陷 C 修复：无数据时的显式空态结果（empty=true，无默认行为、无假置信度）
+     */
+    private BehaviorResultDTO createEmptyBehaviorResult(String animalId) {
         BehaviorResultDTO dto = new BehaviorResultDTO();
         dto.setAnimalId(animalId);
-        dto.setBehaviorType(behavior);
-        dto.setConfidence(confidence);
-        dto.setStartTime(LocalDateTime.now().minusMinutes(5));
-        dto.setEndTime(LocalDateTime.now());
-        dto.setDuration(300);
+        dto.setEmpty(true);
         return dto;
     }
 

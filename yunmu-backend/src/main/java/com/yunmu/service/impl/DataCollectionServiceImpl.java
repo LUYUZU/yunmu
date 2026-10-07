@@ -1,6 +1,6 @@
 package com.yunmu.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.yunmu.dto.SensorDataDTO;
 import com.yunmu.entity.SensorData;
 import com.yunmu.entity.LocationTrack;
@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import com.yunmu.service.websocket.WebSocketPushService;
 
 @Slf4j
@@ -59,6 +61,21 @@ public class DataCollectionServiceImpl implements DataCollectionService {
     @Autowired
     private WebSocketPushService webSocketPushService;  // 使用推送服务，而不是直接依赖 WebSocketHandle
 
+    /**
+     * 有界分析线程池：替代默认的 ForkJoinPool.commonPool()，
+     * 避免公共池被慢任务占满、且便于监控与优雅关闭。
+     */
+    @Autowired
+    @Qualifier("analysisExecutor")
+    private Executor analysisExecutor;
+
+    /**
+     * 将分析任务提交到有界线程池（统一入口，避免散落的默认 ForkJoinPool 调用）
+     */
+    private void runAsync(Runnable task) {
+        CompletableFuture.runAsync(task, analysisExecutor);
+    }
+
     @Override
     @Transactional
     public SensorData processSensorData(SensorDataDTO sensorDataDTO) {
@@ -84,8 +101,8 @@ public class DataCollectionServiceImpl implements DataCollectionService {
                 );
                 sensorData.setStepCount(stepCount);
 
-                // 异步保存步数统计
-                CompletableFuture.runAsync(() -> {
+                // 异步保存步数统计（有界分析线程池）
+                runAsync(() -> {
                     try {
                         stepCountService.countSteps(
                                 sensorDataDTO.getAnimalId(),
@@ -188,6 +205,10 @@ public class DataCollectionServiceImpl implements DataCollectionService {
             // 只推送 WebSocket 实时通知（不含姿态，避免与回调推送重复）
             pushRealTimeData(sensorDataDTO, savedData);
 
+            // 健康监控必须在 Java 侧触发：Python 回调只回传姿态/步数，不负责健康评估。
+            // 原实现在此遗漏调用，导致 Python 服务可用时 health_status 永远为空、健康相关页面无数据。
+            triggerAsyncHealthMonitor(sensorDataDTO);
+
             // Python 回调会推送异常告警，这里不重复推送
 
             log.info("传感器数据处理完成（ML），ID: {}", savedData.getId());
@@ -234,8 +255,8 @@ public class DataCollectionServiceImpl implements DataCollectionService {
                                 Math.pow(sensorDataDTO.getAccelZ(), 2)
                 );
 
-                // 加速度幅度异常（正常范围：0.8g-1.2g）
-                if (accelMagnitude < 0.8 || accelMagnitude > 1.2) {
+                // 加速度幅度异常（正常范围：0.1g-20g，运动场景允许较大值）
+                if (accelMagnitude < 0.1 || accelMagnitude > 20.0) {
                     log.warn("加速度数据异常: {}", accelMagnitude);
                     return false;
                 }
@@ -357,8 +378,8 @@ public class DataCollectionServiceImpl implements DataCollectionService {
      * 触发异步分析任务
      */
     private void triggerAsyncAnalysis(SensorDataDTO dto, SensorData savedData) {
-        // 异步触发姿态识别
-        CompletableFuture.runAsync(() -> {
+        // 异步触发姿态识别（有界分析线程池）
+        runAsync(() -> {
             try {
                 // ========== 添加空值检查 ==========
                 if (dto.getAccelX() == null || dto.getAccelY() == null || dto.getAccelZ() == null) {
@@ -373,7 +394,7 @@ public class DataCollectionServiceImpl implements DataCollectionService {
                     return;
                 }
 
-                log.debug("开始姿态识别 - animalId={}, accel=({:.3f}, {:.3f}, {:.3f})",
+                log.debug("开始姿态识别 - animalId={}, accel=({}, {}, {})",
                         dto.getAnimalId(), dto.getAccelX(), dto.getAccelY(), dto.getAccelZ());
 
                 var postureResult = postureRecognitionService.recognizePosture(
@@ -385,7 +406,7 @@ public class DataCollectionServiceImpl implements DataCollectionService {
                 );
 
                 if (postureResult != null && postureResult.getPostureType() != null) {
-                    log.debug("姿态识别完成 - animalId={}, posture={}, confidence={:.2f}",
+                    log.debug("姿态识别完成 - animalId={}, posture={}, confidence={}",
                             dto.getAnimalId(),
                             postureResult.getPostureType(),
                             postureResult.getConfidenceScore());
@@ -397,8 +418,8 @@ public class DataCollectionServiceImpl implements DataCollectionService {
             }
         });
 
-        // 异步触发行为分析
-        CompletableFuture.runAsync(() -> {
+        // 异步触发行为分析（有界分析线程池）
+        runAsync(() -> {
             try {
                 // 添加空值检查
                 if (dto.getAccelX() == null && dto.getHeartRate() == null && dto.getTemperature() == null) {
@@ -418,8 +439,20 @@ public class DataCollectionServiceImpl implements DataCollectionService {
             }
         });
 
-        // 异步触发健康监控
-        CompletableFuture.runAsync(() -> {
+        // 异步触发健康监控（有界分析线程池）
+        triggerAsyncHealthMonitor(dto);
+    }
+
+    /**
+     * 异步触发健康监控。
+     *
+     * <p>健康监控与姿态/行为识别不同：无论走 Java 本地识别还是 Python 推理，
+     * 健康评估都必须在 Java 侧完成，因此该方法同时被
+     * {@link #processSensorData}（降级路径）与
+     * {@link #processSensorDataWithMlResult}（Python 推理路径）调用。
+     */
+    private void triggerAsyncHealthMonitor(SensorDataDTO dto) {
+        runAsync(() -> {
             try {
                 // 健康监控需要心率或体温数据
                 if (dto.getHeartRate() == null && dto.getTemperature() == null) {
@@ -550,6 +583,8 @@ public class DataCollectionServiceImpl implements DataCollectionService {
 
         entity.setIsValid(true);
         entity.setDataSource("mqtt");
+        entity.setBatteryLevel(dto.getBatteryLevel());
+        entity.setSignalStrength(dto.getSignalStrength());
         entity.setCreateTime(LocalDateTime.now());
 
         return entity;

@@ -83,6 +83,13 @@ public class SensorData {
     @Column(name = "data_source")
     private String dataSource; // collar, gateway, etc.
 
+    // 项圈设备状态（设备列表/在线状态展示用）
+    @Column(name = "battery_level")
+    private Integer batteryLevel;
+
+    @Column(name = "signal_strength")
+    private Integer signalStrength;
+
     @Column(name = "create_time")
     private LocalDateTime createTime;
 }

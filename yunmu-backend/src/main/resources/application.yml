@@ -16,8 +16,8 @@ spring:
   # SQL Server 数据库配置
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=yunmu_db;encrypt=false;trustServerCertificate=true
-    username: sa
-    password: 1234567890
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:1234567890}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:
       maximum-pool-size: 20
@@ -39,18 +39,26 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
 # 自定义配置
 yunmu:
   python-service:
     url: http://localhost:5000
     timeout: 30000
+    # 缺陷 D 修复：MQTT→Python 同步调用超时（毫秒），超时降级本地逻辑，默认 1500ms
+    call-timeout-ms: 1500
+    # 与 Python 端 YUNMU_API_TOKEN 一致；Java 调用 Python 时通过 X-API-Token 头发送
+    auth-token: ${YUNMU_API_TOKEN:yunmu-ml-secret-token-2024}
+  ml:
+    # Java 转发给 Python、由 Python 回调 Java 的地址
+    callback-url: ${ML_CALLBACK_URL:http://127.0.0.1:8080/api/ml/callback}
+    callback:
+      # Python 回调 Java /api/ml/callback 时需携带的令牌（与 Python 端 YUNMU_ML_CALLBACK_TOKEN 一致）
+      token: ${YUNMU_ML_CALLBACK_TOKEN:yunmu-callback-token-2024}
   websocket:
     enabled: true
     path: /ws
+    # 为空表示关闭 WebSocket 鉴权（默认，便于本地演示）；生产环境建议设置
+    auth-token: ${YUNMU_WS_TOKEN:}
   data:
     retention-days: 90
     batch-size: 100
@@ -90,23 +98,18 @@ logging:
     org.hibernate: WARN
 
 ---
-# 开发环境配置
+# 开发环境配置（继承主配置的数据源与 yunmu 段，此处仅覆盖开发环境专属项）
 spring:
   config:
     activate:
       on-profile: dev
-  datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=yunmu_db;encrypt=false;trustServerCertificate=true
-    username: sa
-    password: 1234567890
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-
-yunmu:
-  python-service:
-    url: http://localhost:5000
 
 # MQTT配置
 mqtt:
+  # 缺陷 F 修复：MQTT broker 不可达时不应阻塞整个应用启动。
+  # 设为 false 可完全关闭 MQTT 接入（本地开发/演示、broker 不可达时使用）。
+  # 环境变量 MQTT_ENABLED=false 同样生效。
+  enabled: ${MQTT_ENABLED:true}
   broker:
     url: tcp://120.27.235.176:1883
   client:
@@ -117,13 +120,10 @@ mqtt:
     - device/+/gps
     - device/+/sensor
     - device/+/heartbeat
-  username: root
-  password: root
+  # 缺陷 E 修复：不再默认 root/root 弱口令。
+  # 必须通过环境变量 MQTT_USERNAME / MQTT_PASSWORD 显式提供 broker 凭据；
+  # 未配置时 username/password 为空，MQTT 连接不启用认证（仅限无认证的本地/内网 broker）
+  username: ${MQTT_USERNAME:}
+  password: ${MQTT_PASSWORD:}
   qos: 1
   completion-timeout: 5000
-
-# Python服务配置
-python:
-  service:
-    url: http://localhost:5000
-    timeout: 30000

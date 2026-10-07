@@ -3,7 +3,7 @@ package com.yunmu.service;
 import com.yunmu.dto.SensorDataDTO;
 import com.yunmu.entity.SensorData;
 import com.yunmu.entity.LocationTrack;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import java.util.List;
 
 public interface DataCollectionService {

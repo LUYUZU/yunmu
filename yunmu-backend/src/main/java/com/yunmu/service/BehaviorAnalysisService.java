@@ -11,7 +11,7 @@ import java.util.Map;
 public interface BehaviorAnalysisService {
 
     /**
-     * 分析采食行为（多模态融合）
+     * 分析采食行为（多源传感融合）
      */
     BehaviorResultDTO analyzeFeeding(String animalId, LocalDateTime startTime, LocalDateTime endTime);
 

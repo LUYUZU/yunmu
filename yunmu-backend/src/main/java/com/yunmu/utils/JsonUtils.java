@@ -1,9 +1,9 @@
 package com.yunmu.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.TypeReference;
+import com.alibaba.fastjson2.JSONWriter;
 import com.yunmu.dto.SensorDataDTO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,8 +22,8 @@ public class JsonUtils {
      */
     public static String toJson(Object obj) {
         try {
-            return JSON.toJSONString(obj, SerializerFeature.WriteMapNullValue,
-                    SerializerFeature.WriteDateUseDateFormat);
+            return JSON.toJSONString(obj, "yyyy-MM-dd HH:mm:ss",
+                    JSONWriter.Feature.WriteMapNullValue);
         } catch (Exception e) {
             log.error("对象转JSON失败", e);
             return null;
@@ -96,7 +96,7 @@ public class JsonUtils {
      */
     public static String formatJson(String json) {
         try {
-            return JSON.toJSONString(JSON.parse(json), SerializerFeature.PrettyFormat);
+            return JSON.toJSONString(JSON.parse(json), JSONWriter.Feature.PrettyFormat);
         } catch (Exception e) {
             log.error("格式化JSON失败", e);
             return json;

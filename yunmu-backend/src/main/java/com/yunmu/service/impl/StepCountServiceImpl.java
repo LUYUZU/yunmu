@@ -28,7 +28,7 @@ public class StepCountServiceImpl implements StepCountService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${python.service.url:http://localhost:5000}")
+    @Value("${yunmu.python-service.url:http://localhost:5000}")
     private String pythonServiceUrl;
 
     @Override
@@ -122,19 +122,15 @@ public class StepCountServiceImpl implements StepCountService {
 
     @Override
     public List<StepCount> getStepHistory(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
-        Long startMs = startTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        Long endMs = endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        return stepCountRepository.findByAnimalIdAndTimestampEpochBetweenOrderByTimestampEpochDesc(
-                animalId, startMs, endMs);
+        return stepCountRepository.findByAnimalIdAndTimestampBetweenOrderByTimestampDesc(
+                animalId, startTime, endTime);
     }
 
     @Override
     public Map<String, Object> getStepStatistics(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
-        Long startMs = startTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        Long endMs = endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        Integer totalSteps = stepCountRepository.sumSteps(animalId, startMs, endMs);
-        Double totalDistance = stepCountRepository.sumWalkingDistance(animalId, startMs, endMs);
-        Integer totalActiveDuration = stepCountRepository.sumActiveDuration(animalId, startMs, endMs);
+        Integer totalSteps = stepCountRepository.sumSteps(animalId, startTime, endTime);
+        Double totalDistance = stepCountRepository.sumWalkingDistance(animalId, startTime, endTime);
+        Integer totalActiveDuration = stepCountRepository.sumActiveDuration(animalId, startTime, endTime);
         
         Map<String, Object> stats = new HashMap<>();
         stats.put("totalSteps", totalSteps != null ? totalSteps : 0);
@@ -158,10 +154,7 @@ public class StepCountServiceImpl implements StepCountService {
 
     @Override
     public Integer getTodaySteps(String animalId) {
-        Long startOfDay = LocalDate.now()
-                .atStartOfDay()
-                .atZone(ZoneId.systemDefault())
-                .toInstant().toEpochMilli();
+        LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
         return stepCountRepository.getTodaySteps(animalId, startOfDay);
     }
 
@@ -185,10 +178,7 @@ public class StepCountServiceImpl implements StepCountService {
 
     @Override
     public Map<String, Integer> getAllAnimalTodaySteps() {
-        Long startOfDay = LocalDate.now()
-                .atStartOfDay()
-                .atZone(ZoneId.systemDefault())
-                .toInstant().toEpochMilli();
+        LocalDateTime startOfDay = LocalDate.now().atStartOfDay();
         List<Object[]> results = stepCountRepository.getAllAnimalTodaySteps(startOfDay);
         
         Map<String, Integer> stepsMap = new HashMap<>();

@@ -7,6 +7,7 @@ import './assets/css/base.css'
 import './assets/css/components.css'
 import './assets/css/dashboard.css'
 import './assets/css/map.css'
+import './assets/css/modules.css'
 import './assets/css/responsive.css'
 
 Vue.use(ElementUI, { size: 'medium' })

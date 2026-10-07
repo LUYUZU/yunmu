@@ -4,8 +4,10 @@ import com.yunmu.dto.HealthAssessmentDTO;
 import com.yunmu.dto.SensorDataDTO;  // 确保这行存在
 import com.yunmu.entity.HealthStatus;
 import com.yunmu.entity.AlertRecord;
+import com.yunmu.entity.Animal;
 import com.yunmu.repository.HealthStatusRepository;
 import com.yunmu.repository.AlertRecordRepository;
+import com.yunmu.repository.AnimalRepository;
 import com.yunmu.service.HealthMonitoringService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class HealthMonitoringServiceImpl implements HealthMonitoringService {
 
     @Autowired
     private AlertRecordRepository alertRecordRepository;
+
+    @Autowired
+    private AnimalRepository animalRepository;
 
     // 动物正常生理参数范围（牛）
     private static final Map<String, Map<String, double[]>> ANIMAL_NORMAL_RANGES = new HashMap<>();
@@ -375,19 +380,40 @@ public class HealthMonitoringServiceImpl implements HealthMonitoringService {
     }
 
     private void checkRealTimeAlerts(HealthStatus status, SensorDataDTO sensorData) {
+        String animalType = getAnimalTypeFromId(sensorData.getAnimalId());
+        List<String> messages = new ArrayList<>();
+
         // 实时检查预警
         if (sensorData.getTemperature() != null &&
-                checkTemperatureAbnormal(sensorData.getTemperature(), getAnimalTypeFromId(sensorData.getAnimalId()))) {
+                checkTemperatureAbnormal(sensorData.getTemperature(), animalType)) {
 
-            String alertMessage = String.format("体温异常警报: %.1f°C", sensorData.getTemperature());
-            generateHealthAlert(sensorData.getAnimalId(), "TEMPERATURE_ABNORMAL", alertMessage);
+            messages.add(String.format("体温异常: %.1f°C", sensorData.getTemperature()));
+            status.setAlertType("TEMPERATURE_ABNORMAL");
+            generateHealthAlert(sensorData.getAnimalId(), "TEMPERATURE_ABNORMAL",
+                    String.format("体温异常警报: %.1f°C", sensorData.getTemperature()));
         }
 
         if (sensorData.getHeartRate() != null &&
-                checkHeartRateAbnormal(sensorData.getHeartRate(), getAnimalTypeFromId(sensorData.getAnimalId()))) {
+                checkHeartRateAbnormal(sensorData.getHeartRate(), animalType)) {
 
-            String alertMessage = String.format("心率异常警报: %d bpm", sensorData.getHeartRate());
-            generateHealthAlert(sensorData.getAnimalId(), "HEART_RATE_ABNORMAL", alertMessage);
+            messages.add(String.format("心率异常: %d bpm", sensorData.getHeartRate()));
+            status.setAlertType("HEART_RATE_ABNORMAL");
+            generateHealthAlert(sensorData.getAnimalId(), "HEART_RATE_ABNORMAL",
+                    String.format("心率异常警报: %d bpm", sensorData.getHeartRate()));
+        }
+
+        // 关键：这里必须同步更新 HealthStatus 的告警字段。
+        // 原实现只写了 alert_records，却从不回写 health_status，导致两张表自相矛盾——
+        // 告警页显示 CRITICAL，健康页却仍是 NORMAL。两种状态必须同源。
+        if (!messages.isEmpty()) {
+            status.setAlertMessage(String.join("; ", messages));
+            status.setAlertLevel(determineAlertLevel(status.getAlertType()));
+            status.setOverallStatus("WARNING");
+        } else {
+            status.setAlertType(null);
+            status.setAlertMessage(null);
+            status.setAlertLevel(null);
+            status.setOverallStatus("NORMAL");
         }
     }
 
@@ -421,14 +447,19 @@ public class HealthMonitoringServiceImpl implements HealthMonitoringService {
     }
 
     private String getAnimalTypeFromId(String animalId) {
-        // 根据动物ID判断动物类型
-        if (animalId.startsWith("cow")) {
+        // 动物类型统一从档案读取（cattle/sheep），禁止再用 ID 前缀推断
+        if (animalId == null || animalId.isEmpty()) {
             return "cow";
-        } else if (animalId.startsWith("sheep")) {
-            return "sheep";
-        } else {
-            return "cow"; // 默认牛
         }
+        try {
+            Optional<Animal> animal = animalRepository.findById(animalId);
+            if (animal.isPresent() && animal.get().getAnimalType() != null) {
+                return animal.get().getAnimalType();
+            }
+        } catch (Exception e) {
+            log.warn("查询动物 {} 档案类型失败: {}", animalId, e.getMessage());
+        }
+        return "cow"; // 档案缺失时默认牛
     }
 
     private String determineAlertLevel(String alertType) {

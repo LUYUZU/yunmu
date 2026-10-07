@@ -2,6 +2,7 @@ package com.yunmu.repository;
 
 import com.yunmu.entity.HealthStatus;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,10 +17,25 @@ import java.util.Optional;
 public interface HealthStatusRepository extends JpaRepository<HealthStatus, Long> {
 
     /**
-     * 查询动物的最新健康状态
+     * 查询动物的最新健康状态（列表 + 分页取首条）。
+     *
+     * <p><b>不要</b>把它写成返回 {@code Optional<HealthStatus>} 的单条查询：该 JPQL 没有 LIMIT，
+     * Hibernate 对单条返回会走 {@code getSingleResult()}，一旦同一动物存在多条记录就抛
+     * {@code NonUniqueResultException}，而 {@code monitorRealTimeHealth} 的调用方是异步线程，
+     * 异常被吞掉后表现为「健康监控静默失效」——`health_status` 停止更新、告警不再产生。
+     *
+     * <p>同一动物出现多行的成因：实时监控多线程并发处理同一动物时，
+     * 两条线程可能同时查不到记录、各自新建一行。
+     *
+     * <p>这里改用 {@code List + Pageable} 的写法（与 {@code LocationTrackRepository} 保持一致）。
      */
     @Query("SELECT h FROM HealthStatus h WHERE h.animalId = :animalId ORDER BY h.timestamp DESC")
-    Optional<HealthStatus> findLatestByAnimalId(@Param("animalId") String animalId);
+    List<HealthStatus> findLatestByAnimalIdList(@Param("animalId") String animalId, Pageable pageable);
+
+    /** 查询动物的最新健康状态 */
+    default Optional<HealthStatus> findLatestByAnimalId(String animalId) {
+        return findLatestByAnimalIdList(animalId, PageRequest.of(0, 1)).stream().findFirst();
+    }
 
     /**
      * 查询指定时间段内的健康状态记录

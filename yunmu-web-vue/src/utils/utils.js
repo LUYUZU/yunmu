@@ -31,6 +31,6 @@ export function downloadFile(content, filename, mimeType) {
   document.body.removeChild(a); URL.revokeObjectURL(url)
 }
 export function getTabName(tab) {
-  const names = {overview:'系统概览',animals:'动物监测',location:'北斗定位',posture:'姿态识别',steps:'步数统计',data:'数据管理',analysis:'分析报告'}
+  const names = {overview:'系统概览',animals:'动物监测',location:'北斗定位',posture:'姿态识别',steps:'步数统计',data:'数据管理',analysis:'分析报告',devices:'项圈设备',ai:'AI 助手'}
   return names[tab] || tab
 }

@@ -2,6 +2,8 @@ package com.yunmu.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Locale;
+
 /**
  * GPS坐标转换工具类
  * 支持：
@@ -63,10 +65,14 @@ public class GpsUtils {
     }
 
     /**
-     * 十进制度数转度分格式
+     * 十进制度数转度分格式（DDMM.MMMM）
+     *
+     * <p>与 {@link #degreeMinuteToDecimal(String)} 严格互逆。度部分至少补齐 2 位，
+     * 保证「分」始终占据末两位整数（例如纬度 9.5° 应输出 {@code 0930.000} 而非 {@code 9030.000}，
+     * 后者会被回解析成 90.5°）。经度为 3 位度时自然占用 5 位整数部分。
      *
      * @param decimal 十进制度数
-     * @return 度分格式字符串，如 "3110.5682"
+     * @return 度分格式字符串，如 "3110.568"
      */
     public static String decimalToDegreeMinute(Double decimal) {
         if (decimal == null) {
@@ -75,7 +81,8 @@ public class GpsUtils {
 
         int degrees = (int) Math.floor(decimal);
         double minutes = (decimal - degrees) * 60;
-        return String.format("%d%06.3f", degrees, minutes);
+        // 固定 Locale，避免小数点被本地化成逗号导致回解析失败
+        return String.format(Locale.ROOT, "%02d%06.3f", degrees, minutes);
     }
 
     // ==================== WGS84 转 GCJ-02 ====================

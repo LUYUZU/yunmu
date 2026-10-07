@@ -14,6 +14,14 @@ public class SensorDataDTO {
     private Double accelY;
     private Double accelZ;
 
+    // 陀螺仪数据
+    private Double gyroX;
+    private Double gyroY;
+    private Double gyroZ;
+
+    // 移动状态: 0=静止, 1=移动, 2=跑
+    private Integer moveStatus;
+
     // GPS数据
     private Double latitude;
     private Double longitude;

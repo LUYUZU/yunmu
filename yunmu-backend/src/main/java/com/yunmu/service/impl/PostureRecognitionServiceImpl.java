@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class PostureRecognitionServiceImpl implements PostureRecognitionService 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${python.service.url:http://localhost:5000}")
+    @Value("${yunmu.python-service.url:http://localhost:5000}")
     private String pythonServiceUrl;
 
     // PostureRecognitionServiceImpl.java - 修改 recognizePosture 方法
@@ -98,7 +99,9 @@ public class PostureRecognitionServiceImpl implements PostureRecognitionService 
 
     /**
      * 确定姿态（调用 Python ML 服务）
-     * 姿态类型：standing, lying, walking, feeding, running
+     * 姿态类型：standing, lying, walking, feeding, running（ML 5 类标准）
+     * abnormal 表示设备异常（加速度异常、疑似设备脱落），不是动物行为，
+     * 返回给前端时应标注为"设备异常"而非"动物姿态"。
      */
     private String determinePosture(double magnitude, double tiltAngle, Double gyroX, Double gyroY, Double gyroZ) {
         // 计算陀螺仪模值（如果存在）
@@ -161,15 +164,19 @@ public class PostureRecognitionServiceImpl implements PostureRecognitionService 
 
     @Override
     public List<PostureResult> getPostureHistory(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
-        return postureResultRepository.findByAnimalIdAndTimestampBetweenOrderByTimestampDesc(
-                animalId, startTime, endTime);
+        long startEpoch = startTime.toEpochSecond(ZoneOffset.ofHours(8));
+        long endEpoch = endTime.toEpochSecond(ZoneOffset.ofHours(8));
+        return postureResultRepository.findByAnimalIdAndTimestampEpochBetweenOrderByTimestampEpochDesc(
+                animalId, startEpoch, endEpoch);
     }
 
     @Override
     public Map<String, Object> getPostureStatistics(String animalId, LocalDateTime startTime, LocalDateTime endTime) {
-        List<Object[]> postureCounts = postureResultRepository.countByPostureType(animalId, startTime, endTime);
-        Integer standingDuration = postureResultRepository.sumStandingDuration(animalId, startTime, endTime);
-        Integer lyingDuration = postureResultRepository.sumLyingDuration(animalId, startTime, endTime);
+        long startEpoch = startTime.toEpochSecond(ZoneOffset.ofHours(8));
+        long endEpoch = endTime.toEpochSecond(ZoneOffset.ofHours(8));
+        List<Object[]> postureCounts = postureResultRepository.countByPostureType(animalId, startEpoch, endEpoch);
+        Integer standingDuration = postureResultRepository.sumStandingDuration(animalId, startEpoch, endEpoch);
+        Integer lyingDuration = postureResultRepository.sumLyingDuration(animalId, startEpoch, endEpoch);
         
         Map<String, Object> stats = new HashMap<>();
         Map<String, Long> distribution = new HashMap<>();

@@ -3,7 +3,9 @@ package com.yunmu.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Entity
 @Data
@@ -22,8 +24,25 @@ public class LocationTrack {
     @Column(name = "device_id")
     private String deviceId;
 
+    /**
+     * 数据库存 bigint（Unix 毫秒），用 timestampEpoch 对应。
+     * Java 代码用 getTimestamp() / setTimestamp() 操作 LocalDateTime，
+     * 内部自动与 timestampEpoch 互转。
+     */
     @Column(name = "timestamp", nullable = false)
-    private LocalDateTime timestamp;
+    private Long timestampEpoch;
+
+    @Transient
+    public LocalDateTime getTimestamp() {
+        return timestampEpoch != null ?
+            LocalDateTime.ofInstant(Instant.ofEpochMilli(timestampEpoch), ZoneId.systemDefault()) : null;
+    }
+
+    @Transient
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestampEpoch = timestamp != null ?
+            timestamp.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() : null;
+    }
 
     @Column(nullable = false)
     private Double latitude;

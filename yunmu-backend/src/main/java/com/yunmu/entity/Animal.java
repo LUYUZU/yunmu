@@ -15,6 +15,13 @@ public class Animal {
     @Column(nullable = false)
     private String animalType; // cow, sheep
 
+    /**
+     * 项圈设备编号（device_code）：一个项圈同时只能绑定一只动物，唯一约束保证。
+     * 项圈可换绑：同一项圈既可用于牛也可用于羊；未绑定时为 NULL。
+     */
+    @Column(name = "device_code", unique = true)
+    private String deviceCode;
+
     @Column(nullable = false)
     private String breed;
 

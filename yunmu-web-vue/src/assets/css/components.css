@@ -5,6 +5,10 @@
 .btn-success:hover{box-shadow:0 4px 14px rgba(82,183,136,0.4);transform:translateY(-1px)}
 .btn-info{background:linear-gradient(135deg,var(--warning-color),var(--warning-dark));color:#fff}
 .btn-info:hover{box-shadow:0 4px 14px rgba(244,162,97,0.4);transform:translateY(-1px)}
+.btn-danger{background:linear-gradient(135deg,#E07070,#c05050);color:#fff}
+.btn-danger:hover{box-shadow:0 4px 14px rgba(224,112,112,0.4);transform:translateY(-1px)}
+.btn-warning{background:linear-gradient(135deg,#FBB024,#d99a1e);color:#fff}
+.btn-warning:hover{box-shadow:0 4px 14px rgba(251,191,36,0.4);transform:translateY(-1px)}
 .btn-sm{padding:7px 14px;font-size:13px;background:rgba(91,168,216,0.1);color:var(--primary-dark)}
 .btn-sm:hover{background:rgba(91,168,216,0.2)}
 .btn.loading{opacity:0.7;pointer-events:none}

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/基于机器学习的多模态高原牛羊行为监测系统.iml" filepath="$PROJECT_DIR$/.idea/基于机器学习的多模态高原牛羊行为监测系统.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/高原牛羊行为AI监测系统.iml" filepath="$PROJECT_DIR$/.idea/高原牛羊行为AI监测系统.iml" />
     </modules>
   </component>
 </project>

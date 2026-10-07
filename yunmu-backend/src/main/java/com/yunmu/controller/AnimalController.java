@@ -1,12 +1,32 @@
 package com.yunmu.controller;
 
+import com.yunmu.entity.Animal;
+import com.yunmu.repository.AnimalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * 动物档案查询接口
+ *
+ * 两点约定：
+ *
+ * 1. 统一走 AnimalRepository（JPA），不再使用裸 SQL。
+ *    此前 SQL 写的是 name / type / device_id / status / created_at，
+ *    而实体 Animal 实际映射的是 animal_id / animal_type / device_code / create_time，
+ *    animals 表并没有 name / status / created_at 这几列，该查询会抛异常走兜底分支。
+ *
+ * 2. 本系统不对动物做个别命名，个体只用编号（即 animal_id）标识，
+ *    因此接口不返回 name 字段，前端也不再渲染任何动物名称。
+ *
+ * 本接口只返回静态档案。实时指标（体温 / 心率 / 步数 / 行为 / 姿态 / 健康分）
+ * 请查 /api/realtime/summary（全量）或 /api/realtime/latest/{animalId}（单只）。
+ */
 @Slf4j
 @RestController
 @RequestMapping("/api/animals")
@@ -14,118 +34,65 @@ import java.util.*;
 public class AnimalController {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private AnimalRepository animalRepository;
 
     /**
-     * 获取所有动物列表
+     * 获取所有动物档案
      */
     @GetMapping
     public List<Map<String, Object>> getAllAnimals() {
         log.info("获取所有动物列表");
 
+        List<Map<String, Object>> animals = new ArrayList<>();
         try {
-            // 直接使用 SQL 查询数据库
-            String sql = "SELECT animal_id, device_id, name, type, breed, weight, status, created_at FROM animals";
-            List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
-
-            if (results.isEmpty()) {
-                log.info("数据库无动物数据，返回模拟数据");
-                return generateMockAnimals();
+            for (Animal animal : animalRepository.findAll()) {
+                animals.add(toArchiveMap(animal));
             }
-
-            // 转换为前端期望的格式
-            List<Map<String, Object>> animals = new ArrayList<>();
-            for (Map<String, Object> row : results) {
-                Map<String, Object> animal = new HashMap<>();
-                animal.put("id", row.get("animal_id"));
-                animal.put("type", row.get("type"));
-                animal.put("breed", row.get("breed"));
-                animal.put("weight", row.get("weight"));
-                animal.put("status", row.get("status"));
-                animal.put("name", row.get("name"));
-                animal.put("deviceId", row.get("device_id"));
-
-                // 添加模拟的实时数据（实际应从其他表获取）
-                animal.put("temperature", String.format("%.1f", 38 + Math.random() * 1.5));
-                animal.put("heartRate", 60 + (int)(Math.random() * 30));
-                animal.put("steps", (int)(Math.random() * 5000));
-                animal.put("behavior", getRandomBehavior());
-                animal.put("posture", getRandomPosture());
-
-                animals.add(animal);
-            }
-
             log.info("从数据库获取到 {} 只动物", animals.size());
-            return animals;
-
         } catch (Exception e) {
             log.error("获取动物列表失败: {}", e.getMessage(), e);
-            return generateMockAnimals();
+            return new ArrayList<>();
         }
+        return animals;
     }
 
     /**
-     * 获取单个动物信息
+     * 获取单个动物档案
      */
     @GetMapping("/{animalId}")
     public Map<String, Object> getAnimal(@PathVariable String animalId) {
         log.info("获取动物信息: {}", animalId);
 
         try {
-            String sql = "SELECT animal_id, device_id, name, type, breed, weight, status FROM animals WHERE animal_id = ?";
-            List<Map<String, Object>> results = jdbcTemplate.queryForList(sql, animalId);
-
-            if (!results.isEmpty()) {
-                Map<String, Object> row = results.get(0);
-                Map<String, Object> animal = new HashMap<>();
-                animal.put("id", row.get("animal_id"));
-                animal.put("type", row.get("type"));
-                animal.put("breed", row.get("breed"));
-                animal.put("weight", row.get("weight"));
-                animal.put("status", row.get("status"));
-                animal.put("name", row.get("name"));
-                animal.put("deviceId", row.get("device_id"));
-                animal.put("temperature", String.format("%.1f", 38 + Math.random() * 1.5));
-                animal.put("heartRate", 60 + (int)(Math.random() * 30));
-                return animal;
-            }
-
-            return null;
+            return animalRepository.findById(animalId)
+                    .map(this::toArchiveMap)
+                    .orElse(null);
         } catch (Exception e) {
             log.error("获取动物信息失败: {}", e.getMessage(), e);
             return null;
         }
     }
 
-    private String getRandomBehavior() {
-        String[] behaviors = {"采食", "反刍", "站立", "行走", "躺卧"};
-        return behaviors[(int)(Math.random() * behaviors.length)];
-    }
-
-    private String getRandomPosture() {
-        String[] postures = {"standing", "lying", "feeding", "walking"};
-        return postures[(int)(Math.random() * postures.length)];
-    }
-
-    private List<Map<String, Object>> generateMockAnimals() {
-        List<Map<String, Object>> animals = new ArrayList<>();
-        String[] types = {"cow", "sheep"};
-        String[] breeds = {"荷斯坦", "西门塔尔", "小尾寒羊", "藏绵羊"};
-
-        for (int i = 1; i <= 8; i++) {
-            Map<String, Object> animal = new HashMap<>();
-            animal.put("id", String.format("NO.%03d", i));
-            animal.put("type", types[i % 2]);
-            animal.put("breed", breeds[i % 4]);
-            animal.put("weight", 200 + (int)(Math.random() * 300));
-            animal.put("status", Math.random() > 0.85 ? "alert" : "normal");
-            animal.put("temperature", String.format("%.1f", 38 + Math.random() * 1.5));
-            animal.put("heartRate", 60 + (int)(Math.random() * 30));
-            animal.put("steps", (int)(Math.random() * 5000));
-            animal.put("behavior", getRandomBehavior());
-            animal.put("posture", getRandomPosture());
-            animals.add(animal);
-        }
-        return animals;
+    /**
+     * 档案字段映射——只输出 animals 表真实存在的列。
+     *
+     * 注意：这里既不返回 animal 的 name（项目不对动物命名），
+     * 也不返回 status，也不生成任何体温 / 心率 / 步数 / 行为 / 姿态等实时值——
+     * 这些必须来自真实链路（MQTT → Python 推理 → 回调入库），
+     * 早期版本曾用 Math.random() 在此处生成，已移除。
+     */
+    private Map<String, Object> toArchiveMap(Animal animal) {
+        Map<String, Object> m = new HashMap<>();
+        m.put("id", animal.getAnimalId());
+        m.put("type", animal.getAnimalType());
+        m.put("breed", animal.getBreed());
+        m.put("age", animal.getAge());
+        m.put("weight", animal.getWeight());
+        m.put("deviceId", animal.getDeviceCode());
+        m.put("registrationDate", animal.getRegistrationDate() != null
+                ? animal.getRegistrationDate().toString() : null);
+        m.put("ownerId", animal.getOwnerId());
+        m.put("pastureId", animal.getPastureId());
+        return m;
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
@@ -110,11 +111,11 @@ public class LocationTrackingServiceImpl implements LocationTrackingService {
             }
 
             // 从数据库获取最新位置
-            List<LocationTrack> latestTracks = locationTrackRepository
-                    .findLatestByAnimalId(animalId, PageRequest.of(0, 1));
+            Optional<LocationTrack> latestTrack = locationTrackRepository
+                    .findLatestByAnimalId(animalId);
 
-            if (!latestTracks.isEmpty()) {
-                LocationTrack location = latestTracks.get(0);
+            if (latestTrack.isPresent()) {
+                LocationTrack location = latestTrack.get();
                 cacheCurrentLocation(animalId, location);
                 return location;
             }
@@ -133,7 +134,9 @@ public class LocationTrackingServiceImpl implements LocationTrackingService {
             log.info("获取轨迹历史，动物ID: {}, 时间范围: {} - {}", animalId, startTime, endTime);
 
             List<LocationTrack> tracks = locationTrackRepository
-                    .findTrackByAnimalIdAndTimeRange(animalId, startTime, endTime);
+                    .findTrackByAnimalIdAndTimeRange(animalId,
+                            startTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),
+                            endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
             log.debug("获取到 {} 条轨迹记录", tracks.size());
             return tracks;

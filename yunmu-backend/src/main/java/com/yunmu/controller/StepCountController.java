@@ -171,6 +171,48 @@ public class StepCountController {
     }
 
     /**
+     * 获取每小时步数统计（今日）
+     */
+    @GetMapping("/hourly/{animalId}")
+    public ResponseEntity<?> getHourlySteps(
+            @PathVariable String animalId,
+            @RequestParam(defaultValue = "24") int hours) {
+        try {
+            LocalDateTime endTime = LocalDateTime.now();
+            LocalDateTime startTime = endTime.minusHours(hours);
+            List<StepCount> steps = stepCountService.getStepHistory(animalId, startTime, endTime);
+            
+            // 按小时分组统计
+            Map<Integer, Integer> hourlyMap = new java.util.TreeMap<>();
+            for (StepCount sc : steps) {
+                int hour = sc.getTimestamp().getHour();
+                hourlyMap.merge(hour, sc.getStepCount() != null ? sc.getStepCount() : 0, Integer::sum);
+            }
+            
+            // 转换为前端需要的格式
+            List<Map<String, Object>> hourlyData = new java.util.ArrayList<>();
+            for (Map.Entry<Integer, Integer> e : hourlyMap.entrySet()) {
+                Map<String, Object> h = new java.util.HashMap<>();
+                h.put("hour", e.getKey());
+                h.put("steps", e.getValue());
+                hourlyData.add(h);
+            }
+            
+            return ResponseEntity.ok(Map.of(
+                    "success", true,
+                    "animalId", animalId,
+                    "hourlyData", hourlyData
+            ));
+        } catch (Exception e) {
+            log.error("获取每小时步数失败: {}", e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of(
+                    "success", false,
+                    "message", "获取每小时步数失败: " + e.getMessage()
+            ));
+        }
+    }
+
+    /**
      * 调用Python服务统计步数
      */
     @PostMapping("/predict")

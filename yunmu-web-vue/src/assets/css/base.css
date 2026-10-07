@@ -27,3 +27,15 @@ body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;background:var(--bg-
 .content-header h2{font-size:22px;color:var(--primary-dark);font-weight:700;display:flex;align-items:center;gap:12px}
 .content-header h2 i{color:var(--primary-color)}
 .header-actions{display:flex;gap:10px;flex-wrap:wrap}
+.sidebar.collapsed{width:60px}
+.sidebar.collapsed .nav-header{justify-content:center;padding:0 0 14px}
+.sidebar.collapsed .nav-header i{margin:0}
+.sidebar.collapsed .nav-item a{justify-content:center;padding:12px}
+.sidebar.collapsed .nav-item a i{margin:0}
+.nav-text{white-space:nowrap;overflow:hidden;max-width:200px;opacity:1;transition:opacity 0.2s ease 0.1s,max-width 0.3s ease,margin 0.3s ease}
+.sidebar.collapsed .nav-text{max-width:0;opacity:0;margin-left:-8px}
+.sidebar-toggle{position:absolute;top:18px;right:-18px;width:28px;height:36px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;gap:2px;cursor:pointer;transition:all 0.3s ease;border:1px solid #d8dde5;color:#8896a4;font-size:12px;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.sidebar-toggle:hover{background:#f7f8fa;border-color:#c0c8d4;color:#5a6b7d;box-shadow:0 3px 12px rgba(0,0,0,0.12)}
+.sidebar-toggle .fa-bars{font-size:13px!important}
+.sidebar-toggle .fa-chevron-right,.sidebar-toggle .fa-chevron-left{font-size:9px!important;margin-top:1px}
+.sidebar{position:relative;transition:width 0.3s ease}
